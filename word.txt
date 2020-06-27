@@ -1,0 +1,31 @@
+- Thong bao: mess tele web
+
+- Them cac trang thai on off tu admmin vao
+
+- Lam them vai lenh tren bot
+
+- set session tren webview mes & tele
+
+- Tao zoom
+
+- them trang nhan lai 
+
+- Viet bo sinh data
+
+- Viet bo chay ao 
+
+- Test Group 
+
+- Them So ng dung
+
+- Them Chong DDOS, Logger 
+
+- Them Bao cao tai chinh documment  
+
+- Them Faker va tester role vao db     
+
+- Them Deposit Button   cho admin   
+
+- fix timestamp  
+
+- Them follow vs featre

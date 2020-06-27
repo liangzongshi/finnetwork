@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title><%= title %></title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="../assets/css/transparent/app.min.css" rel="stylesheet" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+	
+	<!-- ================== BEGIN PAGE LEVEL CSS STYLE ================== -->
+	<link href="../assets/plugins/jvectormap-next/jquery-jvectormap.css" rel="stylesheet" />
+	<link href="../assets/plugins/nvd3/build/nv.d3.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+	<!-- ================== END PAGE LEVEL CSS STYLE ================== -->
+	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body>
+	<%- include("../frame/loader") -%>
+
+	<!-- begin #page-container -->
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+		<%- include("../frame/header") -%>
+		<%- include("../frame/sidebar") -%>
+		
+        <!-- begin #content -->
+		<div id="content" class="content">
+			<!-- begin breadcrumb -->
+			<ol class="breadcrumb float-xl-right">
+				<li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li>
+				<li class="breadcrumb-item active">Trading</li>
+			</ol>
+			<!-- end breadcrumb -->
+			<!-- begin page-header -->
+			<h1 class="page-header">Trading</h1>
+			<!-- end page-header -->
+			
+			<!-- begin row -->
+			<div class="row">
+				<!-- begin col-6 -->
+				<div class="col-xl-12">
+					<!-- begin row -->
+					<div class="row">
+						<!-- begin col-6 -->
+						<div class="col-xl-6 col-lg-6 col-md-6 col-xs-12">
+							<!-- begin card -->
+							<div class="card border-0 text-truncate mb-3 ">
+								<!-- begin card-body -->
+								<div class="card-body">
+									<!-- begin title -->
+									<div class="mb-3 text-grey">
+										<b class="mb-3">TOTAL ORDERS</b> 
+										<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+									</div>
+									<!-- end title -->
+									<!-- begin conversion-rate -->
+									<div class="d-flex align-items-center mb-1">
+										<h2 class="text-white mb-0"><span id="number" data-animation="number" data-value="<%= curOrders.order %>">0.00</span></h2>
+									</div>
+									<!-- end conversion-rate -->
+								</div>
+								<!-- end card-body -->
+							</div>
+							<!-- end card -->
+						</div>
+						<!-- end col-6 -->
+						<!-- begin col-6 -->
+						<div class="col-xl-6 col-lg-6 col-md-6 col-xs-12">
+							<!-- begin card -->
+							<div class="card border-0 text-truncate mb-3 ">
+								<!-- begin card-body -->
+								<div class="card-body">
+									<!-- begin title -->
+									<div class="mb-3 text-grey">
+										<b class="mb-3">TOTAL PROFIT</b> 
+										<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+									</div>
+									<!-- end title -->
+									<!-- begin conversion-rate -->
+									<div class="d-flex align-items-center mb-1">
+										<h2 class="text-white mb-0">$ <span id="total_profit" data-animation="number" data-value="<%= Number(curOrders.profit).toFixed(2) %>">0.00</span> </h2>
+									</div>
+									<!-- end conversion-rate -->
+								</div>
+								<!-- end card-body -->
+							</div>
+							<!-- end card -->
+						</div>
+						<!-- end col-6 -->
+						<!-- begin col-6 -->
+
+						<!-- end col-6 -->
+					</div>
+					<!-- end row -->
+				</div>
+				<!-- end col-6 -->
+			</div>
+			<!-- end row -->
+
+						<!-- begin row -->
+						<div class="row">
+							<!-- begin col-6 -->
+							<div class="col-xl-12">
+								<!-- begin row -->
+								<div class="row">
+									<!-- begin col-6 -->
+									<div class="col-xl-3 col-lg-3 col-md-3 col-xs-12">
+										<!-- begin card -->
+										<div class="card border-0 text-truncate mb-3 ">
+											<!-- begin card-body -->
+											<div class="card-body">
+												<!-- begin title -->
+												<div class="mb-3 text-grey">
+													<b class="mb-3">CAPITALS</b> 
+													<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+												</div>
+												<!-- end title -->
+												<!-- begin conversion-rate -->
+												<div class="d-flex align-items-center mb-1">
+													<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= curOrders.capital %>">0.00</span> </h2>
+												</div>
+												<!-- end conversion-rate -->
+											</div>
+											<!-- end card-body -->
+										</div>
+										<!-- end card -->
+									</div>
+									<!-- end col-6 -->
+									<!-- begin col-6 -->
+									<div class="col-xl-3 col-lg-3 col-md-3 col-xs-12">
+										<!-- begin card -->
+										<div class="card border-0 text-truncate mb-3 ">
+											<!-- begin card-body -->
+											<div class="card-body">
+												<!-- begin title -->
+												<div class="mb-3 text-grey">
+													<b class="mb-3">CURCULATING TOKEN</b> 
+													<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+												</div>
+												<!-- end title -->
+												<!-- begin conversion-rate -->
+												<div class="d-flex align-items-center mb-1">
+													<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= curOrders.activeToken %>">0.00</span> </h2>
+												</div>
+												<!-- end conversion-rate -->
+											</div>
+											<!-- end card-body -->
+										</div>
+										<!-- end card -->
+									</div>
+									<!-- end col-6 -->
+									<!-- begin col-6 -->
+									<div class="col-xl-3 col-lg-3 col-md-3 col-xs-12">
+										<!-- begin card -->
+										<div class="card border-0 text-truncate mb-3 ">
+											<!-- begin card-body -->
+											<div class="card-body">
+												<!-- begin title -->
+												<div class="mb-3 text-grey">
+													<b class="mb-3">BLOCKED TOKEN</b> 
+													<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+												</div>
+												<!-- end title -->
+												<!-- begin conversion-rate -->
+												<div class="d-flex align-items-center mb-1">
+													<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= curOrders.blockedToken %>">0.00</span> </h2>
+												</div>
+												<!-- end conversion-rate -->
+			
+											</div>
+											<!-- end card-body -->
+										</div>
+										<!-- end card -->
+									</div>
+									<!-- end col-6 -->
+
+									<!-- begin col-6 -->
+									<div class="col-xl-3 col-lg-3 col-md-3 col-xs-12">
+										<!-- begin card -->
+										<div class="card border-0 text-truncate mb-3 ">
+											<!-- begin card-body -->
+											<div class="card-body">
+												<!-- begin title -->
+												<div class="mb-3 text-grey">
+													<b class="mb-3">CURRENT PROFIT</b> 
+													<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+												</div>
+												<!-- end title -->
+												<!-- begin conversion-rate -->
+												<div class="d-flex align-items-center mb-1">
+													<h2 class="text-white mb-0">$ <span id="current_profit" data-animation="number" data-value="<%= Number(current_profit).toFixed(2) %>">0.00</span> </h2>
+												</div>
+												<!-- end conversion-rate -->
+			
+											</div>
+											<!-- end card-body -->
+										</div>
+										<!-- end card -->
+									</div>
+									<!-- end col-6 -->
+								</div>
+								<!-- end row -->
+							</div>
+							<!-- end col-6 -->
+						</div>
+						<!-- end row -->
+
+			<!-- begin row -->
+			<div class="row">
+				<!-- begin col-6 -->
+				<div class="col-xl-12">
+					<!-- begin row -->
+					<div class="row">
+						<div class="col-xl-3 col-lg-3 col-md-3 col-xs-12">
+							<!-- begin card -->
+							<div class="card border-0 text-truncate mb-3 ">
+								<!-- begin card-body -->
+								<div class="card-body">
+									<!-- begin title -->
+									<div class="mb-3 text-grey">
+										<b class="mb-3">YESTERDAY</b> 
+										<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+									</div>
+									<!-- end title -->
+									<!-- begin conversion-rate -->
+									<div class="d-flex align-items-center mb-1">
+										<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= curOrders.days %>">0.00</span> </h2>
+										<!-- <div class="ml-auto">
+											<div id="trading-sparkline-7"></div>
+										</div> -->
+									</div>
+									<!-- end conversion-rate -->
+									<!-- begin percentage -->
+									<div class="mb-4 text-grey">
+										<% if(curOrders.days >= preOrders.days){ %>
+											<i class="fa fa-caret-up text-green"></i> <span class="text-green"><%= ((curOrders.days/preOrders.days - 1)*100).toFixed(2) %> %</span>
+										<% }else{ %>
+											<i class="fa fa-caret-down text-red"></i> <span class="text-red"><%= ((preOrders.days/curOrders.days - 1)*100).toFixed(2) %> %</span>
+										<% } %>
+										 compare to last day
+									</div>
+									<!-- end percentage -->
+								</div>
+								<!-- end card-body -->
+							</div>
+							<!-- end card -->
+						</div>
+						<!-- begin col-6 -->
+						<div class="col-xl-3 col-lg-3 col-md-3 col-xs-12">
+							<!-- begin card -->
+							<div class="card border-0 text-truncate mb-3 ">
+								<!-- begin card-body -->
+								<div class="card-body">
+									<!-- begin title -->
+									<div class="mb-3 text-grey">
+										<b class="mb-3">MONTHS</b> 
+										<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+									</div>
+									<!-- end title -->
+									<!-- begin conversion-rate -->
+									<div class="d-flex align-items-center mb-1">
+										<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= curOrders.months %>">0.00</span> </h2>
+									</div>
+									<!-- end conversion-rate -->
+									<!-- begin percentage -->
+									<div class="mb-4 text-grey">
+										<% if(curOrders.months >= preOrders.months){ %>
+											<i class="fa fa-caret-up text-green"></i> <span class="text-green"><%= ((curOrders.months/preOrders.months - 1)*100).toFixed(2) %> %</span>
+										<% }else{ %>
+											<i class="fa fa-caret-down text-red"></i> <span class="text-red"><%= ((preOrders.months/curOrders.months - 1)*100).toFixed(2) %> %</span>
+										<% } %> compare to last month
+									</div>
+									<!-- end percentage -->
+								</div>
+								<!-- end card-body -->
+							</div>
+							<!-- end card -->
+						</div>
+						<!-- end col-6 -->
+
+						<!-- begin col-6 -->
+						<div class="col-xl-3 col-lg-3 col-md-3 col-xs-12">
+							<!-- begin card -->
+							<div class="card border-0 text-truncate mb-3 ">
+								<!-- begin card-body -->
+								<div class="card-body">
+									<!-- begin title -->
+									<div class="mb-3 text-grey">
+										<b class="mb-3">PAY MONTH</b> 
+										<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+									</div>
+									<!-- end title -->
+									<!-- begin conversion-rate -->
+									<div class="d-flex align-items-center mb-1">
+										<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= curOrders.pay_months %>">0.00</span> </h2>
+									</div>
+									<!-- end conversion-rate -->
+									<!-- begin percentage -->
+									<div class="mb-4 text-grey">
+										<% if(curOrders.pay_months >= preOrders.pay_months){ %>
+											<i class="fa fa-caret-up text-green"></i> <span class="text-green"><%= ((curOrders.pay_months/preOrders.pay_months - 1)*100).toFixed(2) %> %</span>
+										<% }else{ %>
+											<i class="fa fa-caret-down text-red"></i> <span class="text-red"><%= ((preOrders.pay_months/curOrders.pay_months - 1)*100).toFixed(2) %> %</span>
+										<% } %> compare to last month
+									</div>
+									<!-- end percentage -->
+								</div>
+								<!-- end card-body -->
+							</div>
+							<!-- end card -->
+						</div>
+						<!-- end col-6 -->
+
+						<!-- begin col-6 -->
+						<div class="col-xl-3 col-lg-3 col-md-3 col-xs-12">
+							<!-- begin card -->
+							<div class="card border-0 text-truncate mb-3 ">
+								<!-- begin card-body -->
+								<div class="card-body">
+									<!-- begin title -->
+									<div class="mb-3 text-grey">
+										<b class="mb-3">PAY YESTERDAY</b> 
+										<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+									</div>
+									<!-- end title -->
+									<!-- begin conversion-rate -->
+									<div class="d-flex align-items-center mb-1">
+										<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= Number(curOrders.pay_days) %>">0.00</span></h2>
+										<!-- <div class="ml-auto">
+											<div id="trading-sparkline-9"></div>
+										</div> -->
+									</div>
+									<!-- end conversion-rate -->
+									<!-- begin percentage -->
+									<div class="mb-4 text-grey">
+										<% if(curOrders.pay_days >= preOrders.pay_days){ %>
+											<i class="fa fa-caret-up text-green"></i> <span class="text-green"><%= ((curOrders.pay_days/preOrders.pay_days - 1)*100).toFixed(2) %> %</span>
+										<% }else{ %>
+											<i class="fa fa-caret-down text-red"></i> <span class="text-red"><%= ((preOrders.pay_days/curOrders.pay_days - 1)*100).toFixed(2) %> %</span>
+										<% } %> compare to last day
+									</div>
+									<!-- end percentage -->
+								</div>
+								<!-- end card-body -->
+							</div>
+							<!-- end card -->
+						</div>
+						<!-- end col-6 -->
+					</div>
+					<!-- end row -->
+				</div>
+				<!-- end col-6 -->
+			</div>
+			<!-- end row -->
+
+			<div class="row">
+				<!-- begin col-10 -->
+				<div class="col-xl-12">
+					<div class="panel panel-inverse">
+						<h4 class="p-10">HFT TRADING</h4>
+						<!-- begin panel-body -->
+						<div class="panel-body">
+							<table id="trading_tb" class="table table-striped table-bordered table-td-valign-middle text-center">
+								<thead>
+									<tr>
+										<th width="1%"></th>
+										<th class="text-nowrap">Timestamps</th>
+										<th class="text-nowrap">Type</th>
+										<th class="text-nowrap">Amount</th>
+										<th class="text-nowrap">Buy Price</th>
+										<th class="text-nowrap">Sell Price</th>
+										<th class="text-nowrap">Profit</th>
+									</tr>
+								</thead>
+								<tbody id="hft">
+									<% hftOrders.orders.forEach(function(item, st){ %>
+										<tr class="odd gradeX" id="">
+											<td id="<%= st+1 + '_number' %>" width="1%" class="f-s-600 text-inverse"><%= st+1 %></td>
+											<td id="<%= st+1 + '_timestamp' %>"><%= item.timestamp %></td>
+											<td id="<%= st+1 + '_type' %>"><%= item.type %></td>
+											<td id="<%= st+1 + '_amount' %>"><%= item.amount %></td>
+											<td id="<%= st+1 + '_buy' %>"><%= item.buy.price %></td>
+											<td id="<%= st+1 + '_sell' %>"><%= item.sell.price %></td>
+											<td id="<%= st+1 + '_profit' %>"><%= item.profit %></td>
+										</tr>
+									<% }) %>
+								</tbody>
+							</table>
+							
+						</div>
+						<!-- end panel-body -->
+					</div>
+				</div>
+				<!-- end col-10 -->
+			</div>
+			<!-- end row -->
+
+			<div class="row">
+
+				<div class="col-lg-12">
+					
+					<div class="panel panel-inverse" data-sortable-id="chart-js-6">
+						<div class="panel-body p-0">
+							<div id="apex-line-chart"></div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-inverse" data-sortable-id="chart-js-6">
+						<div class="panel-body p-0">
+							<div id="daily">
+
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+		</div>
+		<!-- end #content -->
+		
+		<!-- begin scroll to top btn -->
+		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+		<!-- end scroll to top btn -->
+	</div>
+	<!-- end page container -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="../assets/js/app.min.js"></script>
+	<script src="../assets/js/theme/transparent.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+	
+	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+	<script src="../assets/plugins/d3/d3.min.js"></script>
+	<script src="../assets/plugins/nvd3/build/nv.d3.min.js"></script>
+	<script src="../assets/plugins/jvectormap-next/jquery-jvectormap.min.js"></script>
+	<script src="../assets/plugins/jvectormap-next/jquery-jvectormap-world-mill.js"></script>
+	<!-- <script src="../assets/plugins/apexcharts/dist/apexcharts.min.js"></script> -->
+	<script src="../assets/plugins/moment/min/moment.min.js"></script>
+	<script src="../assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<script src="../assets/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="../assets/plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+	<script src="../assets/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+	<script src="../assets/plugins/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+	<script src="../assets/plugins/datatables.net-autofill/js/dataTables.autofill.min.js"></script>
+	<script src="../assets/plugins/datatables.net-autofill-bs4/js/autofill.bootstrap4.min.js"></script>
+	<script src="../assets/plugins/datatables.net-colreorder/js/dataTables.colreorder.min.js"></script>
+	<script src="../assets/plugins/datatables.net-colreorder-bs4/js/colreorder.bootstrap4.min.js"></script>
+	<script src="../assets/plugins/datatables.net-keytable/js/dataTables.keytable.min.js"></script>
+	<script src="../assets/plugins/datatables.net-keytable-bs4/js/keytable.bootstrap4.min.js"></script>
+	<script src="../assets/plugins/datatables.net-rowreorder/js/dataTables.rowreorder.min.js"></script>
+	<script src="../assets/plugins/datatables.net-rowreorder-bs4/js/rowreorder.bootstrap4.min.js"></script>
+	<script src="../assets/plugins/datatables.net-select/js/dataTables.select.min.js"></script>
+	<script src="../assets/plugins/datatables.net-select-bs4/js/select.bootstrap4.min.js"></script>
+	<script src="../assets/plugins/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script src="../assets/plugins/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+	<script src="../assets/plugins/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+	<script src="../assets/plugins/datatables.net-buttons/js/buttons.flash.min.js"></script>
+	<script src="../assets/plugins/datatables.net-buttons/js/buttons.html5.min.js"></script>
+	<script src="../assets/plugins/datatables.net-buttons/js/buttons.print.min.js"></script>
+	<script src="../assets/plugins/pdfmake/build/pdfmake.min.js"></script>
+	<script src="../assets/plugins/pdfmake/build/vfs_fonts.js"></script>
+	<!-- <script src="../assets/plugins/jszip/dist/jszip.min.js"></script> -->
+	<script src="../custom/trading.js"></script>
+	<script src="../assets/js/demo/dashboard-v3.js"></script>
+	<!-- <script src="../assets/plugins/apexcharts/dist/apexcharts.min.js"></script> -->
+	<script>
+		Apex.grid = {
+			borderColor: 'rgba(255,255,255,0.25)'
+		};
+		Apex.title = {
+			style: {
+				color: '#fff'
+			}
+		}
+		Apex.legend = {
+			labels: {
+				colors: '#fff'
+			}
+		}
+		Apex.xaxis = {
+			labels: {
+				style: {
+					colors: '#fff'
+				}
+			},
+			title: {
+				style: {
+					color: '#fff'
+				}
+			}
+		}
+		Apex.yaxis = {
+			labels: {
+				style: {
+					color: '#fff'
+				}
+			},
+			title: {
+				style: {
+					color: '#fff'
+				}
+			}
+		}
+	</script>
+	<!-- <script src="../assets/js/demo/chart-apex.demo.js"></script> -->
+	<script src="../custom/sidebar.js"></script>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="../custom/hft.js"></script>
+	<!-- ================== END PAGE LEVEL JS ================== -->
+</body>
+</html>

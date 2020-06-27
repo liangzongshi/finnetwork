@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title><%= title %></title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="../assets/css/transparent/app.min.css" rel="stylesheet" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+	
+	<!-- ================== BEGIN PAGE LEVEL CSS STYLE ================== -->
+	<link href="../assets/plugins/jvectormap-next/jquery-jvectormap.css" rel="stylesheet" />
+	<link href="../assets/plugins/nvd3/build/nv.d3.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+	<!-- ================== END PAGE LEVEL CSS STYLE ================== -->
+</head>
+<body>
+
+	<div id="fb-root"></div>
+    <!-- <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script> -->
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0&appId=830973947369721&autoLogAppEvents=1" nonce="0TX8KdP4"></script>
+	<script src="https://apis.google.com/js/platform.js"></script>
+
+	<script>
+		function test(){
+			console.log('Oke')
+		}
+	</script>
+	<div id="msgStt" data-msg="<%= stt.msgStt %>"></div>
+	<%- include("../frame/loader") -%>
+
+	<!-- begin #page-container -->
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed show gradient-enabled">
+		<%- include("../frame/header") -%>
+		<%- include("../frame/sidebar") -%>
+		
+        <!-- begin #content -->
+		<div id="content" class="content">
+			<!-- begin breadcrumb -->
+			<ol class="breadcrumb float-xl-right">
+				<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
+				<li class="breadcrumb-item"><a href="javascript:;">Airdrops</a></li>
+			</ol>
+			<!-- end breadcrumb -->
+			<!-- begin page-header -->
+			<h1 class="page-header mb-3">Airdrops</h1>
+			<!-- end page-header -->
+
+			<!-- begin row -->
+			<div class="row">
+				<!-- begin col-6 -->
+				<div class="col-xl-12">
+					<!-- begin row -->
+					<div class="row">
+						<!-- begin col-6 -->
+						<div class="col-xl-4 col-lg-4 col-md-4 col-xs-12">
+							<!-- begin card -->
+							<div class="card border-0 text-truncate mb-3 ">
+								<!-- begin card-body -->
+								<div class="card-body">
+									<!-- begin title -->
+									<div class="mb-3 text-grey">
+										<b class="mb-3">TOTAL BONUS</b> 
+										<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+									</div>
+									<!-- end title -->
+									<!-- begin conversion-rate -->
+									<div class="d-flex align-items-center mb-1">
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= info.referral * 25 %>">0.00</span> </h2>
+									</div>
+									<!-- end conversion-rate -->
+								</div>
+								<!-- end card-body -->
+							</div>
+							<!-- end card -->
+						</div>
+						<!-- end col-6 -->
+						<!-- begin col-6 -->
+						<div class="col-xl-4 col-lg-4 col-md-4 col-xs-12">
+							<!-- begin card -->
+							<div class="card border-0 text-truncate mb-3 ">
+								<!-- begin card-body -->
+								<div class="card-body">
+									<!-- begin title -->
+									<div class="mb-3 text-grey">
+										<b class="mb-3">STATIC INTEREST</b> 
+										<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+									</div>
+									<!-- end title -->
+									<!-- begin conversion-rate -->
+									<div class="d-flex align-items-center mb-1">
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= info.static %>">0.00</span> %</h2>
+									</div>
+									<!-- end conversion-rate -->
+								</div>
+								<!-- end card-body -->
+							</div>
+							<!-- end card -->
+						</div>
+						<!-- end col-6 -->
+						<!-- begin col-6 -->
+						<div class="col-xl-4 col-lg-4 col-md-4 col-xs-12">
+							<!-- begin card -->
+							<div class="card border-0 text-truncate mb-3 ">
+								<!-- begin card-body -->
+								<div class="card-body">
+									<!-- begin title -->
+									<div class="mb-3 text-grey">
+										<b class="mb-3">REFERRALs</b> 
+										<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+									</div>
+									<!-- end title -->
+									<!-- begin conversion-rate -->
+									<div class="d-flex align-items-center mb-1">
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= info.referral  %>">0.00</span> </h2>
+									</div>
+									<!-- end conversion-rate -->
+
+								</div>
+								<!-- end card-body -->
+							</div>
+							<!-- end card -->
+						</div>
+						<!-- end col-6 -->
+					</div>
+					<!-- end row -->
+				</div>
+				<!-- end col-6 -->
+			</div>
+			<!-- end row -->
+
+			<!-- begin row -->
+			<div class="row">
+				<!-- begin col-6 -->
+				<div class="col-xl-12">
+					<!-- begin row -->
+					<div class="row">
+						<!-- begin col-6 -->
+						<div class="col-xl-4 col-lg-4 col-md-4 col-xs-12">
+							<!-- begin card -->
+							<div class="card border-0 text-truncate mb-3 ">
+								<!-- begin card-body -->
+								<div class="card-body">
+									<!-- begin title -->
+									<div class="mb-3 text-grey">
+										<b class="mb-3">MESSENGER</b> 
+										<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+									</div>
+									<!-- end title -->
+									<!-- begin conversion-rate -->
+									<div class="d-flex align-items-center mb-1">
+										<h2 class="text-white mb-0"><span id="msgIdView" data-animation="number" data-value="<%= info.msgId || 'Not verified'  %>">0.00</span> </h2>
+									</div>
+									<!-- end conversion-rate -->
+								</div>
+								<!-- end card-body -->
+							</div>
+							<!-- end card -->
+						</div>
+						<!-- end col-6 -->
+						<!-- begin col-6 -->
+						<div class="col-xl-4 col-lg-4 col-md-4 col-xs-12">
+							<!-- begin card -->
+							<div class="card border-0 text-truncate mb-3 ">
+								<!-- begin card-body -->
+								<div class="card-body">
+									<!-- begin title -->
+									<div class="mb-3 text-grey">
+										<b class="mb-3">TELEGRAM</b> 
+										<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+									</div>
+									<!-- end title -->
+									<!-- begin conversion-rate -->
+									<div class="d-flex align-items-center mb-1">
+										<h2 class="text-white mb-0"><span id="tlgIdView" data-animation="number" data-value="<%= info.tlgId || 'Not verified' %>">0.00</span> </h2>
+									</div>
+									<!-- end conversion-rate -->
+								</div>
+								<!-- end card-body -->
+							</div>
+							<!-- end card -->
+						</div>
+						<!-- end col-6 -->
+						<!-- begin col-6 -->
+						<div class="col-xl-4 col-lg-4 col-md-4 col-xs-12">
+							<!-- begin card -->
+							<div class="card border-0 text-truncate mb-3 ">
+								<!-- begin card-body -->
+								<div class="card-body">
+									<!-- begin title -->
+									<div class="mb-3 text-grey">
+										<b class="mb-3">INVESTORS</b> 
+										<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+									</div>
+									<!-- end title -->
+									<!-- begin conversion-rate -->
+									<div class="d-flex align-items-center mb-1">
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= info.invester %>">0.00</span> </h2>
+									</div>
+									<!-- end conversion-rate -->
+
+								</div>
+								<!-- end card-body -->
+							</div>
+							<!-- end card -->
+						</div>
+						<!-- end col-6 -->
+					</div>
+					<!-- end row -->
+				</div>
+				<!-- end col-6 -->
+			</div>
+			<!-- end row -->
+
+			<!-- begin row -->
+			<div class="row">
+				<!-- begin col-6 -->
+				<div class="col-xl-12">
+					<!-- begin row -->
+					<div class="row">
+						<!-- begin col-6 -->
+						<div class="col-xl-4 col-lg-4 col-md-4 col-xs-12">
+							<!-- begin card -->
+							<div class="card border-0 text-truncate mb-3 ">
+								<!-- begin card-body -->
+								<div class="card-body">
+									<!-- begin title -->
+									<div class="mb-3 text-grey">
+										<b class="mb-3">BOT MESSENGER</b> 
+										<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+									</div>
+									<!-- end title -->
+									<!-- begin conversion-rate -->
+									<div class="d-flex align-items-center mb-1">
+										<div class="text-grey">
+											<input id="link_msg" type="text" class="btn btn-outline-grey" style="font-size: 14px; width:150px;" value="<%= info.link_ref.msg %>" />
+										</div>
+									</div>
+									<!-- end conversion-rate -->
+								</div>
+								<!-- end card-body -->
+							</div>
+							<!-- end card -->
+						</div>
+						<!-- end col-6 -->
+						<!-- begin col-6 -->
+						<div class="col-xl-4 col-lg-4 col-md-4 col-xs-12">
+							<!-- begin card -->
+							<div class="card border-0 text-truncate mb-3 ">
+								<!-- begin card-body -->
+								<div class="card-body">
+									<!-- begin title -->
+									<div class="mb-3 text-grey">
+										<b class="mb-3">BOT TELEGRAM</b> 
+										<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+									</div>
+									<!-- end title -->
+									<!-- begin conversion-rate -->
+									<div class="d-flex align-items-center mb-1">
+										<div class="text-grey">
+											<input id="link_tlg" type="text" class="btn btn-outline-grey" style="font-size: 14px; width:150px;" value="<%= info.link_ref.tlg %>" />
+										</div>
+									</div>
+									<!-- end conversion-rate -->
+								</div>
+								<!-- end card-body -->
+							</div>
+							<!-- end card -->
+						</div>
+						<!-- end col-6 -->
+						<!-- begin col-6 -->
+						<div class="col-xl-4 col-lg-4 col-md-4 col-xs-12">
+							<!-- begin card -->
+							<div class="card border-0 text-truncate mb-3 ">
+								<!-- begin card-body -->
+								<div class="card-body">
+									<!-- begin title -->
+									<div class="mb-3 text-grey">
+										<b class="mb-3">WEB</b> 
+										<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+									</div>
+									<!-- end title -->
+									<!-- begin conversion-rate -->
+									<div class="d-flex align-items-center mb-1">
+										<div class="text-grey">
+											<input id="link_web" type="text" class="btn btn-outline-grey" style="font-size: 14px; width:150px;" value="<%= info.link_ref.web %>" />
+										</div>
+									</div>
+									<!-- end conversion-rate -->
+
+								</div>
+								<!-- end card-body -->
+							</div>
+							<!-- end card -->
+						</div>
+						<!-- end col-6 -->
+					</div>
+					<!-- end row -->
+				</div>
+				<!-- end col-6 -->
+			</div>
+			<!-- end row -->
+
+			<div class="row">
+				<!-- begin col-4 -->
+				<div class="col-xl-4 col-lg-4">
+					<!-- begin card -->
+					<div class="card border-0 mb-3 ">
+						<div class="card-body">
+							<div class="mb-2 text-grey text-center">
+								<b>FACEBOOK CAMPAIGNS</b>
+								<span class="ml-2"><i class="fa fa-info-circle text-black" data-toggle="popover" data-trigger="hover" data-title="Total sales" data-placement="top" data-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i></span>
+							</div>
+							<div>
+								<div class="align-items-center text-white mb-2 text-center m-t-20 m-b-20">
+									<img src="../assets/img/fb.png" width="150" height="150" alt="">
+								</div>
+								<hr>
+								<div class="align-items-center text-white mb-2">
+									<div class="d-flex w-100 m-b-10">
+										<div class="m-r-20 f-s-16">Step 1: &nbsp;&nbsp;Create A Key</div>
+										<div class="ml-auto text-grey" id="step1_msg">
+											<% if (stt.msgStt == 0 ){ %>
+												<input id="create_token_msg" type="text" class="btn btn-outline-grey" style="font-size: 14px; width:150px;" value="Create" />
+											<% } else { %>
+												<input id="" type="button" class="btn btn-outline-grey" style="font-size: 14px; width:150px;" value="Complete" />
+											<% } %>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="align-items-center text-white mb-2">
+									<div class="d-flex w-100 m-b-10">
+										<div class="m-r-20 f-s-16">Step 2: &nbsp;&nbsp;Enter Your Key To Messenger Bot</div>
+										<div class="ml-auto text-grey" id="step2_msg">
+											<% if (stt.msgStt == 0 ){ %>
+												<a href=";javascript" class="btn btn-outline-grey" style="font-size: 14px; width:150px;">Go to Bot</a>
+											<% } else { %>
+												<input id="" type="button" class="btn btn-outline-grey" style="font-size: 14px; width:150px;" value="Complete" />
+											<% } %>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="align-items-center text-white">
+									<div class="d-flex w-100 m-b-10">
+										<div class="m-r-20 f-s-16">Step 3: &nbsp;&nbsp;Like Fanpage</div>
+										<div class="ml-auto text-grey" id="step3_msg">
+											<% if (stt.msgStt == 0 || stt.msgStt ==1 ){ %>
+												<div class="fb-like" data-href="https://www.facebook.com/lunadotjs/" data-width="" data-layout="button_count" data-action="like" data-size="large" data-share="false"></div>
+											<% } else { %>
+												<input id="" type="button" class="btn btn-outline-grey" style="font-size: 14px; width:150px;" value="Complete" />
+											<% } %>
+										</div>
+									</div>
+								</div>
+
+								<% if (stt.msgStt == 0 || stt.msgStt == 1 ){ %>
+									<div id ="step4_msg">
+										<hr>
+										<div class="align-items-center text-white">
+											<div class="d-flex w-100">
+												<div class="m-r-20 f-s-16">Step 4: &nbsp;&nbsp;Check Process</div>
+												<div class="ml-auto text-grey"><input id="check_msg" type="button" class="btn btn-outline-grey" style="font-size: 14px; width:150px;" value="Check" /></div>
+		
+											</div>
+										</div>
+										<hr>
+									</div>
+								<% } %>
+	
+							</div>
+						</div>
+					</div>
+					<!-- end card -->
+				</div>
+				<!-- end col-4 -->
+				<!-- begin col-4 -->
+				<div class="col-xl-4 col-lg-4">
+					<!-- begin card -->
+					<div class="card border-0 mb-3 ">
+						<div class="card-body">
+							<div class="mb-2 text-grey text-center">
+								<b>TELEGRAM CAMPAIGNS</b>
+								<span class="ml-2"><i class="fa fa-info-circle text-black" data-toggle="popover" data-trigger="hover" data-title="Total sales" data-placement="top" data-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i></span>
+							</div>
+							<div>
+								<div class="align-items-center text-white mb-2 text-center m-t-20 m-b-20">
+									<img src="../assets/img/tl.png" width="150" height="150" alt="">
+								</div>
+								<hr>
+								<div class="align-items-center text-white mb-2">
+									<div class="d-flex w-100 m-b-10">
+										<div class="m-r-20 f-s-16">Step 1: &nbsp;&nbsp;Create A Key</div>
+										<div class="ml-auto text-grey" id="step1_tlg">
+											<% if (stt.tlgStt == 0 ){ %>
+												<input id="create_token_tlg" type="text" class="btn btn-outline-grey" style="font-size: 14px; width:150px;" value="Create" />
+											<% } else { %>
+												<input id="" type="button" class="btn btn-outline-grey" style="font-size: 14px; width:150px;" value="Complete" />
+											<% } %>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="align-items-center text-white mb-2">
+									<div class="d-flex w-100 m-b-10">
+										<div class="m-r-20 f-s-16">Step 2: &nbsp;&nbsp;Enter Your Key To Telegram Bot</div>
+										<div class="ml-auto text-grey" id="step2_tlg">
+											<% if (stt.tlgStt == 0 ){ %>
+												<a href=";javascript" class="btn btn-outline-grey" style="font-size: 14px; width:150px;">Go to Bot</a>
+											<% } else { %>
+												<input id="" type="button" class="btn btn-outline-grey" style="font-size: 14px; width:150px;" value="Complete" />
+											<% } %>
+										</div>
+									</div>
+									
+								</div>
+								<hr>
+								<div class="align-items-center text-white mb-2">
+									<div class="d-flex w-100 m-b-10">
+										<div class="m-r-20 f-s-16">Step 3: &nbsp;&nbsp;Join Group</div>
+										<div class="ml-auto text-grey" id="step3_tlg">
+											<% if (stt.tlgStt == 0 || stt.tlgStt ==1 ){ %>
+												<a href="https://facebook.com/finfine" class="btn btn-outline-grey" style="font-size: 14px; width:150px;">Group</a>
+											<% } else { %>
+												<input id="" type="button" class="btn btn-outline-grey" style="font-size: 14px; width:150px;" value="Complete" />
+											<% } %>
+										</div>
+									</div>
+								</div>
+
+								<% if (stt.tlgStt == 0 || stt.tlgStt == 1 ){ %>
+									<div id="step4_tlg">
+										<hr>
+										<div class="align-items-center text-white">
+											<div class="d-flex w-100">
+												<div class="m-r-20 f-s-16">Step 4: &nbsp;&nbsp;Check Process</div>
+												<div class="ml-auto text-grey"><input id="check_tlg" type="button" class="btn btn-outline-grey" style="font-size: 14px; width:150px;" value="Check" /></div>
+		
+											</div>
+										</div>
+										<hr>
+									</div>
+								<% } %>
+
+							</div>
+						</div>
+					</div>
+					<!-- end card -->
+				</div>
+				<!-- end col-4 -->
+				<!-- begin col-4 -->
+				<div class="col-xl-4 col-lg-4">
+					<!-- begin card -->
+					<div class="card border-20 mb-3" style="min-height: 485px;">
+						<div class="card-body">
+							<div class="mb-2 text-grey text-center">
+								<b>YOUTUBE CAMPAIGNS</b>
+								<span class="ml-2"><i class="fa fa-info-circle text-black" data-toggle="popover" data-trigger="hover" data-title="Total sales" data-placement="top" data-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i></span>
+							</div>
+							<div>
+								<div class="align-items-center text-white mb-2 text-center m-t-20 m-b-20">
+									<img src="../assets/img/yt.png" width="150" height="150" alt="">
+								</div>
+								<hr>
+								<div class="align-items-center text-white mb-2">
+									<div class="d-flex w-100 m-b-10">
+										<div class="m-r-20 f-s-16">Step 1: &nbsp;&nbsp;Subcribe Our Youtube Channel</div>
+
+										<div class="ml-auto text-grey" id="step1_yt">
+											<div id="ytclick" class="g-ytsubscribe" data-channelid="UClMiivO_QmpNxt_eedUHgdw" data-layout="default" data-count="hidden"></div>
+										</div>
+
+									</div>
+								</div>
+								<hr>
+								<div class="align-items-center text-white mb-2">
+									<div class="d-flex w-100">
+										<div class="m-r-20 f-s-16">Step 2: &nbsp;&nbsp;Check Process</div>
+										<div class="ml-auto text-grey"><input type="button" class="btn btn-outline-grey" style="font-size: 14px; width:150px;" value="Check" /></div>
+
+									</div>
+								</div>
+								<hr>
+							</div>
+						</div>
+					</div>
+					<!-- end card -->
+				</div>
+				<!-- end col-4 -->
+			</div>
+		</div>
+		<!-- end #content -->
+
+		
+		<!-- begin scroll to top btn -->
+		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+		<!-- end scroll to top btn -->
+	</div>
+	<!-- end page container -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="../assets/js/app.min.js"></script>
+	<script src="../assets/js/theme/transparent.min.js"></script>
+	<script src="../custom/sidebar.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="../custom/air.js"></script>
+	<!-- ================== END BASE JS ================== -->
+	
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title><%= title %></title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<link type="text/css" href="../assets/css/transparent/app.min.css" rel="stylesheet" />
+
+	
+
+	<link type="text/css" href="../assets/plugins/jvectormap-next/jquery-jvectormap.css" rel="stylesheet" />
+	<link type="text/css" href="../assets/plugins/nvd3/build/nv.d3.css" rel="stylesheet" />
+	<link type="text/css" href="../assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+	<!-- <script type="text/javascript" src="../assets/plugins/apexcharts/dist/apexcharts.min.js"></script> -->
+</head>
+<body>
+	<%- include("../frame/loader") -%>
+
+
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+		<%- include("../frame/header") -%>
+		<%- include("../frame/sidebar") -%>
+        
+		<div id="content" class="content">
+			
+			<ol class="breadcrumb float-xl-right">
+				<li class="breadcrumb-item"><a href="javascript:;">FinFine</a></li>
+				<li class="breadcrumb-item"><a href="javascript:;">Token</a></li>
+			</ol>
+			
+			
+			<h1 class="page-header mb-3">Token</h1>
+			
+			<div class="row">
+				
+				<div class="col-lg-8">
+					
+					<div class="panel panel-inverse" data-sortable-id="chart-js-6">
+						<div class="panel-body p-0">
+							<div id="apex-candelstick-chart">
+
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				<div class="col-lg-4">
+					
+					<div class="panel panel-inverse" data-sortable-id="chart-js-10">
+						<div class="panel-body p-0">
+							<div id="apex-pie-chart">
+
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+			<div class="row">
+
+				<div class="col-xl-4">
+					<div class="card border-0 text-truncate mb-3 ">
+						<div class="card-body">
+							<div class="mb-3 text-grey">
+								<b class="mb-3">CURRENT PRICE</b> 
+								<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+							</div>
+							
+							<div class="d-flex align-items-center mb-1">
+								<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(current_price).toFixed(2) %>">0.00</span></h2>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-4">
+					<div class="card border-0 text-truncate mb-3 ">
+						<div class="card-body">
+							<div class="mb-3 text-grey">
+								<b class="mb-3">MAX SUPPLY</b> 
+								<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+							</div>
+							
+							<div class="d-flex align-items-center mb-1">
+								<h2 class="text-white mb-0"><span data-animation="number" data-value="1428570000">0.00</span></h2>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-4">
+					<div class="card border-0 text-truncate mb-3 ">
+						<div class="card-body">
+							<div class="mb-3 text-grey">
+								<b class="mb-3">DECIMAL</b> 
+								<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+							</div>
+							
+							<div class="d-flex align-items-center mb-1">
+								<h2 class="text-white mb-0"><span data-animation="number" data-value="3">0.00</span></h2>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+
+				<div class="col-xl-4">
+					<div class="card border-0 text-truncate mb-3 ">
+						<div class="card-body">
+							<div class="mb-3 text-grey">
+								<b class="mb-3">TOKEN NAME</b> 
+								<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+							</div>
+							
+							<div class="d-flex align-items-center mb-1">
+								<h2 class="text-white mb-0">FINFINE TOKEN</h2>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-4">
+					<div class="card border-0 text-truncate mb-3 ">
+						<div class="card-body">
+							<div class="mb-3 text-grey">
+								<b class="mb-3">SYMBOL</b> 
+								<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+							</div>
+							
+							<div class="d-flex align-items-center mb-1">
+								<h2 class="text-white mb-0">FFT</h2>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-4">
+					<div class="card border-0 text-truncate mb-3 ">
+						<div class="card-body">
+							<div class="mb-3 text-grey">
+								<b class="mb-3">TOKEN TYPE</b> 
+								<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+							</div>
+							
+							<div class="d-flex align-items-center mb-1">
+								<h2 class="text-white mb-0">MINTABLE ERC-20</h2>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>			
+		</div>
+		
+		
+		
+		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+		
+	</div>
+	<div id="series" data-series="<%= series %>">
+
+	</div>
+
+	<div id="label" data-label="<%= label %>">
+
+	</div>
+
+	<div id="pie" data-pie="<%= pie %>">
+
+	</div>
+
+	<script type="text/javascript" src="../assets/js/app.min.js"></script>
+	<script type="text/javascript" src="../assets/js/theme/transparent.min.js"></script>
+	
+	
+	
+	<script type="text/javascript" src="../assets/plugins/d3/d3.min.js"></script>
+	<script type="text/javascript" src="../assets/plugins/nvd3/build/nv.d3.min.js"></script>
+	<script type="text/javascript" src="../assets/plugins/moment/min/moment.min.js"></script>
+	<script type="text/javascript" src="../assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<script type="text/javascript" src="../assets/js/demo/dashboard-v3.js"></script>
+	
+	<script type="text/javascript">
+		Apex.grid = {
+			borderColor: 'rgba(255,255,255,0.25)'
+		};
+		Apex.title = {
+			style: {
+				color: '#fff'
+			}
+		}
+		Apex.legend = {
+			labels: {
+				colors: '#fff'
+			}
+		}
+		Apex.xaxis = {
+			labels: {
+				style: {
+					colors: '#fff'
+				}
+			},
+			title: {
+				style: {
+					color: '#fff'
+				}
+			}
+		}
+		Apex.yaxis = {
+			labels: {
+				style: {
+					color: '#fff'
+				}
+			},
+			title: {
+				style: {
+					color: '#fff'
+				}
+			}
+		}
+	</script>
+	<!-- <script type="text/javascript" src="../assets/js/demo/chart-apex.demo.js"></script> -->
+	<script src="../custom/sidebar.js"></script>
+	<script src="../custom/token.js"></script>
+	
+</body>
+</html>
