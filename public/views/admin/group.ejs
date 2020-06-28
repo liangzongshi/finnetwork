@@ -53,11 +53,11 @@
                             <%(allGroup != undefined) ? allGroup.forEach(function(item, st){ %>
 							<tr class="odd gradeX">
 								<td width="1%" class="f-s-600 text-inverse"><%= st+1 %></td>
-								<td><%= item.groups.code %></td>
-								<td><%= item.groups.name %></td>
-								<td><%= item.groups.local %></td>
-								<td><%= item.groups.members.length %></td>
-								<td><%= item.groups.members[0] %></td>
+								<td><%= item.code %></td>
+								<td><%= item.name %></td>
+								<td><%= item.local %></td>
+								<td><%= item.number %></td>
+								<td><%= item.leaderId %></td>
                             </tr>
                             <% }): "" %>
 						</tbody>
@@ -78,22 +78,22 @@
 								<th class="text-nowrap">Name</th>
 								<th class="text-nowrap">Email</th>
 								<th class="text-nowrap">Mobile</th>
-								<th class="text-nowrap">job</th>
-								<th class="text-nowrap">group ID</th>
-								<th class="text-nowrap">group Name</th>
+								<th class="text-nowrap">Job</th>
+								<th class="text-nowrap">City</th>
+								<th class="text-nowrap">ID</th>
 							</tr>
 						</thead>
 						<tbody>
-                            <%(allLeader != undefined) ? allLeader.forEach(function(item){ %>
+                            <%(allLeader != undefined) ? allLeader.detail.forEach( (item, st) => { %>
 							<tr class="odd gradeX">
-								<td width="1%" class="f-s-600 text-inverse">1</td>
-								<td width="1%" class="with-img"><img src="../../assets/avatars/<%= item.leader.avatar %>" class="img-rounded height-30 width-30" /></td>
-								<td><%= item.leader.first_name %></td> <%= item.leader.last_name %></td>
-								<td><%= item.leader.email %></td>
-								<td><%= item.leader.mobile %></td>
-								<td><%= item.leader.job %></td>
-								<td><%= item.groupId %></td>
-								<td><%= item.groupName %></td>
+								<td width="1%" class="f-s-600 text-inverse"><%= st+1 %></td>
+								<td width="1%" class="with-img"><img src="../../assets/avatars/<%= item.info.avatar %>" class="img-rounded height-30 width-30" /></td>
+								<td><%= item.info.first_name %></td> <%= item.info.last_name %></td>
+								<td><%= item.info.email %></td>
+								<td><%= item.info.mobile %></td>
+								<td><%= item.info.job %></td>
+								<td><%= item.info.city %></td>
+								<td><%= item.id %></td>
                             </tr>
                             <% }): "" %>
 						</tbody>

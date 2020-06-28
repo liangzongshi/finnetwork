@@ -18,6 +18,4 @@
 
 - them memo cho rut tien
 
-- fix group trong admin
-
 - xoa anh cu

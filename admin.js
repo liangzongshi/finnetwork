@@ -101,17 +101,20 @@ module.exports = (app) => {
             const id = decId(getId(req,''))
             if(id == 100000 || id == 100002 ){
                 const user = await db.user({id: id}, "info role")
-                const allGroup = (await db.system({}, "groups"))[0].groups
-                var allLeader = []
-                allGroup.forEach(async (group)=>{
-                    const leaderId = group.members[0]
-                    const leader = (await db.user({id: leaderId}, 'info.first_name info.last_name info.email info.mobile info.job info.avatar'))[0].info
-                    allLeader.push({
-                        leader: leader,
-                        groupID: group.code,
-                        groupName: group.name
-                    })
-                })
+                // const allGroup = (await db.system({}, "groups"))[0].groups
+                // var allLeader = []
+                // allGroup.forEach(async (group)=>{
+                //     const leaderId = group.members[0]
+                //     const leader = (await db.user({id: leaderId}, 'info.first_name info.last_name info.email info.mobile info.job info.avatar'))[0].info
+                //     allLeader.push({
+                //         leader: leader,
+                //         groupID: group.code,
+                //         groupName: group.name
+                //     })
+                // })
+
+                const allGroup = await group.viewAll()
+                const allLeader = await group.getLeader()
                 res.render('admin/group', {
                     title: "Finfine | Group ",
                     userInfo: user[0].info,

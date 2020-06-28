@@ -33,10 +33,10 @@ class Price {
         const totalMonths = inMonths - outMonths
 
         return {
-            USD: (total * priceFFT).toFixed(4),
-            FFT: total.toFixed(4),
-            totalDays: totalDays,
-            totalMonths: totalMonths
+            USD: Number((total * priceFFT).toFixed(4)),
+            FFT: Number(total.toFixed(4)),
+            totalDays: Number(totalDays),
+            totalMonths: Number(totalMonths)
         }
     }
 
@@ -44,8 +44,8 @@ class Price {
         const total = await balanceOfId(id, 'FFT', 'cal')
         const priceFFT = await getPrice('FFT')
         return {
-            USD: ( total * priceFFT ).toFixed(4),
-            FFT: total.toFixed(4)
+            USD: Number(( total * priceFFT ).toFixed(4)),
+            FFT: Number(total.toFixed(4))
         }
     }
 
@@ -60,12 +60,12 @@ class Price {
         }
 
         return {
-            USD: ( total * priceFFT ).toFixed(4),
-            FFT: total.toFixed(4),
-            direct_commission: details.direct_commission,
-            static_interest: details.static_interest,
-            dynamic_interest: details.dynamic_interest,
-            indirect_commission: details.indirect_commission
+            USD: Number(( total * priceFFT ).toFixed(4)),
+            FFT: Number(total.toFixed(4)),
+            direct_commission: Number(details.direct_commission),
+            static_interest: Number(details.static_interest),
+            dynamic_interest: Number(details.dynamic_interest),
+            indirect_commission: Number(details.indirect_commission)
         }
     }
 
@@ -80,8 +80,8 @@ class Price {
         }
 
         return {
-            USD: (total * priceFFT).toFixed(4),
-            FFT: total.toFixed(4)
+            USD: Number((total * priceFFT).toFixed(4)),
+            FFT: Number(total.toFixed(4))
         }
     }
 
@@ -99,8 +99,8 @@ class Price {
         }
         
         return {
-            USD: ( total * priceFFT ).toFixed(4),
-            FFT: total.toFixed(4)
+            USD: Number(( total * priceFFT ).toFixed(4)),
+            FFT: Number(total.toFixed(4))
         }
     }
 
@@ -157,8 +157,8 @@ class Price {
                     dynamic_interest: totalDynIntMonth,
                     indirect_commission: totalIndComMonth 
                 },
-                sales: totalSaleMonth,
-                ref: totalRefSaleMonth
+                sales: Number(totalSaleMonth),
+                ref: Number(totalRefSaleMonth)
             }
         }
     }
@@ -236,10 +236,6 @@ class Price {
                 number: (await db.system({},'totalOrder'))[0].totalOrder,
             }
         }
-    }
-
-    getToken = async () => {
-        const s = await db.system({}, '')
     }
 
     basicAdmin = async (timeskip =0) => {
@@ -337,7 +333,7 @@ class Price {
 
     column = async () => {
         var res = (await db.system({}, 'price'))[0].price
-        var abc = res.slice(res.length - 20, res.length)
+        var abc = res.slice(res.length - 14, res.length)
         var series = [], label = []
         abc.forEach((day) => {
             series.push(Number(day[1]))

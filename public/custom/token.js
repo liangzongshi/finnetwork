@@ -23,9 +23,9 @@ $(document).ready(() => {
         },
         dataLabels: {
             enabled: true,
-            offsetX: -6,
+            offsetX: -0,
             style: {
-                fontSize: '14px',
+                fontSize: '10px',
                 colors: ['#fff']
             }
         },
@@ -38,8 +38,8 @@ $(document).ready(() => {
             categories: label,
         },
         yaxis: {
-            max: 3,
-            min: 0.1,
+            max: 0.3,
+            min: 0.05,
             axisBorder: {
                 show: true,
                 color: '#78909C'

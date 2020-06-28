@@ -4,14 +4,12 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "git": "git add . && git commit -m \"v1.0.4\" && git push",
+    "git": "git add . && git commit -m \"v1.0.5\" && git push",
     "del": "echo \"db.dropDatabase()\" | mongo digigo && redis-cli FLUSHALL",
     "win": "mongo digigo --eval \"db.dropDatabase()\" && redis-cli FLUSHALL",
-    "db_prod": "MODE=prod node migrate.js",
-    "prod": "MODE=prod node app.js",
-    "db_dev": "MODE=dev node migrate.js",
-    "dev": "MODE=dev node app.js",
-    "test": "npm run del && npm run db_dev && node engine.js"
+    "db": "node migrate.js",
+    "dev": "node app.js",
+    "all": "npm run del && npm run db && npm run dev"
   },
   "repository": {
     "type": "git",

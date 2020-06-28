@@ -31,7 +31,7 @@ $(document).ready(() => {
             }else if(order.type == "ATOM"){
                 $(`#${st+1}_type`).html(`<img src="../assets/coin/atom.png" class="img-rounded width-30 height-30" />`)
             }else if(order.type == "XTZ"){
-                $(`#${st+1}_type`).html(`<img src="../assets/coin/ztx.png" class="img-rounded width-30 height-30" />`)
+                $(`#${st+1}_type`).html(`<img src="../assets/coin/zrx.png" class="img-rounded width-30 height-30" />`)
             }else if(order.type == "OMG"){
                 $(`#${st+1}_type`).html(`<img src="../assets/coin/omg.png" class="img-rounded width-30 height-30" />`)
             }else if(order.type == "LINK"){

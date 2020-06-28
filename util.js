@@ -108,7 +108,7 @@ const sameAll = (unix, k) => {
 // }
 
 function random(min, max) {
-    return (Math.random() * (max - min) + min).toFixed(0)
+    return Number((Math.random() * (max - min) + min).toFixed(0))
 }
 
 module.exports = {

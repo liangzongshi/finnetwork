@@ -74,19 +74,19 @@
                             <ul>
                                 <li>
                                     <span class="curr_name">Total Capital</span>
-                                    <span class="curr_price"><span id="a1"><%= curOrders.capital %></span> $</span>
+                                    <span class="curr_price"><span id="a1"><%= curOrders.capital.toFixed(0) %></span> $</span>
                                 </li>
                                 <li>
                                     <span class="curr_name">Curculating Token</span>
-                                    <span class="curr_price"><span id="a2"><%= curOrders.activeToken %></span> FFT</span>
+                                    <span class="curr_price"><span id="a2"><%= curOrders.activeToken.toFixed(0) %></span> FFT</span>
                                 </li>
                                 <li>
                                     <span class="curr_name">Total Days</span>
-                                    <span class="curr_price"><span id="a3"><%= curOrders.days %></span> $</span>
+                                    <span class="curr_price"><span id="a3"><%= curOrders.days.toFixed(0) %></span> $</span>
                                 </li>
                                 <li>
                                     <span class="curr_name">Pay Per Days</span>
-                                    <span class="curr_price"><span id="a4"><%= curOrders.pay_days %></span> $</span>
+                                    <span class="curr_price"><span id="a4"><%= curOrders.pay_days.toFixed(0) %></span> $</span>
                                 </li>
                             </ul>
                         </div>

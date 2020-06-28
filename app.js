@@ -96,14 +96,14 @@ const tunnel = async () => {
     onStatusChange: status => {},
     onLogEvent: data => {},
   })
-  // console.log(ng)
+  console.log(ng)
 }
 
-theHft(io)
+// theHft(io)
 
 //Start Server
 http.listen(process.env.http_port, async () => {
-  // await tunnel()
+  await tunnel()
   console.log(`Listening on HTTP Port: ${process.env.http_port}`)
 })
 

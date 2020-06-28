@@ -107,8 +107,8 @@
     "public/assets-home": true,
     "public/codebase": true,
     "public/common": true,
-    "public/assets": true,
-    "setbot": true
+    "setbot": true,
+    "package-lock.json": true
   },
   "git.ignoreLimitWarning": true
 }

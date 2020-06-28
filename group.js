@@ -134,6 +134,7 @@ class Group {
         }
         
         mix.sort((a,b) => b.sales - a.sales)
+        console.log(mix)
         return mix
     }
 
@@ -563,7 +564,7 @@ class Group {
         })
         var detail = []
         for (var i = 0; i < leader.length; i++){
-            const user = (await db.user({id: leader[i]}, 'id info.email info.mobile'))[0]
+            const user = (await db.user({id: leader[i]}, 'id info.email info.mobile info.first_name info.last_name info.job info.city info.avatar'))[0]
             detail.push(user)
         }
         return {
