@@ -97,10 +97,10 @@
 									</tr>
 								</thead>
 								<tbody>
-									<% (bonus != undefined) ? bonus.invester.received.forEach(function(item){ %>
+									<% (bonus != undefined) ? bonus.invester.received.forEach(function(item, st){ %>
 										<tr class="odd gradeX">
 										<!-- <tr class="even gradeC"> -->
-											<td width="1%" class="f-s-600 text-inverse">1</td>
+											<td width="1%" class="f-s-600 text-inverse"><%= st+1 %></td>
 											<td><%= item.who %></td>
 											<td><%= Number(item.value).toFixed(2) %></td>
 											<td><%= item.symbol %></td>
@@ -128,10 +128,10 @@
 									</tr>
 								</thead>
 								<tbody>
-									<% (bonus != undefined) ? bonus.saler.forEach(function(item){ %>
+									<% (bonus != undefined) ? bonus.saler.received.forEach(function(item, st){ %>
 										<tr class="odd gradeX"">
 										<!-- <tr class="even gradeC"> -->
-											<td width="1%" class="f-s-600 text-inverse">1</td>
+											<td width="1%" class="f-s-600 text-inverse"><%= st+1 %></td>
 											<td><%= item.who %></td>
 											<td><%= item.value %></td>
 										</tr>
@@ -158,10 +158,10 @@
 									</tr>
 								</thead>
 								<tbody>
-									<% (bonus != undefined) ? bonus.group.forEach(function(item){ %>
+									<% (bonus != undefined) ? bonus.group.received.forEach(function(item, st){ %>
 										<tr class="odd gradeX">
 										<!-- <tr class="even gradeC"> -->
-											<td width="1%" class="f-s-600 text-inverse">1</td>
+											<td width="1%" class="f-s-600 text-inverse"><%= st+1 %></td>
 											<td><%= item.who %></td>
 											<td><%= item.value %></td>
 										</tr>

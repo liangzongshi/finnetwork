@@ -1,18 +1,27 @@
 const DB = require('./db')
 const db = new DB()
+const {v4: uuidv4} = require("uuid")
 
-createNoti = async (id, data)=>{
-    await db.user({id:id}, {$push: {"info.notification": data}})
+
+const createNoti = async (id, title, event_type, data)=>{
+    const notiId = uuidv4()
+    console.log(notiId)
+    await db.user({id:id}, {$push: {
+        "info.notification":
+            {
+                notiId: notiId,
+                title: title,
+                event_type: event_type,
+                data: data
+            }
+        }
+    })
 }
 
 
-countNoti = async (id, type)=>{
-    const user = await db.user({id:id}, "info")
-    const countType = user[0].info.notification.filter(n => n.type == type).length
-    return countType
-}
-
-module.exports = {
-    createNoti,
-    countNoti
-}
+module.exports = createNoti
+// !(async ()=>{
+//     await createNoti(100000, "hello", "check", {a1: "<b>hello</b>: 4", a2: "blo"})
+//     console.log("ok")
+//     process.exit()
+// })()

@@ -1,4 +1,27 @@
 $(document).ready(()=>{ 
     const socket = io()
     socket.on('connect', () => {})
+    $("#btn_submit_set_event").click(() => {
+        const i_top = Number($("#event_investor_top").val())
+        const i_unit = $("#event_investor_unit").val()
+        const i_value = Number($("#event_investor_value").val())
+        const s_top = Number($("#event_saler_top").val())
+        const s_unit = $("#event_saler_unit").val()
+        const s_value = Number($("#event_saler_value").val())
+        const g_top = Number($("#event_group_top").val())
+        const g_unit = $("#event_group_unit").val()
+        const g_value = Number($("#event_group_value").val())
+        const g_leader = Number($("#event_group_leader").val())
+        socket.emit("a_set_event_mg", {i_top, i_unit, i_value, s_top, s_unit, s_value, g_top, g_unit, g_value, g_leader})
+    })
+    socket.on("a_set_event_mg_success", data => {
+        $.notify(data, "success")
+        $("#event_investor_top").val(null)
+        $("#event_investor_value").val(null)
+        $("#event_saler_top").val(null)
+        $("#event_saler_value").val(null)
+        $("#event_group_top").val(null)
+        $("#event_group_value").val(null)
+        $("#event_group_leader").val(null)
+    })
 });

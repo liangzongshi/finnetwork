@@ -146,7 +146,7 @@ class Group {
             var mem = []
 
             for (let i = 0; i < members.length; i++){
-                const add = (await price.salesRefTotal( members[i] )).FFT
+                const add = Number((await price.salesRefTotal( members[i] )).FFT)
                 const inf = (await db.user({id: members[i] },'info.first_name info.last_name info.email info.mobile info.job'))[0].info
 
                 mem.push({
@@ -285,7 +285,7 @@ class Group {
         var newUsers = []
         for (var i = 0; i < users.length; i++){
             for (var j = 0; j < users[i].currency.length; j++){
-                if (users[i].currency[j].symbol == 'DGG'){
+                if (users[i].currency[j].symbol == 'FFT'){
                     newUsers.push({
                         id: users[i].id,
                         invest: users[i].currency[j].balance

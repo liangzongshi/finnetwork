@@ -70,7 +70,6 @@ const changeValueFund = async (amount) => {
 
 //act => thuc hien hanh dong || cal => dung de tinh toan
 const balanceOfId = async (id, symbol, purpose = 'cal') => {
-    console.log('OK OK')
     const currencies = (await db.user({id: id}, 'currency'))[0].currency
     const thisCurrency = (currencies.filter( currency => currency.symbol == symbol))[0]
     if (symbol == 'FFT' && purpose == 'act'){
@@ -202,7 +201,6 @@ const payInterest = async (who, amount, action) => {
 const calTotalAction = async (array, action, symbol, timer, cover, skip = 0) => {
     var total = 0
     for (var i = 0; i < array.length; i++){
-        console.log()
         if ( action.includes(array[i].type) && symbol.includes(array[i].symbol) && timer(array[i].timestamp, skip) ){
             if (cover == 'FFT'){
                 total += array[i].value * array[i].price

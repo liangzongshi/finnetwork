@@ -53,9 +53,9 @@ const schemaUser = new Schema({
         }],
         notification: [{
             notiId: {type:String, default: null},
-            sub: {type:String, default: null},
-            type: {type:String, default: null},
-            content: {type:String, default: null},
+            title: {type:String, default: null},
+            event_type: {type:String, default: null},
+            data: {type: Schema.Types.Mixed, required: true },
             status: {type: Boolean, default: false},
             times: {type: Date, default: Date.now}
         }],

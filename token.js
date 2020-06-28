@@ -281,7 +281,7 @@ class Price {
         const bnbDepMonth = await calTotalAction(totalFlow, ['deposit'], ['BNB'], sMonth, '', timeskip)
         const bnbWitMonth = await calTotalAction(totalFlow, ['withdraw'], ['BNB'], sMonth, '', timeskip)
 
-        return {
+        const finn = {
             btc: {
                 deposit: {
                     months: btcDepMonth,
@@ -331,6 +331,8 @@ class Price {
                 }
             }
         }
+        console.log(finn)
+        return finn
     }
 
     column = async () => {

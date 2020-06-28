@@ -27,17 +27,179 @@
 	<script type="text/javascript" src="../common/slider/slider.min.js?v=3.0.1"></script>
 	<link rel="stylesheet" href="../common/slider/slider.min.css?v=3.0.1">
 	<style>
+		
 		.main__container {
 			height: calc(100% - 121px);
 			display: flex;
 		}
 		.sample__container {
-			height: 100%;
+			height: 500px;
 			width: calc(100% - 248px);
 			overflow: auto;
 		}
 		.dhx_sample-controls {
-			background: #fff;
+			background: #fff0;
+			border:none!important;
+		}
+		.dhx_sample-slider__container {
+			width: 350px;
+		}
+		.dhx_diagram {
+			width: 100%;
+			height: 100%;
+			background: #f7f7f700;
+			overflow: auto;
+			text-align: center;
+			position: relative;
+			display: flex;
+			justify-content: center;
+		}
+		.dhx_diagram::-webkit-scrollbar-track
+		{
+			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+			border-radius: 10px;
+			background-color: #F5F5F5;
+		}
+
+		.dhx_diagram::-webkit-scrollbar
+		{
+			width: 8px;
+			height: 8px;
+			background-color: #F5F5F5;
+		}
+
+		.dhx_diagram::-webkit-scrollbar-thumb
+		{
+			border-radius: 10px;
+			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+			background-color: #a09716;
+		}
+		.template {
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: white;
+			color: rgba(0, 0, 0, 0.7);
+			border: 1px solid #DFDFDF;
+			padding: 10px 12px;
+			cursor: pointer;
+		}
+		.template span {
+			display: flex;
+		}
+		.template h3, .template p {
+			text-align: left;
+			font-size: 14px;
+			line-height: 20px;
+			height: 20px;
+			margin: 0 0 4px 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+		.template .template_container {
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
+			position: relative;
+		}
+		.template .template_img-container {
+			min-width: 93px;
+			width: 93px;
+			margin-right: 12px;
+		}
+		.template .template_img-container-medium {
+			min-width: 44px;
+			width: 44px;
+			margin-right: 12px;
+		}
+		.template .template_img-container img, .template_img-container-medium img {
+			width: inherit;
+			height: auto;
+		}
+		.template .template_icon {
+			height: 20px;
+			width: 20px;
+			margin-right: 4px;
+		}
+		.dhx_selected .template {
+			outline: 2px solid #8c8c8c;
+		}
+		.sidebar__container {
+			min-width: 248px;
+			width: 248px;
+			height: 500px;
+			background: #ffffff61;
+			border-left: none;
+			padding: 20px;
+			display: flex;
+			flex-direction: column;
+		}
+		.sidebar__container a {
+			display: block;
+			text-align: center;
+			width: 100%;
+			height: 28px;
+			line-height: 28px;
+			color: white;
+			background: #f0f3f400;
+			border-radius: 14px;
+			margin-top: 28px;
+			border: solid 1px white;
+			text-decoration: none;
+		}
+		.sidebar__container a:hover {
+			display: block;
+			text-align: center;
+			width: 100%;
+			height: 28px;
+			line-height: 28px;
+			color: black;
+			background: white;
+			border-radius: 14px;
+			margin-top: 28px;
+			border: solid 1px white;
+		}
+		.sidebar__container span {
+			font-size: 14px;
+			line-height: 20px;
+			font-family: Roboto;
+			font-style: normal;
+			font-weight: normal;
+			color: rgba(0, 0, 0, 0.7);
+			padding: 4px 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+		.sidebar__container img {
+			height: 208px;
+			width: auto;
+			background: #8c8c8c;
+			margin-bottom: 28px;
+		}
+		.dhx_slider__tick-label {
+			position: absolute;
+			top: 10px;
+			transform: translateX(-50%);
+			font-family: Roboto,Arial,Tahoma,Verdana,sans-serif;
+			font-size: 10px;
+			color: #f0f3f4;
+			line-height: 1;
+		}
+		@media (max-width: 768px){
+			.main__container {
+			height: calc(100% - 121px);
+			display: flex;
+		}
+		.sample__container {
+			height: 500px;
+			width: 100%;
+			overflow: auto;
+		}
+		.dhx_sample-controls {
+			background: #fff0;
 		}
 		.dhx_sample-slider__container {
 			width: 350px;
@@ -96,10 +258,10 @@
 		}
 		.sidebar__container {
 			min-width: 248px;
-			width: 248px;
-			height: 100%;
-			background: #fff;
-			border-left: 1px solid #DFDFDF;
+			width: 100%;
+			height: 500px;
+			background: #ffffff61;
+			border-left: none;
 			padding: 20px;
 			display: flex;
 			flex-direction: column;
@@ -110,10 +272,23 @@
 			width: 100%;
 			height: 28px;
 			line-height: 28px;
-			color: #fff;
-			background: #0288D1;
+			color: white;
+			background: #f0f3f400;
 			border-radius: 14px;
 			margin-top: 28px;
+			border: solid 1px white;
+		}
+		.sidebar__container a:hover {
+			display: block;
+			text-align: center;
+			width: 100%;
+			height: 28px;
+			line-height: 28px;
+			color: black;
+			background: white;
+			border-radius: 14px;
+			margin-top: 28px;
+			border: solid 1px white;
 		}
 		.sidebar__container span {
 			font-size: 14px;
@@ -132,6 +307,7 @@
 			width: auto;
 			background: #8c8c8c;
 			margin-bottom: 28px;
+		}
 		}
 	</style>
 
@@ -163,7 +339,7 @@
 					<div class="dhx_sample-slider__container" id="slider"></div>
 				</section>
 				
-				<section class="main__container">
+				<section class="main__container d-xl-flex d-lg-flex d-md-flex d-xs-block">
 					<div class="sample__container" id="diagram"></div>
 					<div class="sidebar__container">
 						<img id="image" src="" alt="">
@@ -219,7 +395,7 @@
 					function largeTemplate(config) {
 						var template = '<section class="template">'
 							template += '<div class="template_container template_img-container">'
-							template += '<img src="'+ config.photo +'" alt=""></img>'
+							template += '<img src="../assets/avatars/'+ config.photo +'" alt=""></img>'
 							template += '</div>'
 							template += '<div class="template_container">'
 							template += '<h3>'+ config.name +'</h3>'
@@ -239,7 +415,7 @@
 					function mediumTemplate(config) {
 						var template = '<section class="template">'
 							template += '<div class="template_container template_img-container-medium">'
-							template += '<img src="'+ config.photo +'" alt=""></img>'
+							template += '<img src="../assets/avatars/'+ config.photo +'" alt=""></img>'
 							template += '</div>'
 							template += '<div class="template_container">'
 							template += '<h3>'+ config.name +'</h3>'
@@ -292,7 +468,7 @@
 						birthday.innerHTML = "Birthday: " + person.birthday
 						start.innerHTML = "Start work: " + person.start + ""
 						send.href = "mailto:" + person.mail + ""
-						image.src = person.img + ""
+						image.src = "../assets/avatars/" + person.img + ""
 						image.alt = ""
 					}
 

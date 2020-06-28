@@ -149,7 +149,8 @@ module.exports = (app) => {
             const id = decId(getId(req,''))
             if(id == 100000 || id == 100002 ){
                 const user = await db.user({id: id}, "info role")
-                const finance = await price.basicAdmin(timeskip = 0)
+                const finance = await price.basicAdmin()
+                console.log(finance)
                 const allUser = await db.user({}, "direct_commission static_interest dynamic_interest indirect_commission")
                 const capital = (await price.trading(timeskip = 0)).capital
                 var direct_commission = 0

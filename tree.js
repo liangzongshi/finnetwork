@@ -145,7 +145,6 @@ class Tree {
     }
 
     pay_swap_depo = async (who, value) => {
-        console.log(who, value)
         var id = who
         if ( who.toString().length !==6 ){
             id = await addressToId(who, symbol)
@@ -158,7 +157,6 @@ class Tree {
             if (list_dad[i] !== null){
                 var swap_dep_profit = interest[i] * value / 100
                 await payInterest(list_dad[i], swap_dep_profit, 'direct_commission')
-                console.log(list_dad[i], swap_dep_profit)
                 await changeTokenFund(swap_dep_profit)
             }
         }

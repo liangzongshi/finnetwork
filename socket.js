@@ -250,13 +250,11 @@ module.exports = (io,siofu) => {
             var curUser = await db.user({'info.email': data},'info')
             var token_recover = uuidv4()
             token_recover = encId(token_recover)
-            console.log(token_recover);
             if (curUser){
                 await db.user({'info.email': data}, {
                     "info.token_recover": token_recover
                 })
                 const link = `https://${process.env.host}/recover-password/${token_recover}`
-                console.log(link)
                 const text = `
                     <a href="${link}" style="padding: 5px; background: transparent; border: solid 1px yellow; color: yellow; margin: 20px;">Change Password</a>
                 `
@@ -314,7 +312,6 @@ module.exports = (io,siofu) => {
                     if ( (data.address).toString().length < 34 ){
                         //Switch
                         tx = await switchs(id, data.address, data.symbol, data.amount)
-                        console.log(tx)
                     } else {
                         tx = await send(id, data.symbol, data.address, data.amount)
                     }
@@ -328,7 +325,6 @@ module.exports = (io,siofu) => {
                     }
                 }
             } else {
-                console.log(data)
                 // Xu ly swap Coin
                 if (data.symbol !== 'FFT'){
                     const tx = await swapin(id, data.symbol, data.amount)
@@ -1237,6 +1233,7 @@ module.exports = (io,siofu) => {
         socket.on("join_group", async (data)=>{
             const id= decId(getId(socket, 'socket'))
             const result = await group.join(id, data)
+            console.log((await group.listMember(id)))
             if(result == true){
                 socket.emit("join_group_success", {note: "You Joined A Group Success", listMem: (await group.listMember(id))})
             }else{
@@ -1247,11 +1244,27 @@ module.exports = (io,siofu) => {
             const id = decId(getId(socket, 'socket'))
             const role = (await db.user({id: id}, 'role'))[0].role
             if(role == "leader" || role == "admin"){
-                await group.deleteMember(id, data.groupId, data.userid)
+                await group.deleteMember(id, data.groupId, data.userId)
                 socket.emit("remove_mem_success", data.userId)
             }else{
                 socket.emit("remove_mem_err", "Remove Member Error, You aren't A Leader")
             }
+        })
+        //edit group
+        socket.on("change_group_name_event", async (data)=>{
+            const id = decId(getId(socket, 'socket'))
+            await group.editName(id, data.groupId, data.name)
+            socket.emit("change_group_name_event_success", {note: "Change Group Name Success", newName: data.name})
+        })
+        socket.on("change_group_location_event", async (data)=>{
+            const id = decId(getId(socket, 'socket'))
+            await group.editOffline(id, data.groupId, data.location)
+            socket.emit("change_group_location_event_success", {note:"Change Group Offline Location Success", newLocation: data.location})
+        })
+        socket.on("change_group_time_event", async (data)=>{
+            const id = decId(getId(socket, 'socket'))
+            await group.editTime(id, data.groupId, data.time)
+            socket.emit("change_group_time_event_success", {note:"Change Offline Time Success", newTime: data.time})
         })
         //Chart Lai moi lenh
         const series = (await price.liveOrder()).series
@@ -1322,6 +1335,11 @@ module.exports = (io,siofu) => {
         socket.on("deposit_to_user", async (data) => {
             await deposit(data.id, data.symbol, data.amount)
             socket.emit("deposit_to_user_success", `deposit to id: ${data.id} success`)
+        })
+        //set event awards
+        socket.on("a_set_event_mg", async (data)=>{
+            await group.setEvent(data.i_top, data.i_unit, data.i_value, data.s_top, data.s_unit, data.s_value, data.g_top, data.g_unit, data.g_value, data.g_leader)
+            socket.emit("a_set_event_mg_success", "Set Event Success")
         })
     })
 }

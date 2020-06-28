@@ -42,7 +42,6 @@ function randString(length) {
 }
 
 const sameDay = (unix, k = 0) => {
-    console.log(unix, k)
     const {days, months, years} = unixToNormal()
     var inday = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     if ( years % 4 == 0){

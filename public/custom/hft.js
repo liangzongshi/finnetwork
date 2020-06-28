@@ -10,7 +10,38 @@ $(document).ready(() => {
 
         data.orders.forEach((order, st) => {
             $(`#${st+1}_timestamp`).html(order.timestamp)
-            $(`#${st+1}_type`).html(order.type)
+            if(order.type == "BTC"){
+                $(`#${st+1}_type`).html(`<img src="../assets/coin/btc.png" class="img-rounded width-30 height-30" />`)
+            }else if(order.type == "ETH"){
+                $(`#${st+1}_type`).html(`<img src="../assets/coin/eth.png" class="img-rounded width-30 height-30" />`)
+            }else if(order.type == "XRP"){
+                $(`#${st+1}_type`).html(`<img src="../assets/coin/xrp.png" class="img-rounded width-30 height-30" />`)
+            }else if(order.type == "LTC"){
+                $(`#${st+1}_type`).html(`<img src="../assets/coin/ltc.png" class="img-rounded width-30 height-30" />`)
+            }else if(order.type == "BCH"){
+                $(`#${st+1}_type`).html(`<img src="../assets/coin/bch.png" class="img-rounded width-30 height-30" />`)
+            }else if(order.type == "EOS"){
+                $(`#${st+1}_type`).html(`<img src="../assets/coin/eos.png" class="img-rounded width-30 height-30" />`)
+            }else if(order.type == "DASH"){
+                $(`#${st+1}_type`).html(`<img src="../assets/coin/dash.png" class="img-rounded width-30 height-30" />`)
+            }else if(order.type == "XLM"){
+                $(`#${st+1}_type`).html(`<img src="../assets/coin/xlm.png" class="img-rounded width-30 height-30" />`)
+            }else if(order.type == "ETC"){
+                $(`#${st+1}_type`).html(`<img src="../assets/coin/etc.png" class="img-rounded width-30 height-30" />`)
+            }else if(order.type == "ATOM"){
+                $(`#${st+1}_type`).html(`<img src="../assets/coin/atom.png" class="img-rounded width-30 height-30" />`)
+            }else if(order.type == "XTZ"){
+                $(`#${st+1}_type`).html(`<img src="../assets/coin/ztx.png" class="img-rounded width-30 height-30" />`)
+            }else if(order.type == "OMG"){
+                $(`#${st+1}_type`).html(`<img src="../assets/coin/omg.png" class="img-rounded width-30 height-30" />`)
+            }else if(order.type == "LINK"){
+                $(`#${st+1}_type`).html(`<img src="../assets/coin/link.png" class="img-rounded width-30 height-30" />`)
+            }else if(order.type == "ZRX"){
+                $(`#${st+1}_type`).html(`<img src="../assets/coin/zrx.png" class="img-rounded width-30 height-30" />`)
+            }else if(order.type == "ALGO"){
+                $(`#${st+1}_type`).html(`<img src="../assets/coin/algo.png" class="img-rounded width-30 height-30" />`)
+            }
+            // $(`#${st+1}_type`).html(order.type)
             $(`#${st+1}_amount`).html(order.amount)
             $(`#${st+1}_buy`).html(order.buy.price)
             $(`#${st+1}_sell`).html(order.sell.price)

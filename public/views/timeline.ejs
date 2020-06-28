@@ -58,7 +58,7 @@
 									<%(timeline != undefined) ? timeline.forEach(function(item){ %>
 										<tr class="odd gradeX">
 										<!-- <tr class="even gradeC"> -->
-											<td><%= item.date %></td>
+											<td><%= (item.date.toISOString().split('T'))[0] + " " + (item.date.toISOString().split('T'))[1].slice(0,8) %></td>
 											<td><%= item.type %></td>
 											<td><%= Number(item.value).toFixed(4) %></td>
 											<td><%= item.hash %></td>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title>Color Admin | Dashboard V3</title>
+	<title>Finfine | Investment</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -97,7 +97,6 @@
 									<!-- begin total-sales -->
 									<div class="d-flex mb-1">
 										<h2 class="mb-0">$ <span data-animation="number" data-value="<%= Number(capitalTotal.USD).toFixed(2) %>">0.00</span></h2>
-										<div class="ml-auto mt-n1 mb-n1"><div id="total-sales-sparkline"></div></div>
 									</div>
 									<!-- end total-sales -->
 									<!-- begin percentage -->
@@ -213,7 +212,6 @@
 									<!-- begin total-sales -->
 									<div class="d-flex mb-1">
 										<h2 class="mb-0">$ <span data-animation="number" data-value="<%= Number(salesTotal.USD).toFixed(2) %>">0.00</span></h2>
-										<div class="ml-auto mt-n1 mb-n1"><div id="total-sales-sparkline"></div></div>
 									</div>
 									<!-- end total-sales -->
 									<!-- begin percentage -->
@@ -278,12 +276,9 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value=" <%= Number(assetsTotal.USD).toFixed(2) %>">0.00</span>
+										<h2 class="text-white mb-0">$ <span data-animation="number" data-value=" <%= Number(assetsTotal.USD).toFixed(2) %>">0.00</span>
 											<!-- % -->
 										</h2>
-										<div class="ml-auto">
-											<div id="invest-sparkline-1"></div>
-										</div>
 									</div>
 									<!-- end conversion-rate -->
 									<!-- begin percentage -->
@@ -300,7 +295,11 @@
 											Day
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="<%= Number((assetsTotal.totalDays * 100 / assetsTotalPast.totalDays) - 100).toFixed(2) %>">0.00</span> %</div>
+											<% if(assetsTotal.totalDays >= assetsTotalPast.totalDays){ %>
+												<i class="fa fa-caret-up text-green"></i> <span class="text-green">&nbsp;<%= Number((assetsTotal.totalDays * 100 / assetsTotalPast.totalDays) - 100).toFixed(2) %> %</span>
+											<% }else{ %>
+												<i class="fa fa-caret-down text-red"></i> <span class="text-red">&nbsp;<%= Number((assetsTotalPast.totalDays * 100 / assetsTotal.totalDays) - 100).toFixed(2) %> %</span>
+											<% } %>
 											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(assetsTotal.totalDays).toFixed(2) %>">0.00</span> $</div>
 										</div>
 									</div>
@@ -312,7 +311,11 @@
 											Month
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="<%= Number((assetsTotal.totalDays * 100 / assetsTotalPast.totalDays) - 100).toFixed(2) %>">0.00</span> %</div>
+											<% if(assetsTotal.totalMonths >= assetsTotalPast.totalMonths){ %>
+												<i class="fa fa-caret-up text-green"></i> <span class="text-green">&nbsp;<%= Number((assetsTotal.totalMonths * 100 / assetsTotalPast.totalMonths) - 100).toFixed(2) %> %</span>
+											<% }else{ %>
+												<i class="fa fa-caret-down text-red"></i> <span class="text-red">&nbsp;<%= Number((assetsTotalPast.totalMonths * 100 / assetsTotal.totalMonths) - 100).toFixed(2) %> %</span>
+											<% } %>
 											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(assetsTotal.totalMonths).toFixed(2) %>">0.00</span> $</div>
 										</div>
 									</div>
@@ -337,10 +340,7 @@
 									<!-- end title -->
 									<!-- begin store-session -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(profitTotal.USD).toFixed(2)  %>">0.00</span></h2>
-										<div class="ml-auto">
-											<div id="invest-sparkline-2"></div>
-										</div>
+										<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= Number(profitTotal.USD).toFixed(2)  %>">0.00</span></h2>
 									</div>
 									<!-- end store-session -->
 									<!-- begin percentage -->
@@ -357,7 +357,11 @@
 											Day
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="<%= Number((days_profits * 100 / days_profits_past - 100)).toFixed(2) %>">0.00</span> %</div>
+											<% if(days_profits >= days_profits_past){ %>
+												<i class="fa fa-caret-up text-green"></i> <span class="text-green">&nbsp;<%= Number((days_profits * 100 / days_profits_past - 100)).toFixed(2) %> %</span>
+											<% }else{ %>
+												<i class="fa fa-caret-down text-red"></i> <span class="text-red">&nbsp;<%= Number((days_profits_past * 100 / days_profits - 100)).toFixed(2) %> %</span>
+											<% } %>
 											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(days_profits * priceFFT).toFixed(2) %>">0.00</span></div>
 										</div>
 									</div>
@@ -369,7 +373,11 @@
 											Month
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="<%= Number(months_profits * 100 / months_profits_past - 100).toFixed(2) %>">0.00</span> %</div>
+											<% if(months_profits >= months_profits_past){ %>
+												<i class="fa fa-caret-up text-green"></i> <span class="text-green">&nbsp;<%= Number((months_profits * 100 / months_profits_past - 100)).toFixed(2) %> %</span>
+											<% }else{ %>
+												<i class="fa fa-caret-down text-red"></i> <span class="text-red">&nbsp;<%= Number((months_profits_past * 100 / months_profits - 100)).toFixed(2) %> %</span>
+											<% } %>
 											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(months_profits * priceFFT).toFixed(2) %>">0.00</span></div>
 										</div>
 									</div>
@@ -402,12 +410,9 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(salesRefTotal.USD).toFixed(2) %>">0.00</span>
+										<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= Number(salesRefTotal.USD).toFixed(2) %>">0.00</span>
 											<!-- % -->
 										</h2>
-										<div class="ml-auto">
-											<div id="invest-sparkline-3"></div>
-										</div>
 									</div>
 									<!-- end conversion-rate -->
 									<!-- begin percentage -->
@@ -424,7 +429,11 @@
 											Day
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="<%= Number(sale_Ref_Days * 100 / sale_Ref_Days_Past - 100).toFixed(2) %>">0.00</span> %</div>
+											<% if(sale_Ref_Days >= sale_Ref_Days_Past){ %>
+												<i class="fa fa-caret-up text-green"></i> <span class="text-green">&nbsp;<%= Number((sale_Ref_Days * 100 / sale_Ref_Days_Past - 100)).toFixed(2) %> %</span>
+											<% }else{ %>
+												<i class="fa fa-caret-down text-red"></i> <span class="text-red">&nbsp;<%= Number((sale_Ref_Days_Past * 100 / sale_Ref_Days - 100)).toFixed(2) %> %</span>
+											<% } %>
 											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(sale_Ref_Days * priceFFT).toFixed(2) %>">0.00</span>
 												<!-- % -->
 											</div>
@@ -438,7 +447,11 @@
 											Month
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="<%= Number(sale_Ref_Months * 100 / sale_Ref_Months_Past - 100).toFixed(2) %>">0.00</span> %</div>
+											<% if(sale_Ref_Months >= sale_Ref_Months_Past){ %>
+												<i class="fa fa-caret-up text-green"></i> <span class="text-green">&nbsp;<%= Number((sale_Ref_Months * 100 / sale_Ref_Months_Past - 100)).toFixed(2) %> %</span>
+											<% }else{ %>
+												<i class="fa fa-caret-down text-red"></i> <span class="text-red">&nbsp;<%= Number((sale_Ref_Months_Past * 100 / sale_Ref_Months - 100)).toFixed(2) %> %</span>
+											<% } %>
 											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(sale_Ref_Months * priceFFT).toFixed(2) %>">0.00</span>
 												<!-- % -->
 											</div>
@@ -465,10 +478,7 @@
 									<!-- end title -->
 									<!-- begin store-session -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(profitTotal.USD * 100 / capitalTotal.USD ).toFixed(2) %>">0.00</span></h2>
-										<div class="ml-auto">
-											<div id="invest-sparkline-4"></div>
-										</div>
+										<h2 class="text-white mb-0">% <span data-animation="number" data-value="<%= Number(profitTotal.USD * 100 / capitalTotal.USD ).toFixed(2) %>">0.00</span></h2>
 									</div>
 									<!-- end store-session -->
 									<!-- begin percentage -->
@@ -532,12 +542,10 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(profitTotal.static_interest * priceFFT).toFixed(2) %>">0.00</span>
+										<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= Number(profitTotal.static_interest * priceFFT).toFixed(2) %>">0.00</span>
 											<!-- % -->
 										</h2>
-										<div class="ml-auto">
-											<div id="invest-sparkline-5"></div>
-										</div>
+
 									</div>
 									<!-- end conversion-rate -->
 									<!-- begin percentage -->
@@ -554,7 +562,11 @@
 											Day
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="<%= Number(days_static_interest * 100 / days_static_interest_past - 100).toFixed(2) %>">0.00</span> %</div>
+											<% if(days_static_interest >= days_static_interest_past){ %>
+												<i class="fa fa-caret-up text-green"></i> <span class="text-green">&nbsp;<%= Number((days_static_interest * 100 / days_static_interest_past - 100)).toFixed(2) %> %</span>
+											<% }else{ %>
+												<i class="fa fa-caret-down text-red"></i> <span class="text-red">&nbsp;<%= Number((days_static_interest_past * 100 / days_static_interest - 100)).toFixed(2) %> %</span>
+											<% } %>
 											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(days_static_interest * priceFFT).toFixed(2) %>">0.00</span>
 												<!-- % -->
 											</div>
@@ -568,7 +580,11 @@
 											Month
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="<%= Number(months_static_interest * 100 / months_static_interest_past - 100).toFixed(2) %>">0.00</span> %</div>
+											<% if(months_static_interest >= months_static_interest_past){ %>
+												<i class="fa fa-caret-up text-green"></i> <span class="text-green">&nbsp;<%= Number((months_static_interest * 100 / months_static_interest_past - 100)).toFixed(2) %> %</span>
+											<% }else{ %>
+												<i class="fa fa-caret-down text-red"></i> <span class="text-red">&nbsp;<%= Number((months_static_interest_past * 100 / months_static_interest - 100)).toFixed(2) %> %</span>
+											<% } %>
 											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(months_static_interest * priceFFT).toFixed(2) %>">0.00</span>
 												<!-- % -->
 											</div>
@@ -595,12 +611,10 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(profitTotal.dynamic_interest * priceFFT).toFixed(2) %>">0.00</span>
+										<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= Number(profitTotal.dynamic_interest * priceFFT).toFixed(2) %>">0.00</span>
 											<!-- % -->
 										</h2>
-										<div class="ml-auto">
-											<div id="invest-sparkline-6"></div>
-										</div>
+
 									</div>
 									<!-- end conversion-rate -->
 									<!-- begin percentage -->
@@ -617,7 +631,11 @@
 											Day
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="<%= Number(days_dynamic_interest * 100 / days_dynamic_interest_past - 100).toFixed(2) %>">0.00</span> %</div>
+											<% if(days_dynamic_interest >= days_dynamic_interest_past){ %>
+												<i class="fa fa-caret-up text-green"></i> <span class="text-green">&nbsp;<%= Number((days_dynamic_interest * 100 / days_dynamic_interest_past - 100)).toFixed(2) %> %</span>
+											<% }else{ %>
+												<i class="fa fa-caret-down text-red"></i> <span class="text-red">&nbsp;<%= Number((days_dynamic_interest_past * 100 / days_dynamic_interest - 100)).toFixed(2) %> %</span>
+											<% } %>
 											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(days_dynamic_interest * priceFFT).toFixed(2) %>">0.00</span>
 												<!-- % -->
 											</div>
@@ -631,7 +649,11 @@
 											Month
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="<%= Number(months_dynamic_interest * 100 / months_dynamic_interest_past - 100).toFixed(2) %>">0.00</span> %</div>
+											<% if(months_dynamic_interest >= months_dynamic_interest_past){ %>
+												<i class="fa fa-caret-up text-green"></i> <span class="text-green">&nbsp;<%= Number((months_dynamic_interest * 100 / months_dynamic_interest_past - 100)).toFixed(2) %> %</span>
+											<% }else{ %>
+												<i class="fa fa-caret-down text-red"></i> <span class="text-red">&nbsp;<%= Number((months_dynamic_interest_past * 100 / months_dynamic_interest - 100)).toFixed(2) %> %</span>
+											<% } %>
 											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(months_dynamic_interest * priceFFT).toFixed(2) %>"></span>
 												<!-- % -->
 											</div>
@@ -666,12 +688,9 @@
 								<!-- end title -->
 								<!-- begin conversion-rate -->
 								<div class="d-flex align-items-center mb-1">
-									<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(profitTotal.direct_commission * priceFFT).toFixed(2) %>"></span>
+									<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= Number(profitTotal.direct_commission * priceFFT).toFixed(2) %>"></span>
 										<!-- % -->
 									</h2>
-									<div class="ml-auto">
-										<div id="invest-sparkline-7"></div>
-									</div>
 								</div>
 								<!-- end conversion-rate -->
 								<!-- begin percentage -->
@@ -688,7 +707,11 @@
 										Day
 									</div>
 									<div class="d-flex align-items-center ml-auto">
-										<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="<%= Number(days_direct_commission * 100 / days_direct_commission_past - 100).toFixed(2) %>">0.00</span> %</div>
+										<% if(days_direct_commission >= days_direct_commission_past){ %>
+											<i class="fa fa-caret-up text-green"></i> <span class="text-green">&nbsp;<%= Number((days_direct_commission * 100 / days_direct_commission_past - 100)).toFixed(2) %> %</span>
+										<% }else{ %>
+											<i class="fa fa-caret-down text-red"></i> <span class="text-red">&nbsp;<%= Number((days_direct_commission_past * 100 / days_direct_commission - 100)).toFixed(2) %> %</span>
+										<% } %>
 										<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(days_direct_commission * priceFFT).toFixed(2) %>">0.00</span>
 											<!-- % -->
 										</div>
@@ -702,7 +725,11 @@
 										Month
 									</div>
 									<div class="d-flex align-items-center ml-auto">
-										<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="<%= Number(months_direct_commission * 100 / months_direct_commission_past - 100).toFixed(2) %>">0.00</span> %</div>
+										<% if(months_direct_commission >= months_direct_commission_past){ %>
+											<i class="fa fa-caret-up text-green"></i> <span class="text-green">&nbsp;<%= Number((months_direct_commission * 100 / months_direct_commission_past - 100)).toFixed(2) %> %</span>
+										<% }else{ %>
+											<i class="fa fa-caret-down text-red"></i> <span class="text-red">&nbsp;<%= Number((months_direct_commission_past * 100 / months_direct_commission - 100)).toFixed(2) %> %</span>
+										<% } %>
 										<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(months_direct_commission * priceFFT).toFixed(2) %>">0.00</span>
 											<!-- % -->
 										</div>
@@ -730,12 +757,9 @@
 								<!-- end title -->
 								<!-- begin conversion-rate -->
 								<div class="d-flex align-items-center mb-1">
-									<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(profitTotal.indirect_commission * priceFFT).toFixed(2) %>"></span>
+									<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= Number(profitTotal.indirect_commission * priceFFT).toFixed(2) %>"></span>
 										<!-- % -->
 									</h2>
-									<div class="ml-auto">
-										<div id="invest-sparkline-8"></div>
-									</div>
 								</div>
 								<!-- end conversion-rate -->
 								<!-- begin percentage -->
@@ -752,7 +776,11 @@
 										Day
 									</div>
 									<div class="d-flex align-items-center ml-auto">
-										<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="<%= Number(days_indirect_commission * 100 / days_indirect_commission_past - 100).toFixed(2) %>">0.00</span> %</div>
+										<% if(days_indirect_commission >= days_indirect_commission_past){ %>
+											<i class="fa fa-caret-up text-green"></i> <span class="text-green">&nbsp;<%= Number((days_indirect_commission * 100 / days_indirect_commission_past - 100)).toFixed(2) %> %</span>
+										<% }else{ %>
+											<i class="fa fa-caret-down text-red"></i> <span class="text-red">&nbsp;<%= Number((days_indirect_commission_past * 100 / days_indirect_commission - 100)).toFixed(2) %> %</span>
+										<% } %>
 										<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(days_dynamic_interest * priceFFT).toFixed(2) %>"></span>
 											<!-- % -->
 										</div>
@@ -766,7 +794,11 @@
 										Month
 									</div>
 									<div class="d-flex align-items-center ml-auto">
-										<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="<%= Number(months_indirect_commission * 100 / months_indirect_commission_past - 100).toFixed(2) %>">0.00</span> %</div>
+										<% if(months_indirect_commission >= months_indirect_commission_past){ %>
+											<i class="fa fa-caret-up text-green"></i> <span class="text-green">&nbsp;<%= Number((months_indirect_commission * 100 / months_indirect_commission_past - 100)).toFixed(2) %> %</span>
+										<% }else{ %>
+											<i class="fa fa-caret-down text-red"></i> <span class="text-red">&nbsp;<%= Number((months_indirect_commission_past * 100 / months_indirect_commission - 100)).toFixed(2) %> %</span>
+										<% } %>
 										<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(months_indirect_commission * priceFFT).toFixed(2) %>">0.00</span>
 											<!-- % -->
 										</div>
@@ -872,6 +904,7 @@
 		}
 	</script>
 	<script type="text/javascript" src="../assets/js/demo/chart-apex.demo.js"></script>
+	<script type="text/javascript" src="../custom/sidebar.js"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
 </body>
 </html>

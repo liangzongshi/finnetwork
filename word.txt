@@ -8,11 +8,7 @@
 
 - Tao zoom
 
-- Viet bo sinh data
-
 - Viet bo chay ao 
-
-- Test Group 
 
 - Them Chong DDOS, Logger 
 
@@ -21,3 +17,7 @@
 - Them Faker va tester role vao db     
 
 - them memo cho rut tien
+
+- fix group trong admin
+
+- xoa anh cu

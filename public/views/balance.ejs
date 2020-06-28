@@ -106,166 +106,7 @@
 													<i class="fa fa-arrows-alt-h"></i>
 												</a>
 
-												<!-- Begin Modal Deposit -->
-												<div class="modal fade ln-modal" id="md-deposit-<%= currency.symbol %>">
-													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h4 class="modal-title">Deposit <%= currency.symbol %></h4>
-																<a href="javascript:;" class="btn btn-default" data-dismiss="modal" aria-hidden="true">
-																	<i class="fa fa-window-close"></i>													
-																</a>
-															</div>
-															<div class="modal-body">
-																<div class="row m-b-0">
-																		<div class="col-5" id="qr-<%= currency.symbol %>"></div>
-																		<div class="col-7">
-																				
-																			<div class="input-group">
-																				<input class="form-control" id="copy-<%= currency.symbol %>" value="<%= currency.address %>"/>
-																				<a href="#" class="btn btn-grey text-black-lighter"  data-clipboard-target="#copy-<%= currency.symbol %>">
-																					<i class="fa fa-copy fa-lg"></i>
-																				</a>
-																			</div>		
-																			<div class="text-yellow text-left f-s-11">Send only <%= currency.symbol %> to this deposit address.</div>
-																			<br>
-																			<img src="<%= currency.logo %>" class="img-rounded height-90 rounded mx-auto d-block"/>			
-																		</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!-- Start DOM QR -->
-												<script>
-													// https://larsjung.de/jquery-qrcode/latest/demo/
-													setTimeout(() => {
-														$('#qr-<%= currency.symbol %>').qrcode({
-															"render": "div",
-															"size": 180,
-															"color": "#3a3",
-															"text": "<%= currency.address %>",
-														})
-													}, 1000)													
-												</script>
-												<!-- End DOM QR -->
-												<!-- End Modal Deposit -->
-
-												<!-- Begin Modal Withdraw -->
-												<div class="modal fade ln-modal" id="md-withdraw-<%= currency.symbol %>">
-													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h4 class="modal-title">Withdraw <%= currency.symbol %></h4>
-																<a href="javascript:;" class="btn btn-default" data-dismiss="modal" aria-hidden="true">
-																	<i class="fa fa-window-close"></i>													
-																</a>
-															</div>
-															<div class="modal-body">
-																<div class="m-b-0">
-																	<!-- begin panel-body -->
-																	<div class="panel-body panel-form">
-																		<form class="form-horizontal form-bordered">
-																			<div class="form-group row">
-																				<label class="col-lg-4 col-form-label" for="receive_address">Address</label>
-																				<div class="col-lg-8">
-																					<span class="text-yellow text-left f-s-11" id="check-address-<%= currency.symbol %>"></span>
-																					<input type="text" name="receive_address" id="withdraw-address-<%= currency.symbol %>" class="form-control mb-2" />
-																				</div>
-																			</div>
-																			<div class="form-group row">
-																				<label class="col-lg-4 col-form-label" for="receive_amount">Amount</label>
-																				<div class="col-lg-8">
-																					<span class="text-yellow text-left f-s-11" id="check-amount-<%= currency.symbol %>"></span>
-																					<input type="text" name="receive_amount" id="withdraw-amount-<%= currency.symbol %>" class="form-control mb-2" />
-																					<div class="row">
-																						<div class="btn-group col-md-9">
-																							<button type="button" class="btn btn-white" data-percent='{"per": 25, "symbol": "<%= currency.symbol %>"}'>25%</button>
-																							<button type="button" class="btn btn-white" data-percent='{"per": 50, "symbol": "<%= currency.symbol %>"}'>50%</button>
-																							<button type="button" class="btn btn-white" data-percent='{"per": 75, "symbol": "<%= currency.symbol %>"}'>75%</button>
-																							<button type="button" class="btn btn-white" data-percent='{"per": 100, "symbol": "<%= currency.symbol %>"}'>100%</button>
-																						</div>
-																					<div class="text-yellow text-right f-s-11 col-md-3">Max: <span id="withdraw-max-<%= currency.symbol %>"><%= avai %></span> <%= currency.symbol %></div>
-																					</div>
-																				</div>
-																			</div>
-																			<div class="form-group row">
-																				<label class="col-lg-4 col-form-label" for="receive_tfa">Auth</label>
-																				<div class="col-lg-8">
-																					<span class="text-yellow text-left f-s-11" id="check-auth-<%= currency.symbol %>"></span>
-																					<input type="text" name="receive_tfa" id="auth-<%= currency.symbol %>" class="form-control mb-2" />
-																				</div>
-																			</div>
-																		</form>
-																	</div>
-																	<!-- end panel-body -->
-																</div>
-															</div>
-															<div class="modal-footer justify-content-center">
-																<!-- data-dismiss="modal" -->
-																<a href="javascript:;" class="btn btn-default" data-order='{"symbol": "<%= currency.symbol %>", "action": "withdraw"}'>Withdraw</a>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!-- End Modal Withdraw -->
-
-												<!-- Begin Modal Swap -->
-												<div class="modal fade ln-modal" id="md-swap-<%= currency.symbol %>">
-													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h4 class="modal-title">Swap <%= currency.symbol %></h4>
-																<a href="javascript:;" class="btn btn-default" data-dismiss="modal" aria-hidden="true">
-																	<i class="fa fa-window-close"></i>													
-																</a>
-															</div>
-															<div class="modal-body">
-																<div class="m-b-0">
-																	<!-- begin panel-body -->
-																	<div class="panel-body panel-form">
-																		<form class="form-horizontal form-bordered">
-
-																			<div class="form-group row">
-																				<label class="col-lg-4 col-form-label">To</label>
-																				<div class="col-lg-8">
-																					<select class="combobox" id="swap-to-<%= currency.symbol %>">
-																						<option value="">Select Currency</option>
-																						<% currency.to_swap.forEach(function(item){ %>
-																							<option value="<%= item.symbol %>"><%= item.coin %></option>
-																						<% }) %>
-																					</select>
-																				</div>
-																			</div>
-
-																			<div class="form-group row">
-																				<label class="col-lg-4 col-form-label" for="swap_amount">Amount</label>
-																				<div class="col-lg-8">
-																					<span class="text-yellow text-left f-s-11" id="checkswap-amount-<%= currency.symbol %>"></span>
-																					<input type="text" name="swap_amount" id="swap-amount-<%= currency.symbol %>" class="form-control mb-2" />
-																					<div class="row">
-																						<div class="btn-group col-md-9">
-																							<button type="button" class="btn btn-white" data-percent='{"per": 25, "symbol": "<%= currency.symbol %>"}'>25%</button>
-																							<button type="button" class="btn btn-white" data-percent='{"per": 50, "symbol": "<%= currency.symbol %>"}'>50%</button>
-																							<button type="button" class="btn btn-white" data-percent='{"per": 75, "symbol": "<%= currency.symbol %>"}'>75%</button>
-																							<button type="button" class="btn btn-white" data-percent='{"per": 100, "symbol": "<%= currency.symbol %>"}'>100%</button>
-																						</div>
-																					<div class="text-yellow text-right f-s-11 col-md-3">Max: <span id="swap-max-<%= currency.symbol %>"><%= avai %></span> <%= currency.symbol %></div>
-																					</div>
-																				</div>
-																			</div>
-																		</form>
-																	</div>
-																	<!-- end panel-body -->
-																</div>
-															</div>
-															<div class="modal-footer justify-content-center">
-																<a href="javascript:;" class="btn btn-default" data-order='{"symbol": "<%= currency.symbol %>", "action": "swap"}'>Swap</a>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!-- End Modal Swap -->
+												
 											</td>
 										</tr>
 									<% }) %>
@@ -405,7 +246,170 @@
 		<!-- end scroll to top btn -->
 	</div>
 	<!-- end page container -->
-	
+	<% currencies.forEach(function(currency, st){ %>
+		<% var avai %>
+		<% if (currency.symbol !== 'FFT') { avai = currency.balance } else { avai = currency.avai} %>
+	<!-- Begin Modal Deposit -->
+	<div class="modal fade ln-modal" id="md-deposit-<%= currency.symbol %>">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Deposit <%= currency.symbol %></h4>
+					<a href="javascript:;" class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+						<i class="fa fa-window-close"></i>													
+					</a>
+				</div>
+				<div class="modal-body">
+					<div class="row m-b-0">
+							<div class="col-5" id="qr-<%= currency.symbol %>"></div>
+							<div class="col-7">
+									
+								<div class="input-group">
+									<input class="form-control" id="copy-<%= currency.symbol %>" value="<%= currency.address %>"/>
+									<a href="#" class="btn btn-grey text-black-lighter"  data-clipboard-target="#copy-<%= currency.symbol %>">
+										<i class="fa fa-copy fa-lg"></i>
+									</a>
+								</div>		
+								<div class="text-yellow text-left f-s-11">Send only <%= currency.symbol %> to this deposit address.</div>
+								<br>
+								<img src="<%= currency.logo %>" class="img-rounded height-90 rounded mx-auto d-block"/>			
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Start DOM QR -->
+	<script>
+		// https://larsjung.de/jquery-qrcode/latest/demo/
+		setTimeout(() => {
+			$('#qr-<%= currency.symbol %>').qrcode({
+				"render": "div",
+				"size": 180,
+				"color": "#3a3",
+				"text": "<%= currency.address %>",
+			})
+		}, 1000)													
+	</script>
+	<!-- End DOM QR -->
+	<!-- End Modal Deposit -->
+
+	<!-- Begin Modal Withdraw -->
+	<div class="modal fade ln-modal" id="md-withdraw-<%= currency.symbol %>">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Withdraw <%= currency.symbol %></h4>
+					<a href="javascript:;" class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+						<i class="fa fa-window-close"></i>													
+					</a>
+				</div>
+				<div class="modal-body">
+					<div class="m-b-0">
+						<!-- begin panel-body -->
+						<div class="panel-body panel-form">
+							<form class="form-horizontal form-bordered">
+								<div class="form-group row">
+									<label class="col-lg-4 col-form-label" for="receive_address">Address</label>
+									<div class="col-lg-8">
+										<span class="text-yellow text-left f-s-11" id="check-address-<%= currency.symbol %>"></span>
+										<input type="text" name="receive_address" id="withdraw-address-<%= currency.symbol %>" class="form-control mb-2" />
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-4 col-form-label" for="receive_amount">Amount</label>
+									<div class="col-lg-8">
+										<span class="text-yellow text-left f-s-11" id="check-amount-<%= currency.symbol %>"></span>
+										<input type="text" name="receive_amount" id="withdraw-amount-<%= currency.symbol %>" class="form-control mb-2" />
+										<div class="row">
+											<div class="btn-group col-md-9">
+												<button type="button" class="btn btn-white" data-percent='{"per": 25, "symbol": "<%= currency.symbol %>"}'>25%</button>
+												<button type="button" class="btn btn-white" data-percent='{"per": 50, "symbol": "<%= currency.symbol %>"}'>50%</button>
+												<button type="button" class="btn btn-white" data-percent='{"per": 75, "symbol": "<%= currency.symbol %>"}'>75%</button>
+												<button type="button" class="btn btn-white" data-percent='{"per": 100, "symbol": "<%= currency.symbol %>"}'>100%</button>
+											</div>
+										<div class="text-yellow text-right f-s-11 col-md-3">Max: <span id="withdraw-max-<%= currency.symbol %>"><%= avai %></span> <%= currency.symbol %></div>
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-4 col-form-label" for="receive_tfa">Auth</label>
+									<div class="col-lg-8">
+										<span class="text-yellow text-left f-s-11" id="check-auth-<%= currency.symbol %>"></span>
+										<input type="text" name="receive_tfa" id="auth-<%= currency.symbol %>" class="form-control mb-2" />
+									</div>
+								</div>
+							</form>
+						</div>
+						<!-- end panel-body -->
+					</div>
+				</div>
+				<div class="modal-footer justify-content-center">
+					<!-- data-dismiss="modal" -->
+					<a href="javascript:;" class="btn btn-default" data-order='{"symbol": "<%= currency.symbol %>", "action": "withdraw"}'>Withdraw</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Modal Withdraw -->
+
+	<!-- Begin Modal Swap -->
+	<div class="modal fade ln-modal" id="md-swap-<%= currency.symbol %>">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Swap <%= currency.symbol %></h4>
+					<a href="javascript:;" class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+						<i class="fa fa-window-close"></i>													
+					</a>
+				</div>
+				<div class="modal-body">
+					<div class="m-b-0">
+						<!-- begin panel-body -->
+						<div class="panel-body panel-form">
+							<form class="form-horizontal form-bordered">
+
+								<div class="form-group row">
+									<label class="col-lg-4 col-form-label">To</label>
+									<div class="col-lg-8">
+										<select class="combobox" id="swap-to-<%= currency.symbol %>">
+											<option value="">Select Currency</option>
+											<% currency.to_swap.forEach(function(item){ %>
+												<option value="<%= item.symbol %>"><%= item.coin %></option>
+											<% }) %>
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label class="col-lg-4 col-form-label" for="swap_amount">Amount</label>
+									<div class="col-lg-8">
+										<span class="text-yellow text-left f-s-11" id="checkswap-amount-<%= currency.symbol %>"></span>
+										<input type="text" name="swap_amount" id="swap-amount-<%= currency.symbol %>" class="form-control mb-2" />
+										<div class="row">
+											<div class="btn-group col-md-9">
+												<button type="button" class="btn btn-white" data-percent='{"per": 25, "symbol": "<%= currency.symbol %>"}'>25%</button>
+												<button type="button" class="btn btn-white" data-percent='{"per": 50, "symbol": "<%= currency.symbol %>"}'>50%</button>
+												<button type="button" class="btn btn-white" data-percent='{"per": 75, "symbol": "<%= currency.symbol %>"}'>75%</button>
+												<button type="button" class="btn btn-white" data-percent='{"per": 100, "symbol": "<%= currency.symbol %>"}'>100%</button>
+											</div>
+										<div class="text-yellow text-right f-s-11 col-md-3">Max: <span id="swap-max-<%= currency.symbol %>"><%= avai %></span> <%= currency.symbol %></div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+						<!-- end panel-body -->
+					</div>
+				</div>
+				<div class="modal-footer justify-content-center">
+					<a href="javascript:;" class="btn btn-default" data-order='{"symbol": "<%= currency.symbol %>", "action": "swap"}'>Swap</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Modal Swap -->
+	<% }) %>
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="../assets/js/app.min.js"></script>
 	<script src="../assets/js/theme/transparent.min.js"></script>

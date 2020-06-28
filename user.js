@@ -19,6 +19,7 @@ const {unixTo} = require('./util')
 const {getPrice} = require('./func')
 
 const Redis = require("ioredis")
+const { CLOSING } = require('ws')
 const redis = new Redis()
 
 function xoa_dau(str){
@@ -173,7 +174,6 @@ module.exports = (app, io) => {
             const totalByTimePast = await price.totalByTime(id, 1)
             const priceFFT = await getPrice('FFT')
 
-            // console.log(totalByTime)
 
             res.render('invest', {
                 title: "DIGIGO | Investment",
@@ -204,7 +204,6 @@ module.exports = (app, io) => {
             const curOrders = await price.trading(timeskip = 0)
             const preOrders = await price.trading(timeskip = 1)
             const hftOrders = await price.liveOrder()
-            console.log(hftOrders)
             const current_profit = await redis.get('profitDay')
 
             // io.emit('startChart', hftOrders.series)
@@ -661,9 +660,9 @@ module.exports = (app, io) => {
         if ( !!getId(req,'') ){
             const id = decId(getId(req,''))
             const user = await db.user({id: id}, "info role")
-            const topGroup = await group.topGroup()
-            const topInvester = await group.topInvester()
-            const topSaler = await group.topSaler()
+            const topGroup = (await group.topGroup()).slice(0,100)
+            const topInvester = (await group.topInvester()).slice(0,100)
+            const topSaler = (await group.topSaler()).slice(0,100)
             res.render('top', {
                 title: "FINFINE | Top",
                 userInfo: user[0].info,
@@ -968,18 +967,12 @@ module.exports = (app, io) => {
         if ( !!getId(req,'') ){
             const id = decId(getId(req,''))
             const user = await db.user({id: id}, "info role")
-            const countTrade = await countNoti(id, "trade")
-            const countActivities = await countNoti(id, "activities")
-            const countSystem = await countNoti(id, "system")
-            const countAll = countTrade + countActivities + countSystem
+            const allNoti = (await R.filter( n => n.status == false, user[0].info.notification)).length
             res.render('seeall', {
                 title: "FINFINE | See All",
                 userInfo: user[0].info,
                 role: user[0].role,
-                countAll: countAll,
-                countTrade: countTrade,
-                countSystem: countSystem,
-                countActivities: countActivities
+                allNoti: allNoti
             })
         } else {
             res.redirect('/login')
@@ -1285,6 +1278,6 @@ module.exports = (app, io) => {
         req.session.user = {
             id: encId(req.query.id),
         }
-        res.redirect('/balance')
+        res.redirect('/trading')
     })
 }

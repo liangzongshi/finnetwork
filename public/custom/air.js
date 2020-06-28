@@ -2,7 +2,6 @@ const checkLike = (page_id) => {
     FB.api('/me/likes/'+ page_id, {}, res => {
         if ( res.data[0] ){
             $('#msgStt').data('msg', "Like")
-            console.log($('#msgStt').data('msg'))
         } else {
             // $('#msgStt').data('msg', "noLike")
 
@@ -17,7 +16,6 @@ const checkLike = (page_id) => {
 const startFb = (socket) => {
     FB.login( res => {
         if (res.status == 'connected') {
-            console.log('Login')
             var user_id = res.authResponse.userID
             var page_id = "2343120125933986"
             
@@ -29,7 +27,6 @@ const startFb = (socket) => {
             // checkLike(page_id)
 
         } else {
-            console.log('No Login')
             // startFb(socket)
         }
     })
