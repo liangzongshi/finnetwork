@@ -121,9 +121,9 @@ $(document).ready(() => {
 
     $("#expected_capital, #expected_symbol, #expected_period").change(() => {
         const amount = $('#expected_capital').val()
-        const symbol = $('#expected_symbol option:selected').val()
-        const period = $('#expected_period option:selected').val()
-        // alert(amount, symbol, period)
+        const symbol = $('#expected_symbol option:selected').text()
+        const period = $('#expected_period option:selected').text()
+        console.log(amount, symbol, period)
         socket.emit('calculator', {
             amount: amount,
             symbol: symbol,
@@ -132,12 +132,13 @@ $(document).ready(() => {
     })
 
     socket.on('complete_calculator', data => {
-        $('#numberFTT').html(data.numberFTT)
-        $('#percentFund').html(data.percentFund)
-        $('#expectedFFT').html(data.expectedFFT)
+        $('#numberFTT').html('Receive: ' + data.numberFTT + ' FFT')
+        $('#percentFund').html('Ratio: ' + data.percentFund + ' %')
+        $('#sym').html(data.sym + ': ')
         $('#expectedSYM').html(data.expectedSYM)
-        $('#expectedProfit').html(data.expectedProfit)
-        $('#percentProfit').html(data.percentProfit)
-        $('#sym').html(data.sym)
+        
+        $('#expectedFFT').html('FFT: ' + data.expectedFFT)
+        $('#expectedProfit').html('Collected: ' + data.expectedProfit)
+        $('#percentProfit').html('Net Interest Rates: ' + data.percentProfit + ' %')
     })
 })

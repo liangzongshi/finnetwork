@@ -352,15 +352,22 @@ class Price {
 
     calculate = async (amount, symbol, period) => {
         const fund = (await db.system({}, 'totalToken price totalFund pay'))[0]
-        const symbol_expected = (await getPrice(symbol)) * random(30, 90) / 100
+        var symbol_expected = (await getPrice(symbol)) * random(30, 90) / 100
+        if (symbol == 'USDT'){
+            symbol_expected = 1
+        }
+        
         const amount_ftt = amount * (await rate(symbol, 'FFT'))
         const percent_fund = amount_ftt / (fund.totalToken + amount_ftt)
         const statics = amount_ftt * (period * 0.03)
         const dynamic = amount_ftt * (( fund.pay[fund.pay.length - 1].value + fund.pay[fund.pay.length - 1].value) / ( fund.totalFund * 2 )) * period * 30
-        const fft_expected = (await getPrice('FFT')) * ( ( fund.price[fund.price.length - 1] / fund.price[fund.price.length - 2] ) ** (period * 30) )
+
+
+        const p = await getPrice('FFT')
+        const fft_expected = p * ( ( fund.price[fund.price.length - 1][1] / fund.price[fund.price.length - 2][1] ) ** (period * 30) )
 
         const profit = ( dynamic + statics ) * fft_expected
-        const last_percent = profit / ( amount * symbol_expected )
+        const last_percent = profit * 100 / ( amount * symbol_expected )
 
         return {
             numberFTT: amount_ftt.toFixed(2),
