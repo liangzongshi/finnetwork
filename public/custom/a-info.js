@@ -25,5 +25,13 @@ $(document).ready(() => {
         `).removeClass("btn-warning").addClass("btn-danger").addClass("disabled");
         $(`a[data-rid=${data}]`).remove();
     })
-
+    //delete user
+    $('a.del_user').click((e) => {
+        e.preventDefault()
+        const targetId = $(e.target).data("delid")
+        socket.emit("a_del_user", targetId);
+    })
+    socket.on("a_del_user_success", data => {
+        $.notify(`delete user: ${data} success`, "success")
+    })
 })

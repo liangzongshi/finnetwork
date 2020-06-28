@@ -115,8 +115,8 @@
 								<td><%= item.info.email %></td>
 								<td><%= item.info.first_name %> <%= item.info.last_name %></td>
 								<td><%= item.role %></td>
-								<td><%= item.info.finance_total %></td>
-								<td><%= item.userInvest.FFT %> FFT</td>
+								<td><%= Number(item.info.finance_total).toFixed(2) %></td>
+								<td><%= Number(item.userInvest.FFT).toFixed(2) %> FFT</td>
 								<td>
 									<% if(item.info.kyc_img.length > 0){ %>
 										<img src="../../assets/avatars/<%= item.info.kyc_img[0] %>" class="img-rounded height-60 width-60" />
@@ -130,7 +130,7 @@
 								</td>
 								<td>
                                     <a href="" class="btn btn-xs btn-success"><i class="fa fa-tools"></i></a>
-									<a href="" class="btn btn-xs btn-danger m-r-10"><i class="fa fa-remove-format"></i></a>
+									<a data-delid=="<%= item._id %>" class="del_user btn btn-xs btn-danger m-r-10"><i class="fa fa-remove-format"></i></a>
 									<% if(item.info.kyc == false && item.info.kyc_img.length == 3 ){ %>
 									<a class="submit_kyc btn btn-xs btn-warning " data-uid="<%= item._id %>">KYC</a>
 									<a class="refuse_kyc btn btn-xs btn-default " data-rid="<%= item._id %>">KYC Faile</a>
@@ -201,6 +201,7 @@
 	<script src="../../../assets/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
 	<script src="../../../assets/plugins/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
 	<script src="../../../assets/js/demo/table-manage-default.demo.js"></script>
+	<script src="../../../custom/notify.min.js"></script>
 	<script src="../../../custom/sidebar.js"></script>
 	<<script src="/socket.io/socket.io.js"></script>
 	<script src="../../../custom/a-info.js"></script>

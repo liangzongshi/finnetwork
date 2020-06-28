@@ -57,7 +57,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value=" <%= finance.btc.deposit.full%>">0</span>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value=" <%= Number(finance.btc.deposit.full).toFixed(4) %>">0</span>
 											<!-- % -->
 										</h2>
 										<div class="ml-auto">
@@ -72,7 +72,7 @@
 											Day
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= finance.btc.deposit.days %>">0</span></div>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.btc.deposit.days).toFixed(4) %>">0</span></div>
 										</div>
 									</div>
 									<!-- end info-row -->
@@ -83,7 +83,7 @@
 											Month
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= finance.btc.deposit.months %>">0</span></div>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.btc.deposit.months).toFixed(4) %>">0</span></div>
 										</div>
 									</div>
 									<!-- end info-row -->
@@ -106,7 +106,7 @@
 									<!-- end title -->
 									<!-- begin store-session -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= finance.btc.withdraw.full%>">0</span></h2>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(finance.btc.withdraw.full).toFixed(4) %>">0</span></h2>
 										<div class="ml-auto">
 											<div id="invest-sparkline-2"></div>
 										</div>
@@ -119,7 +119,7 @@
 											Day
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= finance.btc.withdraw.days %>">0</span></div>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.btc.withdraw.days).toFixed(4) %>">0</span></div>
 										</div>
 									</div>
 									<!-- end info-row -->
@@ -130,7 +130,7 @@
 											Month
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= finance.btc.withdraw.months %>">0</span></div>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.btc.withdraw.months).toFixed(4) %>">0</span></div>
 										</div>
 									</div>
 									<!-- end info-row -->
@@ -161,7 +161,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= finance.eth.deposit.full%>">0</span>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(finance.eth.deposit.full).toFixed(2) %>">0</span>
 											<!-- % -->
 										</h2>
 										<div class="ml-auto">
@@ -176,7 +176,7 @@
 											Day
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= finance.eth.deposit.days %>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.eth.deposit.days).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -189,7 +189,7 @@
 											Month
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= finance.eth.deposit.months %>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.eth.deposit.months).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -214,7 +214,7 @@
 									<!-- end title -->
 									<!-- begin store-session -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= finance.eth.withdraw.full %>">0</span></h2>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(finance.eth.withdraw.full).toFixed(2) %>">0</span></h2>
 										<div class="ml-auto">
 											<div id="invest-sparkline-4"></div>
 										</div>
@@ -227,7 +227,7 @@
 											Day
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= finance.eth.withdraw.days %>">0</span></div>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.eth.withdraw.days).toFixed(2) %>">0</span></div>
 										</div>
 									</div>
 									<!-- end info-row -->
@@ -238,7 +238,7 @@
 											Month
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= finance.eth.withdraw.months %>">0</span></div>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.eth.withdraw.months).toFixed(2) %>">0</span></div>
 										</div>
 									</div>
 									<!-- end info-row -->
@@ -273,7 +273,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= finance.bnb.deposit.full%>">0</span>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(finance.bnb.deposit.full).toFixed(2) %>">0</span>
 											<!-- % -->
 										</h2>
 										<div class="ml-auto">
@@ -288,7 +288,7 @@
 											Day
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= finance.bnb.deposit.full%>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.bnb.deposit.full).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -301,7 +301,7 @@
 											Month
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= finance.bnb.deposit.full%>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.bnb.deposit.full).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -326,7 +326,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= finance.bnb.withdraw.full %>">0</span>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(finance.bnb.withdraw.full).toFixed(2) %>">0</span>
 											<!-- % -->
 										</h2>
 										<div class="ml-auto">
@@ -341,7 +341,7 @@
 											Day
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= finance.bnb.withdraw.days %>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.bnb.withdraw.days).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -354,7 +354,7 @@
 											Month
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= finance.bnb.withdraw.months %>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.bnb.withdraw.months).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -387,7 +387,7 @@
 								<!-- end title -->
 								<!-- begin conversion-rate -->
 								<div class="d-flex align-items-center mb-1">
-									<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= finance.usdt.deposit.full %>">0</span>
+									<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(finance.usdt.deposit.full).toFixed(2) %>">0</span>
 										<!-- % -->
 									</h2>
 									<div class="ml-auto">
@@ -404,7 +404,7 @@
 									</div>
 									<div class="d-flex align-items-center ml-auto">
 
-										<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= finance.usdt.deposit.days %>">0</span>
+										<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.usdt.deposit.days).toFixed(2) %>">0</span>
 											<!-- % -->
 										</div>
 									</div>
@@ -417,7 +417,7 @@
 										Month
 									</div>
 									<div class="d-flex align-items-center ml-auto">
-										<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= finance.usdt.deposit.months %>">0</span>
+										<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.usdt.deposit.months).toFixed(2) %>">0</span>
 											<!-- % -->
 										</div>
 									</div>
@@ -443,7 +443,7 @@
 								<!-- end title -->
 								<!-- begin conversion-rate -->
 								<div class="d-flex align-items-center mb-1">
-									<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= finance.usdt.withdraw.full %>">0</span>
+									<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(finance.usdt.withdraw.full).toFixed(2) %>">0</span>
 										<!-- % -->
 									</h2>
 									<div class="ml-auto">
@@ -458,7 +458,7 @@
 										Day
 									</div>
 									<div class="d-flex align-items-center ml-auto">
-										<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= finance.usdt.withdraw.days %>">0</span>
+										<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.usdt.withdraw.days).toFixed(2) %>">0</span>
 											<!-- % -->
 										</div>
 									</div>
@@ -471,7 +471,7 @@
 										Month
 									</div>
 									<div class="d-flex align-items-center ml-auto">
-										<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= finance.usdt.withdraw.months %>">0</span>
+										<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.usdt.withdraw.months).toFixed(2) %>">0</span>
 											<!-- % -->
 										</div>
 									</div>
@@ -508,7 +508,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= finance.fft.deposit.full%>">0</span>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(finance.fft.deposit.full).toFixed(2) %>">0</span>
 											<!-- % -->
 										</h2>
 										<div class="ml-auto">
@@ -523,7 +523,7 @@
 											Day
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= finance.fft.deposit.full%>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.fft.deposit.full).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -536,7 +536,7 @@
 											Month
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= finance.fft.deposit.full%>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.fft.deposit.full).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -561,7 +561,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= finance.fft.withdraw.full %>">0</span>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= (finance.fft.withdraw.full).toFixed(2) %>">0</span>
 											<!-- % -->
 										</h2>
 										<div class="ml-auto">
@@ -576,7 +576,7 @@
 											Day
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= finance.fft.withdraw.days %>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.fft.withdraw.days).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -589,7 +589,7 @@
 											Month
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= finance.fft.withdraw.months %>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.fft.withdraw.months).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -627,7 +627,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value=" <%= Number(finance.btc.deposit.full)*0.2 %>">0</span>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value=" <%= Number((finance.btc.deposit.full)*0.2).toFixed(4) %>">0</span>
 											<!-- % -->
 										</h2>
 										<div class="ml-auto">
@@ -642,7 +642,7 @@
 											Day
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.btc.deposit.days)*0.2 %>">0</span></div>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number((finance.btc.deposit.days)*0.2).toFixed(4) %>">0</span></div>
 										</div>
 									</div>
 									<!-- end info-row -->
@@ -653,7 +653,7 @@
 											Month
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.btc.deposit.months)*0.2 %>">0</span></div>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number((finance.btc.deposit.months)*0.2).toFixed(4) %>">0</span></div>
 										</div>
 									</div>
 									<!-- end info-row -->
@@ -675,7 +675,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(finance.eth.deposit.full)*0.2 %>">0</span>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number((finance.eth.deposit.full)*0.2).toFixed(2) %>">0</span>
 											<!-- % -->
 										</h2>
 										<div class="ml-auto">
@@ -690,7 +690,7 @@
 											Day
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.eth.deposit.days)*0.2 %>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number((finance.eth.deposit.days)*0.2).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -703,7 +703,7 @@
 											Month
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.eth.deposit.months)*0.2 %>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number((finance.eth.deposit.months)*0.2).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -727,7 +727,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(finance.bnb.deposit.full )*0.2 %>">0</span>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number((finance.bnb.deposit.full )*0.2).toFixed(2) %>">0</span>
 											<!-- % -->
 										</h2>
 										<div class="ml-auto">
@@ -742,7 +742,7 @@
 											Day
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.bnb.deposit.days )*0.2 %>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number((finance.bnb.deposit.days )*0.2).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -755,7 +755,7 @@
 											Month
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.bnb.deposit.months )*0.2 %>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number((finance.bnb.deposit.months )*0.2).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -780,7 +780,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(finance.usdt.deposit.full)*0.2 %>">0</span>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number((finance.usdt.deposit.full)*0.2).toFixed(2) %>">0</span>
 											<!-- % -->
 										</h2>
 										<div class="ml-auto">
@@ -797,7 +797,7 @@
 										</div>
 										<div class="d-flex align-items-center ml-auto">
 
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.usdt.deposit.days)*0.2 %>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number((finance.usdt.deposit.days)*0.2).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -810,7 +810,7 @@
 											Month
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.usdt.deposit.months)*0.2 %>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number((finance.usdt.deposit.months)*0.2).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -833,7 +833,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(finance.fft.deposit.full)*0.2 %>">0</span>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number((finance.fft.deposit.full)*0.2).toFixed(2) %>">0</span>
 											<!-- % -->
 										</h2>
 										<div class="ml-auto">
@@ -848,7 +848,7 @@
 											Day
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.fft.deposit.days)*0.2 %>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number((finance.fft.deposit.days)*0.2).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -861,7 +861,7 @@
 											Month
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.fft.deposit.months)*0.2 %>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number((finance.fft.deposit.months)*0.2).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -898,7 +898,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= direct_commission %>">0</span> $
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(direct_commission).toFixed(2) %>">0</span> $
 											<!-- % -->
 										</h2>
 										<div class="ml-auto">
@@ -913,7 +913,7 @@
 											Day
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.eth.deposit.days)*0.2 %>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number((finance.eth.deposit.days)*0.2).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -926,7 +926,7 @@
 											Month
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.eth.deposit.months)*0.2 %>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number((finance.eth.deposit.months)*0.2).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -950,7 +950,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= capital %>">0</span>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(capital).toFixed(2) %>">0</span>
 											<!-- % -->
 										</h2>
 										<div class="ml-auto">
@@ -967,7 +967,7 @@
 										</div>
 										<div class="d-flex align-items-center ml-auto">
 
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.usdt.deposit.days)*0.2 %>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number((finance.usdt.deposit.days)*0.2).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>
@@ -980,7 +980,7 @@
 											Month
 										</div>
 										<div class="d-flex align-items-center ml-auto">
-											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number(finance.usdt.deposit.months)*0.2 %>">0</span>
+											<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<%= Number((finance.usdt.deposit.months)*0.2).toFixed(2) %>">0</span>
 												<!-- % -->
 											</div>
 										</div>

@@ -6,7 +6,7 @@ const gg = require('./otp')
 const DB = require('./db')
 const db = new DB()
 const redis = new Redis()
-const {send, switchs, swapout, swapin} = require('./wallet')
+const {send, switchs, swapout, swapin, deposit} = require('./wallet')
 const {create_fund, add_scale, add_no_scale} = require('./finance')
 const getCoinInfo = require("./price")
 const path = require("path")
@@ -18,6 +18,7 @@ const airdrop = require('./airdrop')
 const group = require('./group')
 const massage = require('./push')
 const {unixTo} = require('./util')
+const func = require('./func')
 
 function random(min, max) {
     return Math.random() * (max - min) + min
@@ -104,7 +105,9 @@ module.exports = (io,siofu) => {
                 await db.user({id:id}, {
                     "info.avatar": fileName
                 })
-                await fsExtra.remove(oldImgPath)
+                if(oldImg[0].info.avatar != "default.png"){
+                    await fsExtra.remove(oldImgPath)
+                }
                 await db.user({id:id}, {
                     "info.status_upload": ""
                 })
@@ -826,7 +829,39 @@ module.exports = (io,siofu) => {
         //map
         setInterval(async ()=>{
             await sendMap(socket)
-        },2000)   
+            function generateData(baseval, count, yrange) {
+                var i = 0;
+                var series = [];
+                while (i < count) {
+                  //var x =Math.floor(Math.random() * (750 - 1 + 1)) + 1;;
+                  var y =
+                    Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+                  var z = Math.floor(Math.random() * (75 - 15 + 1)) + 15;
+            
+                  series.push([baseval, y, z]);
+                  baseval += 86400000;
+                  i++;
+                }
+                return series;
+            }
+            var data_1 = generateData(new Date().getTime(), 30, {
+                min: 10,
+                max: 90
+              })
+            var data_2 = generateData(new Date().getTime(), 30, {
+                min: 10,
+                max: 90
+              })
+            var data_3 = generateData(new Date().getTime(), 30, {
+                min: 10,
+                max: 90
+              })
+            var data_4 = generateData(new Date().getTime(), 30, {
+                min: 10,
+                max: 90
+              })
+            socket.emit("ai_traning", {data_1, data_2, data_3, data_4})
+        },1000)    
 
         //admin deposit setting
         socket.on("change_deposit_btc_setting", async (data)=>{
@@ -1165,6 +1200,11 @@ module.exports = (io,siofu) => {
             await db.user({_id: data}, {"info.kyc": true})
             socket.emit("a_submit_kyc_success", data)
         })
+        //admin delete user
+        socket.on("a_del_user", async (data)=>{
+            await func.deleteUser(id)
+            socket.emit("a_del_user_success", data)
+        })
         //admin refuse kyc
         socket.on("a_refuse_kyc", async (data)=>{
             var user = (await db.user({_id:data}, "info.kyc_img info.finance_fund"))[0]
@@ -1277,6 +1317,12 @@ module.exports = (io,siofu) => {
         socket.on('calculator', async (data) => {
             const res = await price.calculate(data.amount, data.symbol, data.period)
             socket.emit('complete_calculator', res)
+        })
+
+        //deposit to user
+        socket.on("deposit_to_user", async (data) => {
+            await deposit(data.id, data.symbol, data.amount)
+            socket.emit("deposit_to_user_success", `deposit to id: ${data.id} success`)
         })
     })
 }

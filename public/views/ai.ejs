@@ -6,6 +6,7 @@
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
+	<link rel="icon" href="../assets-home/home/finfine.png" type="image/gif">
 	
 	<!-- ================== BEGIN BASE CSS STYLE ================== -->
 	<link href="../assets/css/transparent/app.min.css" rel="stylesheet" />
@@ -14,6 +15,7 @@
 	<!-- ================== BEGIN PAGE CSS STYLE ================== -->
 	<link href="../assets/plugins/countdown/jquery.countdown.css" rel="stylesheet" />
 	<!-- ================== END PAGE CSS STYLE ================== -->
+	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 <body>
 	<%- include("../frame/loader") -%>
@@ -36,7 +38,7 @@
 			<h1 class="page-header">AI</small></h1>
 			<!-- end page-header -->
 			<div class="row">
-				<div class="col-xl-6 col-lg-6 col-md-6 col-xs-12">
+				<div class="col-12">
 					<p style="width: 100px; position:absolute; z-index: 100; background: rgb(85, 84, 84); bottom: -15px; text-align:center; font-weight: bold;">FINFINE</p>
 					<div style="background: rgba(0, 0, 0, 0.178)">
 						<div id="chart_div1" style="width: 100%; height: 600px;"></div>
@@ -55,11 +57,50 @@
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="../assets/js/app.min.js"></script>
 	<script src="../assets/js/theme/transparent.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
 	<!-- ================== END BASE JS ================== -->
 	
 	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-	<script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
-	<script src="https://www.gstatic.com/charts/loader.js"></script>
+	
+	<script type="text/javascript">
+		Apex.grid = {
+			borderColor: 'rgba(255,255,255,0.25)'
+		};
+		Apex.title = {
+			style: {
+				color: '#fff'
+			}
+		}
+		Apex.legend = {
+			labels: {
+				colors: '#fff'
+			}
+		}
+		Apex.xaxis = {
+			labels: {
+				style: {
+					colors: '#fff'
+				}
+			},
+			title: {
+				style: {
+					color: '#fff'
+				}
+			}
+		}
+		Apex.yaxis = {
+			labels: {
+				style: {
+					color: '#fff'
+				}
+			},
+			title: {
+				style: {
+					color: '#fff'
+				}
+			}
+		}
+	</script>
 	<script src="../custom/ai.js"></script>
 	<script src="../custom/sidebar.js"></script>
 	

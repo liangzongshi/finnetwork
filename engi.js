@@ -149,7 +149,7 @@ const getHistoryData = async (pastTime) => {
     }
 }
 !(async () => {
-
+    await aaa()
     // await getHistoryData(1)
     const dataDay = await bnb.aggTrades({
         symbol: 'BTCUSDT',

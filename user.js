@@ -882,33 +882,21 @@ module.exports = (app, io) => {
         }
     })
 
-    app.get('/capitalallocation', async (req, res) => {
+    app.get('/profit', async (req, res) => {
         if ( !!getId(req,'') ){
             const id = decId(getId(req,''))
-            const user = await db.user({id: id}, "info role")
-            res.render('capitalallocation', {
-                title: "FINFINE | Capital Allocation",
-                userInfo: user[0].info,
-                role: user[0].role
+            const user = (await db.user({id: id}, "info role received"))[0]
+            res.render('profit', {
+                title: "FINFINE | Profit",
+                userInfo: user.info,
+                role: user.role,
+                profit: user.received
             })
         } else {
             res.redirect('/login')
         }
     })
 
-    app.get('/walletsettings', async (req, res) => {
-        if ( !!getId(req,'') ){
-            const id = decId(getId(req,''))
-            const user = await db.user({id:id}, "info role")
-            res.render('walletsettings', {
-                title: "FINFINE | Wallet Settings",
-                userInfo: user[0].info,
-                role: user[0].role
-            })
-        } else {
-            res.redirect('/login')
-        }
-    })
 
     app.get('/myprofile', async (req, res) => {
         if ( !!getId(req,'') ){

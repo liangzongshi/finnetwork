@@ -6,6 +6,7 @@
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
+	<link rel="icon" href="../assets-home/home/finfine.png" type="image/gif">
 	
 	<!-- ================== BEGIN BASE CSS STYLE ================== -->
 	<link href="../assets/css/transparent/app.min.css" rel="stylesheet" />
@@ -284,7 +285,7 @@
 				<div class="col-xl-6">
 					<div class="card border-0 text-truncate mb-3 ">
 						<!-- begin card-body -->
-						<div class="card-body">
+						<div class="card-body" style="height:397px">
 							<!-- begin title -->
 							<div class="mb-3 text-grey">
 								<b class="mb-3">CALCULATOR PROFIT</b> 
@@ -298,19 +299,18 @@
 
 										<div class="form-group row">
 											<label class="col-lg-3 col-form-label" for="expected_capital">Expected Capital</label>
-											<div class="col-lg-6">
-												<input type="text" name="expected_capital" id="expected_capital" class="form-control mb-2" />
-											</div>
-
-											<div class="col-lg-3">
-												<select class="combobox" id="expected_symbol">
-													<option value="">Select Currency</option>
-													<option value="BTC">BTC</option>
-													<option value="ETH">ETH</option>
-													<option selected value="USDT">USDT</option>
-													<option value="FFT">FFT</option>
-													<option value="BNB">BNB</option>
-												</select>
+											<div class="col-lg-9">
+												<div class="row">
+													<input type="text" name="expected_capital" id="expected_capital" class="form-control col-lg-8 mb-2 mr-4 ml-2" />
+													<select class="form-control col-lg-3" id="expected_symbol">
+														<option value="">Select Currency</option>
+														<option value="BTC">BTC</option>
+														<option value="ETH">ETH</option>
+														<option selected value="USDT">USDT</option>
+														<option value="FFT">FFT</option>
+														<option value="BNB">BNB</option>
+													</select>
+												</div>
 											</div>
 
 										</div>
@@ -318,7 +318,7 @@
 										<div class="form-group row">
 											<label class="col-lg-3 col-form-label">Period</label>
 											<div class="col-lg-9">
-												<select class="combobox" id="expected_period">
+												<select class="form-control col-12" id="expected_period">
 													<option value="">Select Currency</option>
 													<option value="1">1</option>
 													<option value="2">2</option>
@@ -416,16 +416,10 @@
 	<script src="../assets/plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
 	<script src="../assets/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
 	<script src="../assets/plugins/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
-	<!-- <script src="../assets/plugins/datatables.net-autofill/js/dataTables.autofill.min.js"></script> -->
-	<!-- <script src="../assets/plugins/datatables.net-autofill-bs4/js/autofill.bootstrap4.min.js"></script> -->
 	<script src="../assets/plugins/datatables.net-colreorder/js/dataTables.colreorder.min.js"></script>
 	<script src="../assets/plugins/datatables.net-colreorder-bs4/js/colreorder.bootstrap4.min.js"></script>
-	<!-- <script src="../assets/plugins/datatables.net-keytable/js/dataTables.keytable.min.js"></script>
-	<script src="../assets/plugins/datatables.net-keytable-bs4/js/keytable.bootstrap4.min.js"></script> -->
 	<script src="../assets/plugins/datatables.net-rowreorder/js/dataTables.rowreorder.min.js"></script>
 	<script src="../assets/plugins/datatables.net-rowreorder-bs4/js/rowreorder.bootstrap4.min.js"></script>
-	<!-- <script src="../assets/plugins/datatables.net-select/js/dataTables.select.min.js"></script>
-	<script src="../assets/plugins/datatables.net-select-bs4/js/select.bootstrap4.min.js"></script> -->
 	<script src="../assets/plugins/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
 	<script src="../assets/plugins/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
 	<script src="../assets/plugins/datatables.net-buttons/js/buttons.colVis.min.js"></script>
@@ -458,9 +452,7 @@
 	<script src="../assets/js/demo/form-plugins.demo.js"></script>
 	<script src="../assets/js/demo/dashboard-v3.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.3/rangeslider.min.js"></script> -->
 	<script src="../custom/jquery-qrcode-0.17.0.min.js"></script>
-	<!-- <script src="../assets/plugins/apexcharts/dist/apexcharts.min.js"></script> -->
 	<script>
 		Apex.grid = {
 			borderColor: 'rgba(255,255,255,0.25)'

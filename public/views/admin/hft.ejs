@@ -53,7 +53,7 @@
 							<!-- end title -->
 							<!-- begin conversion-rate -->
 							<div class="d-flex align-items-center mb-1">
-								<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= dynamic_interest %>">0</span> $
+								<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(dynamic_interest).toFixed(2) %>">0</span> $
 									<!-- % -->
 								</h2>
 								<div class="ml-auto">
@@ -80,7 +80,7 @@
 							<!-- end title -->
 							<!-- begin store-session -->
 							<div class="d-flex align-items-center mb-1">
-								<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= indirect_commission %>">0</span> $</h2>
+								<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(indirect_commission).toFixed(2) %>">0</span> $</h2>
 								<div class="ml-auto">
 									<div id="invest-sparkline-2"></div>
 								</div>
@@ -105,7 +105,7 @@
 							<!-- end title -->
 							<!-- begin conversion-rate -->
 							<div class="d-flex align-items-center mb-1">
-								<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= depFund %>">0</span> $
+								<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(depFund).toFixed(2) %>">0</span> $
 									<!-- % -->
 								</h2>
 								<div class="ml-auto">
@@ -132,7 +132,7 @@
 							<!-- end title -->
 							<!-- begin conversion-rate -->
 							<div class="d-flex align-items-center mb-1">
-								<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= (depFund*0.7)/0.3 %>">0</span> $
+								<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number((depFund*0.7)/0.3).toFixed(2) %>">0</span> $
 									<!-- % -->
 								</h2>
 								<div class="ml-auto">

@@ -77,10 +77,10 @@
 									<% mybonus.bonus.forEach(function(item){ %>
 										<tr class="odd gradeX">
 										<!-- <tr class="even gradeC"> -->
-											<td><%= item.timestamp.toISOString().split('T')[0] + item.timestamp.toISOString().split('T')[1].slice(0,8) %></td>
+											<td><%= item.date.toISOString().split('T')[0] + item.date.toISOString().split('T')[1].slice(0,8) %></td>
 											<td><%= item.symbol %></td>
 											<td><%= item.type %></td>
-											<td><%= item.value %></td>
+											<td><%= Number(item.value).toFixed(2) %></td>
 										</tr>
 									<% }) %>
 								</tbody>

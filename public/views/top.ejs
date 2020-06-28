@@ -56,7 +56,7 @@
 									<tr class="odd gradeX">
 										<td width="1%" class="f-s-600 text-inverse">1</td>
 										<td class="text-center"> <%= item.id %> </td>
-										<td class="text-center"> <%= item.invest %> </td>
+										<td class="text-center"> <%= Number(item.invest).toFixed(2) %> </td>
 									</tr>
 									<% }): "" %>
 								</tbody>
@@ -85,7 +85,7 @@
 									<tr class="odd gradeX">
 										<td width="1%" class="f-s-600 text-inverse">1</td>
 										<td class="text-center"> <%= item.id %> </td>
-										<td class="text-center"> <%= item.total %> </td>
+										<td class="text-center"> <%= Number(item.total).toFixed(2) %> </td>
 									</tr>
 									<% }): "" %>
 								</tbody>
@@ -121,7 +121,7 @@
 										<td class="text-center"> <%= item.code %> </td>
 										<td class="text-center"> <%= item.name %></td>
 										<td class="text-center"> <%= item.local %></td>
-										<td class="text-center"> <%= item.sales %></td>
+										<td class="text-center"> <%= Number(item.sales).toFixed(2) %></td>
 										<td class="text-center"> <%= item.number %></td>
 									</tr>
 									<% }): "" %>

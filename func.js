@@ -1,6 +1,6 @@
 const DB = require('./db')
 const db = new DB()
-
+const airdrop = require('./airdrop')
 const typeIn = ['deposit', 'swapout', 'switchin'], typeOut= ['withdraw', 'swapin', 'switchout']
 const typeSymbol = ['BTC', 'ETH', 'USDT', 'BNB', 'FFT']
 const typePay = ['direct_commission', 'static_interest', 'dynamic_interest', 'indirect_commission']
@@ -232,6 +232,14 @@ const findId = async (param) => {
         return checkEmail.id
     }
 }
+const deleteUser = async (id)=>{
+    const f1 = await airdrop.getF1(id)
+    const list_dad = (await db.user({id:id}, "list_dad"))[0].list_dad
+    await db.User.deleteOne({id:id})
+    for(var i = 0; i < f1.length; i++){
+        await db.user({id: f1[i]}, {$set: {list_dad: list_dad}})
+    }
+}
 
 module.exports = {
     getPrice: getPrice,
@@ -250,5 +258,6 @@ module.exports = {
     typeOut: typeOut,
     typeIn: typeIn,
     typeSymbol: typeSymbol,
-    typePay: typePay
+    typePay: typePay,
+    deleteUser: deleteUser
 }

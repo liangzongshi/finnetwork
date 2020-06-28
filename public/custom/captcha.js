@@ -17,7 +17,7 @@ var handler = function (captchaObj) {
         var result = captchaObj.getValidate()
         if (!result) {
             $('#login').prop("disabled", true)
-            return alert('Please verify captcha before logging in')
+            return $.notify('Please verify captcha before logging in')
         }
         $.ajax({
             url: 'gt/validate-slide',
@@ -30,9 +30,9 @@ var handler = function (captchaObj) {
             },
             success: function (data) {
                 if (data.status === 'success') {
-                    alert('登录成功')
+                    $.notify('Sign In Success', "success")
                 } else if (data.status === 'fail') {
-                    alert('登录失败，请完成验证')
+                    $.notify('Sign In Failed, please check the captcha', "error")
                     captchaObj.reset()
                 }
             }
@@ -51,7 +51,7 @@ $.ajax({
             challenge: data.challenge,
             offline: !data.success,
             new_captcha: data.new_captcha,
-
+            lang: "en",
             product: "popup", // float，popup
             width: "100%"
         }, handler)

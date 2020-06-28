@@ -57,7 +57,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value=" <%= token.activeToken %>">0</span>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value=" <%= Number(token.activeToken).toFixed(2) %>">0</span>
 											<!-- % -->
 										</h2>
 										<div class="ml-auto">
@@ -84,7 +84,7 @@
 									<!-- end title -->
 									<!-- begin store-session -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= token.blockedToken %>">0</span></h2>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(token.blockedToken).toFixed(2) %>">0</span></h2>
 										<div class="ml-auto">
 											<div id="invest-sparkline-2"></div>
 										</div>
@@ -117,7 +117,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= airdropToken %>">0</span>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(airdropToken).toFixed(2) %>">0</span>
 											<!-- % -->
 										</h2>
 										<div class="ml-auto">
@@ -144,7 +144,7 @@
 									<!-- end title -->
 									<!-- begin store-session -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= token.activeToken - airdropToken %>">0</span></h2>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(token.activeToken - airdropToken).toFixed(2) %>">0</span></h2>
 										<div class="ml-auto">
 											<div id="invest-sparkline-4"></div>
 										</div>

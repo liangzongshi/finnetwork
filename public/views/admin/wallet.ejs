@@ -34,6 +34,7 @@
 			<h1 class="page-header">Wallet</h1>
             <!-- end page-header -->
             <!-- begin row -->
+            <h3>ADMIN WALLET</h3>
             <div class="row row-space-6">
                 <!-- begin col-6 -->
                 <div class="col-xl-4 col-lg-4 m-b-5 p-b-1">
@@ -118,8 +119,34 @@
                 <!-- end col-6 -->
             </div>
             <!-- end row -->
-            <!-- begin row -->
+            <hr>
+            <h3>DEPOSIT TO USER</h3>
             <div class="row row-space-6">
+                <!-- begin col-6 -->
+                <div class="col-xl-6 col-lg-6 m-b-5 p-b-1">
+                    <div class="p-10 bg-black-transparent-5 rounded">
+                        <div class="row m-10">
+                            <select id="a_deposit_type" type="text" class="form-control form-control-lg col-6 m-r-10">
+                                <option value="btc">BTC</option>
+                                <option value="eth">ETH</option>
+                                <option value="bnb">BNB</option>
+                                <option value="usdt">USDT</option>
+                                <option value="fft">FFT</option>
+                            </select>
+                        </div>
+                        <div class="row m-10">
+                            <input id="a_deposit_id" type="text" class="form-control form-control-lg col-9 m-r-10" placeholder="Enter ID"/>
+                        </div>
+                        <div class="row m-10">
+                            <input id="a_deposit_amount" type="number" class="form-control form-control-lg col-9 m-r-10" placeholder="Enter Amount"/>
+                        </div>
+                        <div class="row m-10">
+                            <input id="a_deposit_btn" type="button" class="btn btn-outline-primary" value="DEPOSIT"/>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- end col-6 -->
             </div>
             <!-- end row -->
 		</div>

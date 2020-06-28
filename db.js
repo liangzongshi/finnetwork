@@ -30,7 +30,7 @@ const schemaUser = new Schema({
         city: {type: String, default: null},
         gender: {type: String, default: "male"},
         birthday: {type: Date, default: Date.now},
-        avatar: {type: String, default: null},
+        avatar: {type: String, default: "default.png"},
         status_upload: {type:String, default: ""},
         finance_total: {type: Number, default: 0 },
         finance_fund: [{

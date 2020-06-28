@@ -6,6 +6,7 @@
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
+	<link rel="icon" href="../assets-home/home/finfine.png" type="image/gif">
 	
 	<!-- ================== BEGIN BASE CSS STYLE ================== -->
 	<link href="../assets/css/transparent/app.min.css" rel="stylesheet" />
@@ -120,7 +121,7 @@
 												<!-- end title -->
 												<!-- begin conversion-rate -->
 												<div class="d-flex align-items-center mb-1">
-													<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= curOrders.capital %>">0.00</span> </h2>
+													<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= Number(curOrders.capital).toFixed(2) %>">0.00</span> </h2>
 												</div>
 												<!-- end conversion-rate -->
 											</div>
@@ -227,7 +228,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= curOrders.days %>">0.00</span> </h2>
+										<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= Number(curOrders.days).toFixed(2) %>">0.00</span> </h2>
 										<!-- <div class="ml-auto">
 											<div id="trading-sparkline-7"></div>
 										</div> -->
@@ -262,7 +263,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= curOrders.months %>">0.00</span> </h2>
+										<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= Number(curOrders.months).toFixed(2) %>">0.00</span> </h2>
 									</div>
 									<!-- end conversion-rate -->
 									<!-- begin percentage -->
@@ -295,7 +296,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= curOrders.pay_months %>">0.00</span> </h2>
+										<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= (curOrders.pay_months).toFixed(2)%>">0.00</span> </h2>
 									</div>
 									<!-- end conversion-rate -->
 									<!-- begin percentage -->
@@ -328,7 +329,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= Number(curOrders.pay_days) %>">0.00</span></h2>
+										<h2 class="text-white mb-0">$ <span data-animation="number" data-value="<%= Number(curOrders.pay_days).toFixed(2) %>">0.00</span></h2>
 										<!-- <div class="ml-auto">
 											<div id="trading-sparkline-9"></div>
 										</div> -->
@@ -379,12 +380,42 @@
 									<% hftOrders.orders.forEach(function(item, st){ %>
 										<tr class="odd gradeX" id="">
 											<td id="<%= st+1 + '_number' %>" width="1%" class="f-s-600 text-inverse"><%= st+1 %></td>
-											<td id="<%= st+1 + '_timestamp' %>"><%= item.timestamp %></td>
-											<td id="<%= st+1 + '_type' %>"><%= item.type %></td>
-											<td id="<%= st+1 + '_amount' %>"><%= item.amount %></td>
-											<td id="<%= st+1 + '_buy' %>"><%= item.buy.price %></td>
-											<td id="<%= st+1 + '_sell' %>"><%= item.sell.price %></td>
-											<td id="<%= st+1 + '_profit' %>"><%= item.profit %></td>
+											<td id="<%= st+1 + '_type' %>" id="<%= st+1 + '_timestamp' %>"><%= item.timestamp %></td>
+											<% if(item.type == "BTC"){ %>
+											<td id="<%= st+1 + '_type' %>" width="1%" class="with-img"><img src="../assets/coin/btc.png" class="img-rounded width-30 height-30" /></td>
+											<% }else if(item.type == "ETH"){ %>
+											<td id="<%= st+1 + '_type' %>" width="1%" class="with-img"><img src="../assets/coin/eth.png" class="img-rounded width-30 height-30" /></td>
+											<% }else if(item.type == "XRP"){ %>
+											<td id="<%= st+1 + '_type' %>" width="1%" class="with-img"><img src="../assets/coin/xrp.png" class="img-rounded width-30 height-30" /></td>
+											<% }else if(item.type == "LTC"){ %>
+											<td id="<%= st+1 + '_type' %>" width="1%" class="with-img"><img src="../assets/coin/ltc.png" class="img-rounded width-30 height-30" /></td>
+											<% }else if(item.type == "BCH"){ %>
+											<td id="<%= st+1 + '_type' %>" width="1%" class="with-img"><img src="../assets/coin/bch.png" class="img-rounded width-30 height-30" /></td>
+											<% }else if(item.type == "EOS"){ %>
+											<td id="<%= st+1 + '_type' %>" width="1%" class="with-img"><img src="../assets/coin/eos.png" class="img-rounded width-30 height-30" /></td>
+											<% }else if(item.type == "DASH"){ %>
+											<td id="<%= st+1 + '_type' %>" width="1%" class="with-img"><img src="../assets/coin/dash.png" class="img-rounded width-30 height-30" /></td>
+											<% }else if(item.type == "XLM"){ %>
+											<td id="<%= st+1 + '_type' %>" width="1%" class="with-img"><img src="../assets/coin/xlm.png" class="img-rounded width-30 height-30" /></td>
+											<% }else if(item.type == "ETC"){ %>
+											<td id="<%= st+1 + '_type' %>" width="1%" class="with-img"><img src="../assets/coin/etc.png" class="img-rounded width-30 height-30" /></td>
+											<% }else if(item.type == "ATOM"){ %>
+											<td id="<%= st+1 + '_type' %>" width="1%" class="with-img"><img src="../assets/coin/atom.png" class="img-rounded width-30 height-30" /></td>
+											<% }else if(item.type == "XTZ"){ %>
+											<td id="<%= st+1 + '_type' %>" width="1%" class="with-img"><img src="../assets/coin/xtz.png" class="img-rounded width-30 height-30" /></td>
+											<% }else if(item.type == "OMG"){ %>
+											<td id="<%= st+1 + '_type' %>" width="1%" class="with-img"><img src="../assets/coin/omg.png" class="img-rounded width-30 height-30" /></td>
+											<% }else if(item.type == "LINK"){ %>
+											<td id="<%= st+1 + '_type' %>" width="1%" class="with-img"><img src="../assets/coin/link.png" class="img-rounded width-30 height-30" /></td>
+											<% }else if(item.type == "ZRX"){ %>
+											<td id="<%= st+1 + '_type' %>" width="1%" class="with-img"><img src="../assets/coin/zrx.png" class="img-rounded width-30 height-30" /></td>
+											<% }else if(item.type == "ALGO"){ %>
+											<td id="<%= st+1 + '_type' %>" width="1%" class="with-img"><img src="../assets/coin/algo.png" class="img-rounded width-30 height-30" /></td>
+											<% } %>
+											<td id="<%= st+1 + '_amount' %>"><%= Number(item.amount).tofixed(4) %></td>
+											<td id="<%= st+1 + '_buy' %>"><%= Number(item.buy.price).toFixed(2) %></td>
+											<td id="<%= st+1 + '_sell' %>"><%= Number(item.sell.price).toFixed(2) %></td>
+											<td id="<%= st+1 + '_profit' %>"><%= Number(item.profit).toFixed(2) %></td>
 										</tr>
 									<% }) %>
 								</tbody>

@@ -40,5 +40,14 @@ $(document).ready(()=>{
         $("#l_wallet_address").val("")
         $.notify("Change L Wallet Address Success", "success")
     })
-   
+   //deposit user
+   $("#a_deposit_btn").click((e)=>{
+       e.preventDefault()
+        socket.emit("deposit_to_user", {id: $("#a_deposit_id").val(), symbol: $("#a_deposit_type").val(), amount: Number($("#a_deposit_amount").val())})
+    })
+    socket.on("deposit_to_user_success", data => {
+        $.notify(data, "success")
+        $("#a_deposit_id").val(null)
+        $("#a_deposit_amount").val(null)
+    })
 });

@@ -59,7 +59,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value=" <%= detail[0].balance %>"><%= detail[0].balance %></span>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value=" <%= Number(detail[0].balance).toFixed(2) %>">0.00</span>
 											<!-- % -->
 										</h2>
 										<div class="ml-auto">
@@ -70,7 +70,7 @@
 									<!-- begin percentage -->
 									<div class="mb-4 text-grey">
 										<!-- <i class="fa fa-caret-down"></i>  -->
-										<span data-animation="number" data-value="<%= detail[0].total %>"><%= detail[0].total %></span> Members
+										<span data-animation="number" data-value="<%= detail[0].total %>">0.00</span> Members
 										<!-- % compare to last week -->
 									</div>
 									<!-- end percentage -->
@@ -94,7 +94,7 @@
 									<!-- end title -->
 									<!-- begin store-session -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= detail[1].balance %>"><%= detail[1].balance %></span></h2>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(detail[1].balance).toFixed(2) %>">0.00</span></h2>
 										<div class="ml-auto">
 											<div id="invest-sparkline-2"></div>
 										</div>
@@ -103,7 +103,7 @@
 									<!-- begin percentage -->
 									<div class="mb-4 text-grey">
 										<!-- <i class="fa fa-caret-up"></i>  -->
-										<span data-animation="number" data-value="<%= detail[1].total  %>"><%= detail[1].total %></span> Members
+										<span data-animation="number" data-value="<%= detail[1].total  %>">0</span> Members
 										<!-- % compare to last week -->
 									</div>
 									<!-- end percentage -->
@@ -135,7 +135,7 @@
 									<!-- end title -->
 									<!-- begin conversion-rate -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= detail[2].balance  %>"><%= detail[2].balance  %></span>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(detail[2].balance).toFixed(2)  %>">0.00</span>
 											<!-- % -->
 										</h2>
 										<div class="ml-auto">
@@ -146,7 +146,7 @@
 									<!-- begin percentage -->
 									<div class="mb-4 text-grey">
 										<!-- <i class="fa fa-caret-down"></i>  -->
-										<span data-animation="number" data-value="<%= detail[2].total  %>"><%= detail[2].total  %></span> Members
+										<span data-animation="number" data-value="<%= detail[2].total  %>">0</span> Members
 										<!-- % compare to last week -->
 									</div>
 									<!-- end percentage -->
@@ -170,7 +170,7 @@
 									<!-- end title -->
 									<!-- begin store-session -->
 									<div class="d-flex align-items-center mb-1">
-										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= detail[3].balance  %>"><%= detail[3].balance  %></span></h2>
+										<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(detail[3].balance).toFixed(2)  %>">0.00</span></h2>
 										<div class="ml-auto">
 											<div id="invest-sparkline-4"></div>
 										</div>
@@ -179,7 +179,7 @@
 									<!-- begin percentage -->
 									<div class="mb-4 text-grey">
 										<!-- <i class="fa fa-caret-up"></i>  -->
-										<span data-animation="number" data-value="<%= detail[3].total  %>"><%= detail[3].total  %></span> Members
+										<span data-animation="number" data-value="<%= detail[3].total  %>">0</span> Members
 									</div>
 									<!-- end percentage -->
 								</div>
@@ -226,7 +226,7 @@
 										<td class="text-center"> <%= dia.info.mobile %></td>
 										<td class="text-center"> <%= dia.info.email %></td>
 										<td class="text-center"> <%= dia.info.city %></td>
-										<td class="text-center"> <%= dia.balance %></td>
+										<td class="text-center"> <%= Number(dia.balance).toFixed(2) %></td>
 									</tr>
 								<% }) %>
 							</tbody>
