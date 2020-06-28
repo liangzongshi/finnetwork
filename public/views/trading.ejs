@@ -144,7 +144,7 @@
 												<!-- end title -->
 												<!-- begin conversion-rate -->
 												<div class="d-flex align-items-center mb-1">
-													<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= curOrders.activeToken %>">0.00</span> </h2>
+													<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(curOrders.activeToken).toFixed(0) %>">0.00</span> </h2>
 												</div>
 												<!-- end conversion-rate -->
 											</div>
@@ -167,7 +167,7 @@
 												<!-- end title -->
 												<!-- begin conversion-rate -->
 												<div class="d-flex align-items-center mb-1">
-													<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= curOrders.blockedToken %>">0.00</span> </h2>
+													<h2 class="text-white mb-0"><span data-animation="number" data-value="<%= Number(curOrders.blockedToken).toFixed(0) %>">0.00</span> </h2>
 												</div>
 												<!-- end conversion-rate -->
 			
@@ -412,7 +412,7 @@
 											<% }else if(item.type == "ALGO"){ %>
 											<td id="<%= st+1 + '_type' %>" width="1%" class="with-img"><img src="../assets/coin/algo.png" class="img-rounded width-30 height-30" /></td>
 											<% } %>
-											<td id="<%= st+1 + '_amount' %>"><%= Number(item.amount).tofixed(4) %></td>
+											<td id="<%= st+1 + '_amount' %>"><%= Number(item.amount).toFixed(4) %></td>
 											<td id="<%= st+1 + '_buy' %>"><%= Number(item.buy.price).toFixed(2) %></td>
 											<td id="<%= st+1 + '_sell' %>"><%= Number(item.sell.price).toFixed(2) %></td>
 											<td id="<%= st+1 + '_profit' %>"><%= Number(item.profit).toFixed(2) %></td>

@@ -18,7 +18,6 @@ const airdrop = require('./airdrop')
 const group = require('./group')
 const massage = require('./push')
 const {unixTo} = require('./util')
-const func = require('./func')
 
 function random(min, max) {
     return Math.random() * (max - min) + min
@@ -1202,7 +1201,7 @@ module.exports = (io,siofu) => {
         })
         //admin delete user
         socket.on("a_del_user", async (data)=>{
-            await func.deleteUser(id)
+            await airdrop.deleteUser(id)
             socket.emit("a_del_user_success", data)
         })
         //admin refuse kyc
@@ -1255,28 +1254,28 @@ module.exports = (io,siofu) => {
             }
         })
         //Chart Lai moi lenh
-        // const series = (await price.liveOrder()).series
-        // socket.emit('startChart', series)
+        const series = (await price.liveOrder()).series
+        socket.emit('startChart', series)
 
         // Chart Lai Moi Ngay
-        // const sys = (await db.system({}, 'profitDaily pay'))[0]
-        // var record = sys.profitDaily.slice(sys.profitDaily.length - 16, sys.profitDaily.length)
-        // var pay = sys.pay.slice(sys.pay.length - 16, sys.pay.length)
+        const sys = (await db.system({}, 'profitDaily pay'))[0]
+        var record = sys.profitDaily.slice(sys.profitDaily.length - 16, sys.profitDaily.length)
+        var pay = sys.pay.slice(sys.pay.length - 16, sys.pay.length)
 
-        // var record_value = [], record_label = [], pay_value = []
+        var record_value = [], record_label = [], pay_value = []
 
-        // for ( var i = 0; i <16; i++){
-        //     record_value.push(Number(record[i].value).toFixed(2))
-        //     pay_value.push(Number(pay[i].value).toFixed(2))
+        for ( var i = 0; i <16; i++){
+            record_value.push(Number(record[i].value).toFixed(2))
+            pay_value.push(Number(pay[i].value).toFixed(2))
 
-        //     record_label.push(unixTo(record[i].timestamp).dm)
-        // }
+            record_label.push(unixTo(record[i].timestamp).dm)
+        }
 
-        // socket.emit('daily_chart', {
-        //     pay_value: pay_value,
-        //     record_label: record_label,
-        //     record_value: record_value
-        // })
+        socket.emit('daily_chart', {
+            pay_value: pay_value,
+            record_label: record_label,
+            record_value: record_value
+        })
 
         socket.on('create_token_msg', async () => {
             const id = decId(getId(socket, 'socket'))

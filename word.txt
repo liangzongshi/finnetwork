@@ -8,15 +8,11 @@
 
 - Tao zoom
 
-- them trang nhan lai 
-
 - Viet bo sinh data
 
 - Viet bo chay ao 
 
 - Test Group 
-
-- Them So ng dung
 
 - Them Chong DDOS, Logger 
 
@@ -24,8 +20,4 @@
 
 - Them Faker va tester role vao db     
 
-- Them Deposit Button   cho admin   
-
-- fix timestamp  
-
-- Them follow vs featre
+- them memo cho rut tien

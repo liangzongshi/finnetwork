@@ -68,7 +68,10 @@ class Group {
                         members: [id],
                         chat: chat
                     }
-                },
+                }
+            })
+
+            await db.user({id: id}, {
                 $set: {
                     'info.joined': code
                 }
@@ -138,7 +141,7 @@ class Group {
         const codeGroup = (await db.user({id: id}, 'info.joined'))[0].info.joined
         if (codeGroup !== null){
             const teams = (await db.system({'groups.code': codeGroup}, 'groups'))[0].groups
-            const team = (teams.filter( element => element.code == codeGroup))[0].members
+            const team = (teams.filter( element => element.code == codeGroup))[0]
             const members = team.members
             var mem = []
 

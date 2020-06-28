@@ -187,7 +187,7 @@
 						newOrg.push({
 							id: org[i],
 							name: org[i+1],
-							post: org[i+2],
+							post: Number(org[i+2]).toFixed(0) + ' FFT',
 							phone: org[i+3],
 							mail: org[i+4],
 							photo: org[i+5],
@@ -198,7 +198,6 @@
 					}
 
 					var medCardShape = newOrg
-					console.log(newOrg)
 
 					function tickTemplate(v) {
 						return v

@@ -9,12 +9,30 @@ const redis = new Redis()
 const Binance = require('binance-api-node').default
 const bnb = new Binance()
 
+const Coinbase = require('coinbase-pro')
+const cb = new Coinbase.PublicClient()
+
 var faker = require('faker')
 
 const gg = require('./otp')
 const tree = require('./tree')
 const {random} = require('./util')
+const airdrop = require('./airdrop')
+const group = require('./group')
 const {add_wallet, send, deposit, swapin, swapout, switchs} = require('./wallet')
+
+const deleteUser = async (id) => {
+    const f1 = await airdrop.getF1(id)
+    const list_dad = (await db.user({id: id}, 'list_dad'))[0].list_dad
+    await db.User.deleteOne({id: id})
+    for ( var i = 0; i < f1.length; i++){
+        await db.user({ id: f1[i] }, {
+            $set: {
+                list_dad: list_dad
+            }
+        })
+    }
+}
 
 const addDaily = async (numberDay) => {
     const sttDay = Math.floor(Date.now() / 86400000)
@@ -122,7 +140,37 @@ const actionWallet = async (id, type, amount, symbol, to) => {
     
 }
 
-const aaa = async () => {
+const getHistoryBnb = async (symbol, pastTime) => {
+    const data = []
+    const now = Math.floor(Date.now() / 86400000) + 1 //Now_Day
+    for (var i = pastTime; i >= 1; i--){
+
+        const startDay = (now - i -1) * 86400 * 1000
+        const endDay = (now - i) * 86400 * 1000 -1
+
+        var orders = 0
+        for ( var j = startDay; j < endDay; j += 3600 * 1000){
+            const bnbData = await bnb.aggTrades({
+                symbol: `${symbol}USDT`,
+                startTime: j,
+                endTime: j + 3600 * 1000 - 1
+            })
+
+            orders += bnbData.length
+            // console.log(bnbData.length)
+            // for (var k = 0; k < bnbData.length -1; k++){
+            //     if (bnbData[k].timestamp !== bnbData[k+1].timestamp){
+            //         if (bnbData[k].quantity > 1){
+            //         console.log(bnbData[k])
+            //         }
+            //     }
+            // }
+        }
+        console.log(orders)
+    }
+}
+
+const testTree = async () => {
     await deposit(100000, 'FFT', 1000)
     for (var i = 0; i < 3; i++){
         const id = await addUser( await randomId(i,i))
@@ -131,31 +179,22 @@ const aaa = async () => {
     await tree.pay_order(1000)
 }
 
-const getHistoryData = async (pastTime) => {
-    const data = []
-    const now = Math.floor(Date.now() / 86400000) + 1 //Now_Day
-    for (var i = pastTime; i >= 1; i--){
-        const numDay = now - i
-        const startDay = (now - i -1) * 86400 * 1000
-        const endDay = (now - i) * 86400 * 1000 -1
-
-        const dataDay = await bnb.aggTrades({
-            symbol: 'BTCUSDT',
-            startTime: startDay,
-            endTime: endDay 
-        })
-
-        console.log(dataDay)
-    }
-}
-!(async () => {
-    await aaa()
-    // await getHistoryData(1)
-    const dataDay = await bnb.aggTrades({
-        symbol: 'BTCUSDT',
-        startTime: 1593212400000,
-        endTime: 1593215999999 
+const addGroup = async (id) => {
+    await db.user({id: id}, {
+        $set: {
+            'info.kyc': true,
+            'airdrop.complete': true,
+            'airdrop.members': 51,
+            'info.city': 'ha noi'
+        }
     })
-    console.log(dataDay)
-    // process.exit()
+
+    await group.new(id)
+}
+
+!(async () => {
+    // await getHistoryBnb('BTC', 2)
+    await addDaily(200)
+    await addOrders(200)
+    process.exit()
 })()

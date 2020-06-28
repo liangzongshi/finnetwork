@@ -34,6 +34,15 @@ class Airdrop {
         return f1
     }
 
+    deleteUser = async (id)=>{
+        const f1 = await this.getF1(id)
+        const list_dad = (await db.user({id:id}, "list_dad"))[0].list_dad
+        await db.User.deleteOne({id:id})
+        for(var i = 0; i < f1.length; i++){
+            await db.user({id: f1[i]}, {$set: {list_dad: list_dad}})
+        }
+    }
+
     setSocial = async (id) => {
         const air = (await db.user({id: id}, 'airdrop'))[0].airdrop
         if (air.messenger && air.telegram && air.youtube){

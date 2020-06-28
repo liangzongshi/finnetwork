@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "git": "git add . && git commit -m \"v1.0.0\" && git push",
+    "git": "git add . && git commit -m \"v1.0.3\" && git push",
     "del": "echo \"db.dropDatabase()\" | mongo digigo && redis-cli FLUSHALL",
     "win": "mongo digigo --eval \"db.dropDatabase()\" && redis-cli FLUSHALL",
     "db_prod": "MODE=prod node migrate.js",
@@ -75,7 +75,6 @@
     "shelljs": "^0.8.4",
     "socket.io": "^2.3.0",
     "socketio-file-upload": "^0.7.0",
-    "telegram-api-js": "^1.2.9",
     "uuid": "^8.0.0",
     "web3": "^1.2.7",
     "ws": "^7.2.1"

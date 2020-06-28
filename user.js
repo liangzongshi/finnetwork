@@ -204,6 +204,7 @@ module.exports = (app, io) => {
             const curOrders = await price.trading(timeskip = 0)
             const preOrders = await price.trading(timeskip = 1)
             const hftOrders = await price.liveOrder()
+            console.log(hftOrders)
             const current_profit = await redis.get('profitDay')
 
             // io.emit('startChart', hftOrders.series)
