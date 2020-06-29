@@ -37,7 +37,7 @@ const getPrice = async (symbol) => {
 const rate = async (X, Y) => {
     const priceX = await getPrice(X)
     const priceY = await getPrice(Y)
-    return Number(priceX / priceY).toFixed(2)
+    return Number(priceX / priceY).toFixed(4)
 }
 
 const changeTokenFund = async (amount) => {

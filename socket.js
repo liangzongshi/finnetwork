@@ -18,6 +18,7 @@ const airdrop = require('./airdrop')
 const group = require('./group')
 const massage = require('./push')
 const {unixTo} = require('./util')
+const {getPrice} = require('./func') //????????
 
 function random(min, max) {
     return Math.random() * (max - min) + min
@@ -279,6 +280,7 @@ module.exports = (io,siofu) => {
         socket.on('balance', async (data) => {
             // Them phan Switch
             const id = decId(getId(socket, 'socket'))
+            console.log(data)
             if (data.action == 'withdraw'){
                 var user = await db.user({id: id},'authen.withdraw authen.select message secure.google')
                 var withdraw = user[0].authen.withdraw
@@ -291,7 +293,7 @@ module.exports = (io,siofu) => {
                             //Switch
                             tx = await switchs(id, data.address, data.symbol, data.amount)
                         } else {
-                            tx = await send(id, data.symbol, data.address, data.amount)
+                            tx = await send(id, data.symbol, data.address, data.amount, data.memo)
                         }
                         if (typeof tx == 'string'){
                             socket.emit('send-err-balance', {
@@ -299,6 +301,8 @@ module.exports = (io,siofu) => {
                                 symbol: data.symbol
                             })
                         } else {
+                            const priceFFT = await getPrice('FFT')
+                            tx.priceFFT = priceFFT
                             socket.emit('send-err-balance', tx)
                         }
                     } else {
@@ -313,7 +317,7 @@ module.exports = (io,siofu) => {
                         //Switch
                         tx = await switchs(id, data.address, data.symbol, data.amount)
                     } else {
-                        tx = await send(id, data.symbol, data.address, data.amount)
+                        tx = await send(id, data.symbol, data.address, data.amount, data.memo)
                     }
                     if (typeof tx == 'string'){
                         socket.emit('send-err-balance', {
@@ -321,6 +325,8 @@ module.exports = (io,siofu) => {
                             symbol: data.symbol
                         })
                     } else {
+                        const priceFFT = await getPrice('FFT')
+                        tx.priceFFT = priceFFT
                         socket.emit('send-err-balance', tx)
                     }
                 }
@@ -334,6 +340,8 @@ module.exports = (io,siofu) => {
                             symbol: data.symbol
                         })
                     } else {
+                        const priceFFT = await getPrice('FFT')
+                        tx.priceFFT = priceFFT
                         socket.emit('send-err-balance', tx)
                     }
                 } else {
@@ -344,6 +352,8 @@ module.exports = (io,siofu) => {
                             symbol: data.symbol
                         })
                     } else {
+                        const priceFFT = await getPrice('FFT')
+                        tx.priceFFT = priceFFT
                         socket.emit('send-err-balance', tx)
                     }
                 }

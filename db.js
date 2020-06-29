@@ -149,7 +149,8 @@ const schemaUser = new Schema({
         memo: {type: String, default: null}, 
         expired: {type: Boolean, default: false},
         date: {type: Date , default: Date.now()},
-        timestamp: {type: Number , default: Date.now}
+        timestamp: {type: Number , default: Date.now},
+        tags: {type: String, default: null}
     }],
     bonus: [{
         value: {type: Number, default: null},

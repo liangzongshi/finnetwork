@@ -41,6 +41,28 @@ function randString(length) {
     return result
 }
 
+function randHash(length) {
+    var result           = ''
+    // var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    var characters       = 'abcdefghijklmnopqrstuvwxyz0123456789'
+    var charactersLength = characters.length
+    for ( var i = 0; i < length; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength))
+    }
+    return result
+}
+
+function randHashBnb(length) {
+    var result           = ''
+    // var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+    var charactersLength = characters.length
+    for ( var i = 0; i < length; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength))
+    }
+    return result
+}
+
 const sameDay = (unix, k = 0) => {
     const {days, months, years} = unixToNormal()
     var inday = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -114,6 +136,8 @@ function random(min, max) {
 module.exports = {
     unixTo: unixToNormal,
     randStr: randString,
+    randHash: randHash,
+    randHashBnb: randHashBnb,
     sDay: sameDay,
     sMonth: sameMonth,
     sAll: sameAll,

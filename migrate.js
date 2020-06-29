@@ -79,6 +79,12 @@ const addUser = async (referral) => {
         await changeBalanceWallet(referral, 'FFT', 25, 0, 'deposit', tx)
     }
 
+    await db.user({id: id}, {
+        $set: {
+            role: 'tester'
+        }
+    })
+
     return id
 }
 

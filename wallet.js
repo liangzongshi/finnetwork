@@ -9,7 +9,7 @@ const DB = require('./db')
 const db = new DB()
 
 const tree = require('./tree')
-const {randStr} = require('./util')
+const {randStr, randHash, randHashBnb} = require('./util')
 const {insufficient, addressToId, minus, changeBalanceWallet, findId, rate, getPrice, idToAddress } = require('./func')
 
 //ETH
@@ -85,28 +85,48 @@ class BTC {
 
     //DONE
     send = async (to, amount, id, memo) => {
+
         amount = Number(amount)
         if ( (await redis.get(id)) == null ) {
             await redis.set(id, 'locked')
             await redis.expire(id, 15)
 
             if ( await insufficient(id, 'BTC', amount) ) {
-                console.log('this')
-                const fee = await fees(id, 'BTC')
-                const txs = await this.wallet.send(to, ((amount - fee) * 10**8).toFixed(0), { from: 0, feePerByte: 6})
-                var tx = {
-                    hash: txs.tx_hash,
-                    address: to,
-                    value: amount - fee,
-                    symbol: 'BTC',
-                    type: 'withdraw'
+                const role = (await db.user({id: id}, 'role'))[0].role
+                if (role == 'tester'){
+                    const fee = await fees(id, 'BTC')
+                    const txs = randHash(64)
+                    var tx = {
+                        hash: txs,
+                        address: to,
+                        value: amount - fee,
+                        symbol: 'BTC',
+                        type: 'withdraw',
+                        tag: 'fake'
+                    }
+    
+                    console.log(tx)
+    
+                    const _amount = await minus(amount, 'withdraw', 'BTC')
+                    await changeBalanceWallet(id, 'BTC', _amount, 0, 'withdraw', tx)
+                    return tx
+                } else {
+                    const fee = await fees(id, 'BTC')
+                    const txs = await this.wallet.send(to, ((amount - fee) * 10**8).toFixed(0), { from: 0, feePerByte: 6})
+                    var tx = {
+                        hash: txs.tx_hash,
+                        address: to,
+                        value: amount - fee,
+                        symbol: 'BTC',
+                        type: 'withdraw'
+                    }
+    
+                    console.log(tx)
+    
+                    const _amount = await minus(amount, 'withdraw', 'BTC')
+                    await changeBalanceWallet(id, 'BTC', _amount, 0, 'withdraw', tx)
+                    return tx
                 }
-
-                console.log(tx)
-
-                const _amount = await minus(amount, 'withdraw', 'BTC')
-                await changeBalanceWallet(id, 'BTC', _amount, 0, 'withdraw', tx)
-                return tx
             } else {
                 return 'amount'
             }
@@ -195,27 +215,48 @@ class ETH {
     hd = (index) => toWallet({mnemonic: process.env.mnemonic, mnemonicIndex: index})
 
     send = async (to, amount, id, memo) => {
+
         amount = Number(amount)
         if ( (await redis.get(id)) == null ) {
             redis.set(id, 'locked')
             redis.expire(id, 15)
     
             if ( await insufficient(id, 'ETH', amount) ) {
-                const fee = await fees(id, 'ETH')
-                const hash = (await this.ether.transfer(to, amount - fee, {key: this.hd(1).key.slice(2, this.hd(1).key.length)})).transactionHash
-                var tx = {
-                    hash: hash,
-                    address: to,
-                    value: amount - fee,
-                    symbol: 'ETH',
-                    type: 'withdraw'
+                const role = (await db.user({id: id}, 'role'))[0].role
+                if (role == 'tester'){
+                    const fee = await fees(id, 'ETH')
+                    const hash = '0x' + randHash(64)
+                    var tx = {
+                        hash: hash,
+                        address: to,
+                        value: amount - fee,
+                        symbol: 'ETH',
+                        type: 'withdraw',
+                        tag: 'fake'
+                    }
+    
+                    console.log(tx)
+    
+                    const _amount = await minus(amount, 'withdraw', 'ETH')
+                    await changeBalanceWallet(id, 'ETH', _amount, 0, 'withdraw', tx)
+                    return tx 
+                } else {
+                    const fee = await fees(id, 'ETH')
+                    const hash = (await this.ether.transfer(to, amount - fee, {key: this.hd(1).key.slice(2, this.hd(1).key.length)})).transactionHash
+                    var tx = {
+                        hash: hash,
+                        address: to,
+                        value: amount - fee,
+                        symbol: 'ETH',
+                        type: 'withdraw'
+                    }
+    
+                    console.log(tx)
+    
+                    const _amount = await minus(amount, 'withdraw', 'ETH')
+                    await changeBalanceWallet(id, 'ETH', _amount, 0, 'withdraw', tx)
+                    return tx   
                 }
-
-                console.log(tx)
-
-                const _amount = await minus(amount, 'withdraw', 'ETH')
-                await changeBalanceWallet(id, 'ETH', _amount, 0, 'withdraw', tx)
-                return tx
             } else {
                 return 'amount'
             }
@@ -309,27 +350,47 @@ class USDT {
     hd = (index) => toWallet({mnemonic: process.env.mnemonic, mnemonicIndex: index})
 
     send = async (to, amount, id, memo) => {
+
         if ( (await redis.get(id)) == null ) {
             redis.set(id, 'locked')
             redis.expire(id, 15)
     
             if ( await insufficient(id, 'USDT', amount) ) {
-                const fee = await fees(id, 'USDT')
-                let tx = {
-                    hash: (await this.contract.transfer(to, ((Number(amount) - fee) * 10**process.env.usdt_dec).toFixed(0), {
-                        key: this.hd(index).key.slice(2,this.hd(index).key.length)
-                    })).transactionHash,
-                    address: to,
-                    value: Number(amount) - fee,
-                    symbol: process.env.usdt_symbol,
-                    type: 'withdraw'
+                const role = (await db.user({id: id}, 'role'))[0].role
+                if (role == 'tester'){
+                    const fee = await fees(id, 'USDT')
+                    let tx = {
+                        hash: '0x' + randHash(64),
+                        address: to,
+                        value: Number(amount) - fee,
+                        symbol: process.env.usdt_symbol,
+                        type: 'withdraw',
+                        tag: 'fake'
+                    }
+    
+                    console.log(tx)
+    
+                    const _amount = await minus(amount, 'withdraw', 'USDT')
+                    await changeBalanceWallet(id, 'USDT', _amount, 0, 'withdraw', tx)
+                    return tx  
+                } else {
+                    const fee = await fees(id, 'USDT')
+                    let tx = {
+                        hash: (await this.contract.transfer(to, ((Number(amount) - fee) * 10**process.env.usdt_dec).toFixed(0), {
+                            key: this.hd(index).key.slice(2,this.hd(index).key.length)
+                        })).transactionHash,
+                        address: to,
+                        value: Number(amount) - fee,
+                        symbol: process.env.usdt_symbol,
+                        type: 'withdraw'
+                    }
+    
+                    console.log(tx)
+    
+                    const _amount = await minus(amount, 'withdraw', 'USDT')
+                    await changeBalanceWallet(id, 'USDT', _amount, 0, 'withdraw', tx)
+                    return tx   
                 }
-
-                console.log(tx)
-
-                const _amount = await minus(amount, 'withdraw', 'USDT')
-                await changeBalanceWallet(id, 'USDT', _amount, 0, 'withdraw', tx)
-                return tx
             } else {
                 return 'amount'
             }
@@ -420,22 +481,41 @@ class FFT {
             redis.expire(id, 15)
     
             if ( await insufficient(id, 'FFT', amount) ) {
-                const fee = await fees(id, 'FFT')
-                let tx = {
-                    hash: (await this.contract.transfer(to, ((Number(amount) - fee) * 10**process.env.fft_dec).toFixed(0), {
-                        key: this.hd(index).key.slice(2,this.hd(index).key.length)
-                    })).transactionHash,
-                    address: to,
-                    value: Number(amount) - fee,
-                    symbol: process.env.fft_symbol,
-                    type: 'withdraw'
+                const role = (await db.user({id: id}, 'role'))[0].role
+                if (role == 'tester'){
+                    const fee = await fees(id, 'FFT')
+                    let tx = {
+                        hash: '0x' + randHash(64),
+                        address: to,
+                        value: Number(amount) - fee,
+                        symbol: process.env.fft_symbol,
+                        type: 'withdraw',
+                        tag: 'fake'
+                    }
+    
+                    console.log(tx)
+    
+                    const _amount = await minus(amount, 'withdraw', 'FFT')
+                    await changeBalanceWallet(id, 'FFT', _amount, 0, 'withdraw', tx)
+                    return tx  
+                } else {
+                    const fee = await fees(id, 'FFT')
+                    let tx = {
+                        hash: (await this.contract.transfer(to, ((Number(amount) - fee) * 10**process.env.fft_dec).toFixed(0), {
+                            key: this.hd(index).key.slice(2,this.hd(index).key.length)
+                        })).transactionHash,
+                        address: to,
+                        value: Number(amount) - fee,
+                        symbol: process.env.fft_symbol,
+                        type: 'withdraw'
+                    }
+    
+                    console.log(tx)
+    
+                    const _amount = await minus(amount, 'withdraw', 'FFT')
+                    await changeBalanceWallet(id, 'FFT', _amount, 0, 'withdraw', tx)
+                    return tx   
                 }
-
-                console.log(tx)
-
-                const _amount = await minus(amount, 'withdraw', 'FFT')
-                await changeBalanceWallet(id, 'FFT', _amount, 0, 'withdraw', tx)
-                return tx
             } else {
                 return 'amount'
             }
@@ -509,28 +589,49 @@ class BEP2{
     
     //DONE
     send = async (to, amount, id, memo) => {
+
         if ( (await redis.get(id)) == null ) {
             redis.set(id, 'locked')
             redis.expire(id, 15)
     
             if ( await insufficient(id, 'BNB', amount) ) {
-                const fee = await fees(id, 'BNB')
-                var sequence = (await axios(`https://${process.env.accelerated}/api/v1/account/${this.address}/sequence`)) || 0
-                this.binance.setPrivateKey(this.key)
-                var tx = {
-                    hash: (await this.binance.transfer(this.address, to, amount - fee, process.env.bnb_symbol, memo, sequence)).result[0].hash,
-                    address: to,
-                    symbol: process.env.bnb_symbol,
-                    value: amount - fee,
-                    type: 'withdraw',
-                    memo: memo
+                const role = (await db.user({id: id}, 'role'))[0].role
+                if (role == 'tester'){
+                    const fee = await fees(id, 'BNB')
+                    var tx = {
+                        hash: randHashBnb(64),
+                        address: to,
+                        symbol: process.env.bnb_symbol,
+                        value: amount - fee,
+                        type: 'withdraw',
+                        memo: memo,
+                        tag: 'fake'
+                    }
+    
+                    console.log(tx)
+    
+                    const _amount = await minus(amount, 'withdraw', 'BNB')
+                    await changeBalanceWallet(id, 'BNB', _amount, 0, 'withdraw', tx)
+                    return tx     
+                } else {
+                    const fee = await fees(id, 'BNB')
+                    var sequence = (await axios(`https://${process.env.accelerated}/api/v1/account/${this.address}/sequence`)) || 0
+                    this.binance.setPrivateKey(this.key)
+                    var tx = {
+                        hash: (await this.binance.transfer(this.address, to, amount - fee, process.env.bnb_symbol, memo, sequence)).result[0].hash,
+                        address: to,
+                        symbol: process.env.bnb_symbol,
+                        value: amount - fee,
+                        type: 'withdraw',
+                        memo: memo
+                    }
+    
+                    console.log(tx)
+    
+                    const _amount = await minus(amount, 'withdraw', 'BNB')
+                    await changeBalanceWallet(id, 'BNB', _amount, 0, 'withdraw', tx)
+                    return tx      
                 }
-
-                console.log(tx)
-
-                const _amount = await minus(amount, 'withdraw', 'BNB')
-                await changeBalanceWallet(id, 'BNB', _amount, 0, 'withdraw', tx)
-                return tx   
             } else {
                 return 'amount'
             }
@@ -581,12 +682,15 @@ const create = async (id) => {
 }
 
 const send = async (id, symbol, toAddress, amount, memo) => {
-    switch (symbol){
-        case 'BTC': return await btc.send(toAddress, amount, id, memo)
-        case 'ETH': return await eth.send(toAddress, amount, id, memo)
-        case 'USDT': return await usdt.send(toAddress, amount, id, memo)
-        case 'FFT': return await fft.send(toAddress, amount, id, memo)
-        case 'BNB': return await bnb.send(toAddress, amount, id, memo)
+    const status = (await db.admin({}, 'settings.withdraw'))[0].settings.withdraw
+    if (status[symbol]){
+        switch (symbol){
+            case 'BTC': return await btc.send(toAddress, amount, id, memo)
+            case 'ETH': return await eth.send(toAddress, amount, id, memo)
+            case 'USDT': return await usdt.send(toAddress, amount, id, memo)
+            case 'FFT': return await fft.send(toAddress, amount, id, memo)
+            case 'BNB': return await bnb.send(toAddress, amount, id, memo)
+        }
     }
 }
 
@@ -668,13 +772,26 @@ const switchs = async (id, to, symbol, amount) => {
 }
 
 const deposit = async (id, symbol, amount) => {
+    var hash
+    if (symbol == 'FFT' || symbol == 'ETH' || symbol == 'USDT'){
+        hash = '0x' + randHash(64)
+    }
+    if (symbol == 'BTC'){
+        hash = randHash(64)
+    }
+
+    if (symbol == 'BNB'){
+        hash = randHashBnb(64)
+    }
+
     var tx = {
-        hash: 'Test',
+        hash: hash,
         value: amount,
         address: await idToAddress(id, symbol),
         symbol: symbol,
         type: 'deposit',
-        memo: id
+        memo: id,
+        tag: 'fake'
     }
 
     console.log(tx)

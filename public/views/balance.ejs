@@ -262,14 +262,25 @@
 					<div class="row m-b-0">
 							<div class="col-5" id="qr-<%= currency.symbol %>"></div>
 							<div class="col-7">
-									
+								<div class="text-yellow text-left f-s-11">Send only <%= currency.symbol %> to this deposit address.</div>
+								
 								<div class="input-group">
 									<input class="form-control" id="copy-<%= currency.symbol %>" value="<%= currency.address %>"/>
 									<a href="#" class="btn btn-grey text-black-lighter"  data-clipboard-target="#copy-<%= currency.symbol %>">
 										<i class="fa fa-copy fa-lg"></i>
 									</a>
 								</div>		
-								<div class="text-yellow text-left f-s-11">Send only <%= currency.symbol %> to this deposit address.</div>
+								
+								<% if (currency.symbol == 'BNB'){ %>
+									<br>
+									<div class="input-group">
+										<input class="form-control" id="copy-memo-<%= currency.symbol %>" value="<%= currency.memo %>"/>
+										<a href="#" class="btn btn-grey text-black-lighter"  data-clipboard-target="#copy-memo-<%= currency.symbol %>">
+											<i class="fa fa-copy fa-lg"></i>
+										</a>
+									</div>
+								<% } %>
+
 								<br>
 								<img src="<%= currency.logo %>" class="img-rounded height-90 rounded mx-auto d-block"/>			
 							</div>
@@ -320,17 +331,30 @@
 									<div class="col-lg-8">
 										<span class="text-yellow text-left f-s-11" id="check-amount-<%= currency.symbol %>"></span>
 										<input type="text" name="receive_amount" id="withdraw-amount-<%= currency.symbol %>" class="form-control mb-2" />
+										<div class="text-yellow text-right f-s-14 col-md-12">Max: <span id="withdraw-max-<%= currency.symbol %>"><%= avai.toFixed(3) %></span> <%= currency.symbol %></div>
+										
 										<div class="row">
-											<div class="btn-group col-md-9">
+											<div class="btn-group col-md-12">
 												<button type="button" class="btn btn-white" data-percent='{"per": 25, "symbol": "<%= currency.symbol %>"}'>25%</button>
 												<button type="button" class="btn btn-white" data-percent='{"per": 50, "symbol": "<%= currency.symbol %>"}'>50%</button>
 												<button type="button" class="btn btn-white" data-percent='{"per": 75, "symbol": "<%= currency.symbol %>"}'>75%</button>
 												<button type="button" class="btn btn-white" data-percent='{"per": 100, "symbol": "<%= currency.symbol %>"}'>100%</button>
 											</div>
-										<div class="text-yellow text-right f-s-11 col-md-3">Max: <span id="withdraw-max-<%= currency.symbol %>"><%= avai %></span> <%= currency.symbol %></div>
+										<!-- <div class="text-yellow text-right f-s-11 col-md-3">Max: <span id="withdraw-max-<%= currency.symbol %>"><%= avai.toFixed(3) %></span> <%= currency.symbol %></div> -->
 										</div>
 									</div>
 								</div>
+
+								<% if (currency.symbol == 'BNB'){ %>
+									<div class="form-group row">
+										<label class="col-lg-4 col-form-label" for="wit_memo">Memo</label>
+										<div class="col-lg-8">
+											<span class="text-yellow text-left f-s-11" id=""></span>
+											<input type="text" name="wit_memo" id="wit_memo" class="form-control mb-2" />
+										</div>
+									</div>
+								<% } %>
+
 								<div class="form-group row">
 									<label class="col-lg-4 col-form-label" for="receive_tfa">Auth</label>
 									<div class="col-lg-8">
@@ -373,8 +397,12 @@
 									<div class="col-lg-8">
 										<select class="combobox" id="swap-to-<%= currency.symbol %>">
 											<option value="">Select Currency</option>
-											<% currency.to_swap.forEach(function(item){ %>
-												<option value="<%= item.symbol %>"><%= item.coin %></option>
+											<% currency.to_swap.forEach(function(item, st){ %>
+												<% if ( (item.symbol == "USDT" && st ==2) || (item.symbol == "FFT" && st ==0) ){ %>
+													<option selected value="<%= item.symbol %>"><%= item.coin %></option>
+												<% } else { %>
+													<option value="<%= item.symbol %>"><%= item.coin %></option>
+												<% } %>
 											<% }) %>
 										</select>
 									</div>
@@ -385,14 +413,16 @@
 									<div class="col-lg-8">
 										<span class="text-yellow text-left f-s-11" id="checkswap-amount-<%= currency.symbol %>"></span>
 										<input type="text" name="swap_amount" id="swap-amount-<%= currency.symbol %>" class="form-control mb-2" />
+										<div class="text-yellow text-right f-s-14 col-md-12">Max: <span id="swap-max-<%= currency.symbol %>"><%= avai.toFixed(3) %></span> <%= currency.symbol %></div>
+										
 										<div class="row">
-											<div class="btn-group col-md-9">
+											<div class="btn-group col-md-12">
 												<button type="button" class="btn btn-white" data-percent='{"per": 25, "symbol": "<%= currency.symbol %>"}'>25%</button>
 												<button type="button" class="btn btn-white" data-percent='{"per": 50, "symbol": "<%= currency.symbol %>"}'>50%</button>
 												<button type="button" class="btn btn-white" data-percent='{"per": 75, "symbol": "<%= currency.symbol %>"}'>75%</button>
 												<button type="button" class="btn btn-white" data-percent='{"per": 100, "symbol": "<%= currency.symbol %>"}'>100%</button>
 											</div>
-										<div class="text-yellow text-right f-s-11 col-md-3">Max: <span id="swap-max-<%= currency.symbol %>"><%= avai %></span> <%= currency.symbol %></div>
+										<!-- <div class="text-yellow text-right f-s-11 col-md-3">Max: <span id="swap-max-<%= currency.symbol %>"><%= avai.toFixed(3) %></span> <%= currency.symbol %></div> -->
 										</div>
 									</div>
 								</div>

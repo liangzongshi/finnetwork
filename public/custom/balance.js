@@ -32,9 +32,9 @@ $(document).ready(() => {
         const percent = JSON.parse($(e)[0].target.dataset.percent)
         if (percent !== undefined){
             const max = Number($(`#withdraw-max-${percent.symbol}`).text())
-            $(`#withdraw-amount-${percent.symbol}`).val(max*percent.per/100)
+            $(`#withdraw-amount-${percent.symbol}`).val((max*percent.per/100).toFixed(3))
             const maxs = Number($(`#swap-max-${percent.symbol}`).text())
-            $(`#swap-amount-${percent.symbol}`).val(maxs*percent.per/100)
+            $(`#swap-amount-${percent.symbol}`).val((maxs*percent.per/100).toFixed(3))
         }
     })
 
@@ -44,13 +44,16 @@ $(document).ready(() => {
             order = JSON.parse($(e)[0].target.dataset.order)
         }
         if (order !== undefined){
-            const order_data = {
+            var order_data = {
                 action: order.action,
                 symbol: order.symbol,
                 address: $(`#${order.action}-address-${order.symbol}`).val(),
                 amount: Number($(`#${order.action}-amount-${order.symbol}`).val()),
                 to: $(`#${order.action}-to-${order.symbol}`).val(),
                 auth: $(`#auth-${order.symbol}`).val()
+            }
+            if (order.symbol == 'BNB'){
+                order_data.memo = $('#wit_memo').val()
             }
             socket.emit('balance', order_data)
         }
@@ -66,15 +69,19 @@ $(document).ready(() => {
             const balanceFFT = Number($(`#bal-FFT`).text())
             const avaiFFT = Number($(`#avai-FFT`).text())
 
-            const priceUSD = (Number($(`#usd-${data.symbol}`).text()) / balance)
-            const priceFFT = (Number($(`#fft-${data.symbol}`).text()) / balance)
+            const priceUSD = 1
+            const priceFFT = data.priceFFT
 
+            // alert((balance - data.value) * priceUSD )
             if (data.type == 'switchout'){
                 $(`#md-withdraw-${data.symbol}`).modal('hide')
                 $(`#bal-${data.symbol}`).html((balance - data.value).toFixed(3))
                 $(`#avai-${data.symbol}`).html((avai - data.value).toFixed(3))
                 $(`#fft-${data.symbol}`).html( ( (balance - data.value) * priceFFT ).toFixed(3) )
                 $(`#usd-${data.symbol}`).html(( (balance - data.value) * priceUSD ).toFixed(3))
+
+                $(`#withdraw-max-${data.symbol}`).html((avai - data.value).toFixed(3))
+                $(`#swap-max-${data.symbol}`).html((avai - data.value).toFixed(3))
             }
 
             if (data.type == 'swapin'){
@@ -90,6 +97,9 @@ $(document).ready(() => {
 
                 $(`#fft-FFT`).html( ( (balanceFFT + data.value * data.price) * priceFFT ).toFixed(3) )
                 $(`#usd-FFT`).html(( (balanceFFT + data.value * data.price) * priceUSD ).toFixed(3))
+
+                $(`#withdraw-max-${data.symbol}`).text((avai - data.value).toFixed(3))
+                $(`#swap-max-${data.symbol}`).text((avai - data.value).toFixed(3))
             }
 
             if (data.type == 'swapout'){
@@ -105,16 +115,26 @@ $(document).ready(() => {
 
                 $(`#fft-FFT`).html( ( (balanceFFT - data.value * data.price) * priceFFT ).toFixed(3) )
                 $(`#usd-FFT`).html(( (balanceFFT - data.value * data.price) * priceUSD ).toFixed(3))
+
+                $(`#withdraw-max-${data.symbol}`).text((avai + data.value).toFixed(3))
+                $(`#swap-max-${data.symbol}`).text((avai + data.value).toFixed(3))
+
+                $(`#withdraw-max-FFT`).text((avaiFFT - data.value * data.price).toFixed(3))
+                $(`#swap-max-FFT`).text((avaiFFT - data.value * data.price).toFixed(3))
             } 
 
         } else {
-            const des = (data.error == 'address') ? 'Address not available' : 'Balance is not enough'
+            const des = (data.error == 'auth') ? 'The verification code is incorrect' : 'Balance is not enough'
             $(`#check-${data.error}-${data.symbol}`).html(des)
-            $(`#checkswap-${data.error}-${data.symbol}`).html(des)
+            if (data.error == 'amount'){
+                $(`#checkswap-${data.error}-${data.symbol}`).html(des)
+            }
 
             setTimeout(() => {
                 $(`#check-${data.error}-${data.symbol}`).html('')
-                $(`#checkswap-${data.error}-${data.symbol}`).html('')
+                if (data.error == 'amount'){
+                    $(`#checkswap-${data.error}-${data.symbol}`).html('')
+                }
             }, 2000)
         }
     })
