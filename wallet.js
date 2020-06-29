@@ -31,10 +31,16 @@ const BncClient = require('@binance-chain/javascript-sdk')
 const WebSocket = require('ws')
 const axios = require('axios')
 
+// Socket
+const Esock = new WebSocket(`wss://ws.web3api.io?x-api-key=${process.env.amber_api}&x-amberdata-blockchain-id=ethereum-mainnet`)
+Esock.on('open', () => {
+    // console.log('Connected Esock')
+})
+
 const fees = async (id, symbol) => {
     const p = await getPrice(symbol)
     const dwFee = (await tree.limit(id)).dwFee
-    return (dwFee / p).toFixed(6)
+    return Number((dwFee / p).toFixed(6))
 }
 
 class BTC {
@@ -166,14 +172,6 @@ class BTC {
         })
     }
 }
-
-const btc = new BTC()
-
-// Socket
-const Esock = new WebSocket(`wss://ws.web3api.io?x-api-key=${process.env.amber_api}&x-amberdata-blockchain-id=ethereum-mainnet`)
-Esock.on('open', () => {
-    // console.log('Connected Esock')
-})
 
 class ETH {
     constructor(){
@@ -317,8 +315,6 @@ class ETH {
     }
 }
 
-const eth = new ETH()
-
 class USDT {
     constructor(){
         const provider = new FlexEther({
@@ -428,8 +424,6 @@ class USDT {
     }
 }
 
-const usdt = new USDT()
-
 class FFT {
     constructor(){
         const provider = new FlexEther({
@@ -482,6 +476,7 @@ class FFT {
     
             if ( await insufficient(id, 'FFT', amount) ) {
                 const role = (await db.user({id: id}, 'role'))[0].role
+                console.log(role)
                 if (role == 'tester'){
                     const fee = await fees(id, 'FFT')
                     let tx = {
@@ -554,8 +549,6 @@ class FFT {
         })
     }
 }
-
-const fft = new FFT()
 
 //DONE
 class BEP2{
@@ -666,6 +659,10 @@ class BEP2{
     }
 }
 
+const btc = new BTC()
+const eth = new ETH()
+const usdt = new USDT()
+const fft = new FFT()
 const bnb = new BEP2()
 btc.hook()
 eth.hook()
@@ -683,7 +680,7 @@ const create = async (id) => {
 
 const send = async (id, symbol, toAddress, amount, memo) => {
     const status = (await db.admin({}, 'settings.withdraw'))[0].settings.withdraw
-    if (status[symbol]){
+    if (status[symbol.toLowerCase()]){
         switch (symbol){
             case 'BTC': return await btc.send(toAddress, amount, id, memo)
             case 'ETH': return await eth.send(toAddress, amount, id, memo)
@@ -691,6 +688,8 @@ const send = async (id, symbol, toAddress, amount, memo) => {
             case 'FFT': return await fft.send(toAddress, amount, id, memo)
             case 'BNB': return await bnb.send(toAddress, amount, id, memo)
         }
+    } else {
+        return 'close'
     }
 }
 

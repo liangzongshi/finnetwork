@@ -43,6 +43,7 @@ $(document).ready(() => {
         if ($(e)[0].target.dataset.order !== undefined){
             order = JSON.parse($(e)[0].target.dataset.order)
         }
+        console.log(order)
         if (order !== undefined){
             var order_data = {
                 action: order.action,
@@ -73,7 +74,7 @@ $(document).ready(() => {
             const priceFFT = data.priceFFT
 
             // alert((balance - data.value) * priceUSD )
-            if (data.type == 'switchout'){
+            if (data.type == 'switchout' || data.type == 'withdraw'){
                 $(`#md-withdraw-${data.symbol}`).modal('hide')
                 $(`#bal-${data.symbol}`).html((balance - data.value).toFixed(3))
                 $(`#avai-${data.symbol}`).html((avai - data.value).toFixed(3))

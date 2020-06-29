@@ -325,6 +325,7 @@ module.exports = (io,siofu) => {
                             symbol: data.symbol
                         })
                     } else {
+                        // console.log(tx)
                         const priceFFT = await getPrice('FFT')
                         tx.priceFFT = priceFFT
                         socket.emit('send-err-balance', tx)
